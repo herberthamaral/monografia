@@ -1,0 +1,14 @@
+rm *.bbi -Rf 
+rm *.ini -Rf
+rm *.dvi -Rf
+rm *.pdi -Rf
+rm *.loi -Rf
+rm *.idi -Rf
+rm *.ili -Rf
+rm *.bli -Rf
+rm *.aui -Rf
+rm *.log -Rf
+rm *.bbl -Rf
+rm *.aux -Rf
+rm *.blg -Rf
+rm *.idx -Rf
