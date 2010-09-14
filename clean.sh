@@ -1,10 +1,11 @@
-rm *.bbi -Rf 
-rm *.ini -Rf
+#!/bin/bash
+rm *.bbt -Rf 
+rm *.ind -Rf
 rm *.dvi -Rf
-rm *.pdi -Rf
+rm *.pdf -Rf
 rm *.loi -Rf
 rm *.idi -Rf
-rm *.ili -Rf
+rm *.ilg -Rf
 rm *.bli -Rf
 rm *.aui -Rf
 rm *.log -Rf
@@ -12,3 +13,4 @@ rm *.bbl -Rf
 rm *.aux -Rf
 rm *.blg -Rf
 rm *.idx -Rf
+rm *.out -Rf 
