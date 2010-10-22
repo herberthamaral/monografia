@@ -14,3 +14,5 @@ rm *.aux -Rf
 rm *.blg -Rf
 rm *.idx -Rf
 rm *.out -Rf 
+rm *.lyx -Rf
+rm *.toc -Rf

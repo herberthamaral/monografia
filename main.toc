@@ -1,8 +1,0 @@
-\contentsline {chapter}{\numberline {1}Referencial te\IeC {\'o}rico}{3}
-\contentsline {section}{\numberline {1.1}Recupera\IeC {\c c}\IeC {\~a}o de informa\IeC {\c c}\IeC {\~a}o}{3}
-\contentsline {section}{\numberline {1.2}Web crawlers e web scrapers}{3}
-\contentsline {section}{\numberline {1.3}Python}{3}
-\contentsline {section}{\numberline {1.4}Scrapy}{3}
-\contentsline {section}{\numberline {1.5}Website Parse Template}{3}
-\contentsline {section}{\numberline {1.6}Protocol Buffers}{3}
-\contentsline {chapter}{}{4}
