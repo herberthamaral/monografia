@@ -20,7 +20,14 @@
 \index{Python!Historico}
 Segundo \cite{pythondoc}, o Python é uma linguagem poderosa, de propósitos gerais, fácil de aprender e programar, interpretada, orientada a objetos e com alguns outros atributos que a tornam uma linguagem ideal para \emph{scripting} e desenvolvimento rápido de aplicações.
 
-A linguagem Python foi criada no início dos anos 1990 por Guido Van Rossum \cite{pythonlicense}, no Stichting Mathematisch Centrum, na Holanda. Van Rossum permanece como o principal autor da linguagem Python, apesar de receber várias contribuições de colaboradores externos.
+A linguagem Python foi criada no início dos anos 1990 por Guido Van Rossum \cite{pythonlicense}, no Stichting Mathematisch Centrum, na Holanda, com o intuito de ser uma linguagem substituta ao ABC, que apresentava uma série de problemas, especialmente com estensibilidade \cite{pythonfaq}. A linguagem Python, inicialmente, foi criada para ser uma substituta da linguagem ABC e com os poderes da API 
+
+Van Rossum permanece como o principal autor da linguagem Python, apesar de receber várias contribuições de colaboradores externos.
+
+Um erro comum é associar a origem o nome da linguagem Python com o nome da serpente. De fato, Van Rossum se inspirou num grupo de comediantes britânicos, o Monty Python, para dar nome à linguagem \cite{pythonfaq} . %referencias?
+
+
+%colocar mais sobre o histórico
 
 \subsection{Características}
 \index{Python!Caracteristicas}
@@ -45,8 +52,28 @@ Há também a possibilidade de executar a linguagem Python em outros ambientes d
 
 Desta forma, um programa em Python pode utilizar o Swing através do Jython para o desenvolvimento de uma interface gráfica em ambiente Java ou pode utilizar o \emph{Windows Communication Foundation} como \emph{framework} de troca de mensagens no ambiente Microsoft.NET.
 
-\subsection{Uso em sistemas de recuperação de informações}
-\index{Python!Uso em sistemas de recuperação de informações}
+\subsubsection{CPython}
+\index{Python!Ambientes e plataformas!IronPython}
+
+O CPython é a implementação padrão da linguagem Python e é escrita na linguagem de programação C \cite[p.15]{pypy}. A linguagem é implementada por um compilador que traduz código Python em um código \emph{bytecode} de altíssimo nível (\emph{very high level}) e por uma máquina virtual que interpreta o código.
+
+\subsubsection{IronPython}
+\index{Python!Ambientes e plataformas!IronPython}
+
+O IronPython \cite{ironpython} é uma implementação da linguagem de programação Python que é execuatada no framework .NET e Silverlight. Suporta um shell interativo (como a maioria das implementações da linguagem Python) com completa compilação dinâmica. É bem integrado com o resto do framework .NET e torna todas as bibliotecas do .NET facilmente disponíveis para programadores Python, enquanto mantém a compatibilidade com a linguagem Python.
+
+
+\subsubsection{Jython}
+\index{Python!Ambientes e plataformas!Jython}
+
+Jython \cite{jython} é uma implementação da linguagem Python para a JVM (\emph{Java Virtual Machine}). O Jython torna possível a execução da sintaxe da linguagem de programação Python na plataforma Java, o que permite uma integração transparente com as bibliotecas Java e outras aplicações baseadas em Java. 
+
+\subsubsection{PyPy}
+\index{Python!Ambientes e plataformas!PyPy}
+\subsection{Python e Computação Científica}
+\index{Python!Python e Computação Científica}
+
+Segundo \cite{python_scientific_world}, Python e estensões como o NumPyMas Ik, estão se tornando padrão para muitas ciências que precisam processar grande quantidades de dados, desde a neuroimagem à astronomia.
 
 Um dos casos mais famosos da linguagem Python em sistemas de recuperação de informações é o Google.\cite{google}. Python representa um papel fundamental dentro da estrutura de motores de busca do Google, sendo responsável pelos seus \emph{crawlers} e pelos seus servidores de URL \cite{surveyir} .
 
