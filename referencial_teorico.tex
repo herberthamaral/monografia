@@ -85,6 +85,19 @@ Entretanto, existe um \emph{tradeoff} no uso da linguagem Python: a velocidade d
 
 Outros fatores como a tipagem dinâmica tendem a trazer mais \emph{overhead} na execução dos programas em Python, o que degrada ainda mais sua velocidade de execução, o que torna seu uso difícil ou inviável para projetos que dependam estritamente de velocidade de execução (ex: componentes de baixo nível, como Kernels e drivers de dispositivos, aplicativos de produtividade, como suítes de escritórios e CAD e outros softwares de grande porte).
 
+\subsubsection{Tipagem dinâmica}
+\index{Python!Ambientes e plataformas!Tipagem Dinâmica}
+
+A tipagem dinâmica é uma propriedade de uma linguagem de programação que permite que a checagem de tipo seja feito em tempo de execução, em detrimento da tipagem estática, onde a verificação de tipo é feita em tempo de compilação.
+
+Segundo \cite{dynamic_langs}, as principais vantagens ao se utilizar uma linguagem de tipagem dinâmica é evitar a rigidez de linguagens estaticamente tipadas, tornar mais fácil a prototipação de sistemas que possuem requisitos ainda não conhecidos ou que mudam de uma forma não previsível, aumentar o reuso de código, diminuir a verbosidade e o custo do projeto, sem necessariamente ser menos seguras que as linguagens de tipagem estática.
+
+Devido à seu baixo nível de burocracia e alto poder de prototipação, as linguagens dinâmicas são freqüentemente usadas como "cola" entre componentes \cite{scripting}. Por este motivo, as linguagens dinâmicas também são conhecidas por \emph{glue languages} ou \emph{system integration languages}.
+
+Uma linguagem que não é apegada a tipos permite que a integração entre componentes seja bem mais fácil, pois não há restrições primárias sobre como os retornos de cada componente devam ser utilizados: todos eles são apresentados de uma única forma \cite{scripting}.
+
+Linguagens dinâmicas, como o Python, são ideais para pesquisas e provas de conceito, graças a seu alto poder de prototipação, o que ajuda a explicar o quão Python está em uso na comunidade científica, como demonstrado em \cite{python_scientific_world}.
+
 \subsection{Ambientes e plataformas}
 \index{Python!Ambientes e plataformas}
 
@@ -115,20 +128,23 @@ Jython \cite{jython} é uma implementação da linguagem Python para a JVM (\emp
 
 PyPy é uma implementação do Python escrita em Python \cite[p. 7]{pypy}. A idéia principal é escrever uma especificação de alto nível do interpretador em um subtrato restrito do Python chamado RPython (\emph{Restricted Python}) com o intuito de ser traduzido para executáveis eficientes de baixo nível para o ambiente C/POSIX, JVM e CLI, o que garante a portabilidade. 
 
-
-
 \subsection{Python e Computação Científica}
 \index{Python!Python e Computação Científica}
 
-Segundo \cite{python_scientific_world}, Python e estensões como o NumPy estão se tornando padrão para muitas ciências que precisam processar grande quantidades de dados, desde a neuroimagem à astronomia.
+Segundo \cite{python_scientific_world}, Python e estensões como o NumPy \cite{numpy} estão se tornando padrão para muitas ciências que precisam processar grande quantidades de dados, desde a neuroimagem à astronomia.
 
+Conferências anuais especificamente voltadas para usos de Python em computação científica, como o SciPy \cite{scipy} (tanto na versão norte-americana quanto na européia) vem ganhando peso a cada ano.
 
-Um dos casos mais famosos da linguagem Python em sistemas de recuperação de informações é o Google.\cite{google}. Python representa um papel fundamental dentro da estrutura de motores de busca do Google, sendo responsável pelos seus \emph{crawlers} e pelos seus servidores de URL \cite{surveyir}.
+Ambientes de desenvolvimento integrado como o PythonXY \cite{pythonxy} ajuda a mostrar para cientistas que a linguagem Python com seus pacotes de bibliotecas e softwares para computação científica pode ser uma excelente alternativa para ambientes como o Matlab.
+
+Um dos casos mais famosos da linguagem Python sistemas de recuperação de informações é o Google.\cite{google}. Python representa um papel fundamental dentro da estrutura de motores de busca do Google, sendo responsável pelos seus \emph{crawlers} e pelos seus servidores de URL \cite{surveyir}.
 
 
 \pagebreak
 \section{Scrapy}
 \index{Scrapy}
+
+
 
 \pagebreak
 \section{Website Parse Template}
