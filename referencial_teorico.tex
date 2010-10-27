@@ -165,6 +165,97 @@ Dentre as principais funcionalidades que o Scrapy apresenta, pode-se citar:
 	\item Webservices e console telnet embutidos para monitoração, controle, introspecção e debugging do crawler.
 \end{itemize}
 
+\subsection{Arquitetura}
+\index{Scrapy!Arquitetura}
+
+O diagrama a seguir dá uma visão geral da arquitetura do Scrapy com seus componentes e o fluxo de dados que há dentro do sistema (mostrado em setas verdes). Uma breve descrição dos componentes e o fluxo de dados estão incluídos abaixo.
+
+\begin{figure} [ht]
+	\centering
+	\includegraphics[scale=1]{scrapy_architecture.png}
+	\caption{Visão geral da arquitetura do scrapy \cite{scrapy_arch}}
+	\label{scrapy_architecture}
+\end{figure}
+
+\subsubsection{Scrapy engine}
+\index{Scrapy!Arquitetura!Scrapy engine}
+
+O engine é responsável por controlar o fluxo de dados entre todos os componentes do sistema, e disparar eventos quando certas ações ocorrerem.
+% colocar mais informações sobre data flow
+
+\subsubsection{Scheduler}
+\index{Scrapy!Arquitetura!Scheduler}
+
+O scheduler recebe requisições do engine e as enfileira para realimentação da engine no futuro.
+
+\subsubsection{Downloader}
+\index{Scrapy!Arquitetura!Downloader}
+
+O Downloader é responsável por obter páginas da Web e alimetar o engine, que por sua vez alimenta os crawlers/spiders.
+
+\subsubsection{Item pipeline}
+\index{Scrapy!Arquitetura!Item pipeline}
+
+O Item Pipeline é responsável para processar os itens uma vez que eles foram extraídos pelos crawlers/spiders. Tarefas típicas do Item Pipeline incluem limpeza, validação e persistência do item.
+
+%colocar mais informações sobre o este item
+
+\subsubsection{Spider middlewares}
+\index{Scrapy!Arquitetura!Spider middlewares}
+
+Spider middlewares são \emph{ganchos} específicos que ficam entre a Engine e os Spiders e podem processar a entrada de um sipder (respostas) e saídas (itens e requisições). Eles fornecem um mecanismo conveniente para estender as funcionalidades do Scrapy através da adição de código customizado.
+
+%colocar mais informações sobre o spider middleware
+
+\subsubsection{Scheduler middlewares}
+\index{Scrapy!Arquitetura!Scheduler middlewares}
+
+Scheduler middlewares são \emph{ganchos} específicos que ficam entre a Engine e o Schedule e processa requisições quando as mesmas passam do engine para o Scheduler e vice-versa. Eles fornecem um mecanismo conveniente para estender as funcionalidades do Scrapy através da adição de código customizado.
+
+\subsubsection{Fluxo de dados}
+\index{Scrapy!Arquitetura!Fluxo de dados}
+
+O fluxo de dados do Scrapy é controlado pela Engine e funciona da seguinte forma:
+
+\begin{enumerate}
+	\item Engine abre um domínio, localiza o Spider que manipula aquele domínio e pede para o Spider a primeira URL para navegar.
+	\item O Engine pega a primeira URL para navegar do Spider e a agenda no Scheduler como Requisições.
+	\item O Engine pede para o Scheduler as próximas URLs para navegar.
+	\item O Scheduler retorna a próxima URL para navegação para o Engine e o Engine a manda para o Downloader passando pelo Downloader Middleware.
+	\item Uma vez que o download da página terminou, o Downloader gera uma Response (com a página) e a manda para o Engine, passando pelo Downloader Middleware.
+	\item O Engine recebe a resposta do downloader e a envia para o Spider processar, passando pelo Spider Middleware.
+	\item O Spider processa a Response e retorna os itens obtidos e novas Requests para o Engine.
+	\item O Engine envia os itens obtidos (retornados pelo spider) para o Item Pipeline e envia as Requests (retornadas pelo Spider) para o Scheduler.
+	\item O processo se repete a partir do passo 2 até que não haja mais Requests no Scheduler e o Engine fecha o domínio.
+\end{enumerate}
+
+\subsubsection{E/S orientado a eventos}
+\index{Scrapy!Arquitetura!Networking orientado a eventos}
+
+O Scrapy é escrito utilizando o Twisted \cite{twisted}, um framework popular para programação orientada a eventos para Python. Desta forma, ele é implementado utilizado código não-bloqueante (ou assíncrono) para aumentar a concorrência.
+
+\subsection{Serviços embutidos}
+\index{Scrapy!Serviços embutidos}
+
+O Scrapy possui uma gama de serviços embutidos feitos para facilitar a monitoração e manutenção do sistema. A seguir, é apresentado cada um destes serviços embutidos bem como uma descrição breve.
+
+\subsubsection{Logging}
+\index{Scrapy!Serviços embutidos!Logging}
+
+O log é um histórico de execução do sistema. Através da análise de logs, é possível detectar e achar a fonte de problemas. O Scrapy possui um componente de logging que grava as mensagens de log em um arquivo em disco e possui cinco níveis de log \cite{scrapy_log}:
+
+\begin{enumerate}
+	\item \texttt{\textbf{CRITICAL}} - Para erros críticos
+	\item \texttt{\textbf{ERROR}} - Para erros regulares
+	\item \texttt{\textbf{WARNING}} - Para avisos
+	\item \texttt{\textbf{INFO}} - Para mensagens informativas
+	\item \texttt{\textbf{DEBUG}} - Para mensagens de debug
+\end{enumerate}
+
+O nível de log é configurável e um determinado nível irá catalogar todas as mensagens do nível mais as mensagens dos níveis abaixo. Por exemplo, se o nível de log for configurado para 5 (\texttt{DEBUG}), o sistema irá gravar todas as mensagens de log, ao passo que se o nível de log for configurado para 2 (\texttt{ERROR}), somente as mensagens de erros regulares e erros críticos serão gravados.
+
+
+
 \pagebreak
 \section{Website Parse Template}
 \index{Website Parse Template}
