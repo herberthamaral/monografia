@@ -260,6 +260,49 @@ O nível de log é configurável e um determinado nível irá catalogar todas as
 \section{Website Parse Template}
 \index{Website Parse Template}
 
+
+Website Parse Template (WPT) é um formato aberto baseado em XML que fornece informações adicionais a web crawlers como estrutura e conteúdo do HTML. O WPT é compatível com esquemas XML, como o RDF e o OWL \cite{wpt}. É composto por três seções principais:
+
+\begin{itemize}
+	\item \textbf{Templates} - Seção mandatória, que contém descrições sobre estrutura e conteúdo de páginas da web em HTML.
+	\item \textbf{Ontologia} - Seção opcional que define conceitos e relações usadas em um website.
+	\item \textbf{URLs} - Seção opcional, que associa certos padrões de URL para grupos de páginas web para templates específicos. 
+\end{itemize}
+
+Cada uma das seções do WPT mostradas acima será discutida a seguir.
+
+\subsection{Seções do WPT}
+\index{Website Parse Template!Seções do WPT}
+
+\subsubsection{Templates}
+\index{Website Parse Template!Seções do WPT}
+
+A seção de templates descreve a estrutura do HTML fazendo referências aos elementos HTML correspondentes da página em específico \cite{wpt}.
+
+O Template inicia com a tag \texttt{<ow:template>} e termina com  \texttt{</ow:template>}. É obrigatório especificar um nome de template único dentro da tag \texttt{<ow:template>} e definir a URL correspondente ao template específico.
+
+O Template é composto de blocos correspondentes a cada elemento estrutural de uma página web em específico. Cada template precisa ter ao menos um bloco. Um bloco faz referência ao elemento HTML apropriado através de uma ou muitas combinações dos seguintes métodos de referência: TagID, XPath e Pattern. Cada bloco precisa iniciar com uma tag \texttt{<ow:block>} e fechar com \texttt{</ow:block>}. É necessário indicar elementos HTML específicos dentro da tag de abertura do bloco.
+
+\pagebreak
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption="Exemplo de XML",
+captionpos=b
+}
+\begin{lstlisting}
+<ow:template ow:name="Template Example" ow:url="http://www.example.com/index.php">
+  <ow:block ow:tagid="ex1" ow:xpath="/html/body/div/div" ow:pattern="content (object[[a-z]*])">
+    <!--descricao do conteudo -->
+  </ow:block>
+  <ow:block ow:tagid="ex2">
+    <!-- descricao do conteudo -->
+  </ow:block>
+  <ow:block ow:xpath="/html/body/div/div/table/tr[1]/td">
+    <!-- descricao do conteudo -->
+  </ow:block>
+</ow:template>
+\end{lstlisting}
+
 \pagebreak
 \section{Protocol Buffers}
 \index{Protocol Buffers}
