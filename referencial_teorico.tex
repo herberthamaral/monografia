@@ -286,7 +286,7 @@ O Template é composto de blocos correspondentes a cada elemento estrutural de u
 \pagebreak
 \lstset{language=XML,
 basicstyle=\scriptsize,
-caption="Exemplo de XML",
+caption={Exemplo de um Template com três blocos \cite{wpt}},
 captionpos=b
 }
 \begin{lstlisting}
@@ -302,6 +302,61 @@ captionpos=b
   </ow:block>
 </ow:template>
 \end{lstlisting}
+
+Cada bloco contém o a descrição do conteúdo dos elementos HTML representados isoladamente ou dentro de outro bloco. Blocos embutidos são usados para descrever elementos HTML específicos ("bloco pai") que inclui um ou mais elementos ("bloco filho").
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Exemplo de um Template com blocos embutidos \cite{wpt}},
+captionpos=b
+}
+\begin{lstlisting}
+<ow:template ow:name="Template Example" ow:url="http://www.example.com/index.php">
+
+  <ow:block ow:xpath="/html/body/div/div">
+    <ow:block ow:xpath="/html/body/div/div/table/tbody/tr[1]/td">
+      <!-- descricao do conteudo -->
+    </ow:block>
+  </ow:block>
+  
+</ow:template>
+\end{lstlisting}
+
+A descrição do conteúdo pode ser informada usando conceitos definidos na seção \emph{Ontology} ou qualquer linguagem/formato suportado: RDF, CWL, etc. É necessário declarar namespaces dos schemas XML usados dentro da tag \texttt{<ow:wpt>} e o nome da ontologia dentro da tag \texttt{<ow:template>}
+
+\pagebreak
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Exemplo de um Template com instâncias de descrição de conteúdo\cite{wpt}},
+captionpos=b
+}
+\begin{lstlisting}
+<ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ ow:host="http://www.example.com">
+
+  <ow:template ow:name="Template Example" ow:url="http://www.example.com/index.php"
+   ow:ontology="ontology_example">
+
+     <!-- descricao de conteudo utilizando conceitos definidos -->
+     <ow:block ow:tagid="ex1" ow:xpath="/html/body/div/div" ow:pattern="Wellcome (user.name[[A-Za-z]*])">
+       conceito_de_ontologia
+     </ow:block>
+     <!-- descricao de conteudo utilizando a sintaxe RDF -->
+     <ow:block ow:tagid="ex2">
+       <rdf:Description rdf:about="http://www.example.com/index.php">
+       </rdf:Description>
+     </ow:block>
+     <!-- descricao de conteudo utiliznado CWL.unl -->
+     <ow:block ow:xpath="/html/body/div/div/table/tr[1]/td">
+       {cwl.unl}
+       {/cwl.unl}
+     </ow:block>
+  </ow:template>
+
+</ow:wpt>
+\end{lstlisting}
+
 
 \pagebreak
 \section{Protocol Buffers}
