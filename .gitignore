@@ -9,3 +9,6 @@
 *.aux
 *.out
 *.lyx
+*.toc
+*.lof
+*.lot
