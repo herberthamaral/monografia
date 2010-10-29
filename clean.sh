@@ -16,3 +16,5 @@ rm *.idx -Rf
 rm *.out -Rf 
 rm *.lyx -Rf
 rm *.toc -Rf
+rm *.lot -Rf
+rm *.lof -Rf
