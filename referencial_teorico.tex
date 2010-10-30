@@ -436,7 +436,7 @@ A informação a ser serializada é espeficada através da definição de mensag
 \pagebreak
 \lstset{language=java,
 basicstyle=\scriptsize,
-caption={Exemplo de uma mensagem em \emph{protobuf}, que contém informações sobre uma pessoa},
+caption={Exemplo de uma mensagem em \emph{protobuf}, que contém informações sobre uma pessoa\label{protobuf_msg}},
 captionpos=b,
 }
 \begin{lstlisting}
@@ -459,6 +459,34 @@ message Person {
   repeated PhoneNumber phone = 4;
 }
 \end{lstlisting}
+
+
+Uma vez que as mensagens foram definidas, é necessario executar o compilador do \emph{protobuf} para a linguagem da sua aplicação no seu arquivo \texttt{protobuf} para que as classes de acesso à dados sejam geradas. Segundo \cite{protobuf_overview}, estas classes fornecem meios de acessos simples para cada campo (como \texttt{query()} e  \texttt{set\_query()}) e métodos para serializar e \emph{parsear} toda a estrutura de e para bytes brutos. Por exemplo, se a linguagem a ser trabalhada fosse C++, executar o compilador \emph{protobuf} no exemplo acima irá fazer com que seja gerada uma classe \texttt{Person}. Esta classe poderia ser usada na sua aplicação para popular, serializar e obter mensagens do tipo \texttt{Person} no estilo \emph{protobuf} e poderia ser utilizada como no exemplo a seguir:
+
+\pagebreak
+\lstset{language=C++,
+basicstyle=\scriptsize,
+caption={Exemplo de uso da classe para C++ gerada a partir da mensagem \texttt{Person}},
+captionpos=b,
+}
+\begin{lstlisting}
+// serializacao
+Person person;
+person.set_name("John Doe");
+person.set_id(1234);
+person.set_email("jdoe@example.com");
+fstream output("myfile", ios::out | ios::binary);
+person.SerializeToOstream(&output);	
+
+// deserializacao
+
+fstream input("myfile", ios::in | ios::binary);
+Person person;
+person.ParseFromIstream(&input);
+cout << "Name: " << person.name() << endl;
+cout << "E-mail: " << person.email() << endl;
+\end{lstlisting}
+
 
 
 \subsection{Vantagens sobre outros formatos}
@@ -504,6 +532,9 @@ person {
 \end{lstlisting}
 
 
-
 \subsubsection{JSON}
+
+O JSON (JavaScript Objetct Notation) é um dos principais formatos de troca de dados na Internet hoje. Ele se baseia na forma como são construídos objetos em JavaScript para serialização dos dados. Apesar do nome remeter à uma única linguagem, o JSON pode ser utilizado em várias linguagens e plataformas atuais, como pode ser visto em \cite{json}.
+
+Não foram encontrados comparações diretas com outros formatos de dados além do XML com o \emph{protbuf} em sua documentação oficial, tampouco comparações que fossem agnósticas a plataformas. No entanto, pode-se fazer algumas comparações entre o JSON e o \emph{protobuf}:
 
