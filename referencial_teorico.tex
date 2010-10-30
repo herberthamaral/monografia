@@ -414,3 +414,96 @@ Cada definição de conceito inicia com a tag \texttt{<ow:concept>} e termina co
 \pagebreak
 \section{Protocol Buffers}
 \index{Protocol Buffers}
+
+\emph{Protocol Buffers} (\emph{Protobuf})é uma forma de de codificar dados estruturados em um formato eficiente e extensível \cite{protobuf}. 
+
+O \emph{protobuf} foi inicialmente desenvolvido no Google para lidar com um protocolo de requisição/resposta num servidor de índices \cite{protobuf_overview}. Antes do \emph{protobuf}, havia um formato para as requisições e respostas que utilizava uma seleção/desseleção manual e dava suporte à várias versões do protocolo, o que resultava num código difícil de ler, manter e escrever \cite{protobuf_overview} . 
+
+Devido ao versionamento manual do protocolo, havia grandes dificuldades no desenvolvimento e implantação de um novo. Os desenvolvedores precisavam certificar se todos os servidores entre o que origina a requisição e o que manipula a requisção estavam aptos a entender o novo protocolo antes de utiliza-lo \cite{protobuf_overview}.
+
+Segundo \cite{protobuf_overview}, o \emph{protobuf} foi desenvolvido para resolver muitos destes problemas:
+
+\begin{itemize}
+	\item Novos campos podem ser facilmente introduzidos e servidores intermediários que não precisavam inspecionar os dados simplesmente o passavam adiante, sem precisar saber sobre todos os campos.
+	\item Os formatos eram mais auto-descritíveis e poderiam lidar com uma variedade de linguagens (C++, Java, Python, etc.)
+	\item Possuem uma performance superior ao XML, além de serem mais simples e menos ambíguos.
+\end{itemize}
+
+\subsection{Esquema de funcionamento}
+
+A informação a ser serializada é espeficada através da definição de mensagens \emph{protobuf} em arquivos \texttt{.proto}. Cada mensagem \emph{protobuf} é um pequeno registro lógico de informação, contendo uma séria de pares nome-valor \cite{protobuf_overview} . Eis um exemplo básico de um arquivo \texttt{.proto} que define uma mensagem contendo informações sobre uma pessoa:
+
+\pagebreak
+\lstset{language=java,
+basicstyle=\scriptsize,
+caption={Exemplo de uma mensagem em \emph{protobuf}, que contém informações sobre uma pessoa},
+captionpos=b,
+}
+\begin{lstlisting}
+message Person {
+  required string name = 1;
+  required int32 id = 2;
+  optional string email = 3;
+
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    required string number = 1;
+    optional PhoneType type = 2 [default = HOME];
+  }
+
+  repeated PhoneNumber phone = 4;
+}
+\end{lstlisting}
+
+
+\subsection{Vantagens sobre outros formatos}
+
+\subsubsection{XML}
+
+São várias as vantagens que o \emph{protobuf} tem sobre o XML. \cite{protobuf_overview} cita algumas:
+
+\begin{itemize}
+	\item \emph{protobuf} é mais simples
+	\item É de três a dez vezes menor
+	\item É De vinte a cem vezes mais rápido
+	\item É menos ambíguo
+	\item Geram classes de acesso à dados que são mais simples de usar programaticamente
+\end{itemize}
+
+Um exemplo é necessário para tornar a ilustração das diferenças do protocol buffer mais óbvias. Suponha que os dados cadastrais de uma pessoa sejam representados em XML desta forma:
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Exemplo de modelagem de dados de uma pessoa utilizando XML},
+captionpos=b,
+}
+\begin{lstlisting}
+ <person>
+    <name>John Doe</name>
+    <email>jdoe@example.com</email>
+  </person>
+\end{lstlisting}
+
+O código equivalente em \emph{protobuf} seria este:
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Exemplo de modelagem de dados de uma pessoa utilizando \emph{protobuf}},
+captionpos=b,
+}
+\begin{lstlisting}
+person {
+  name: "John Doe"
+  email: "jdoe@example.com"
+}
+\end{lstlisting}
+
+
+
+\subsubsection{JSON}
+
