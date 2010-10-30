@@ -384,6 +384,33 @@ Especificações utilizando expressões regulares (RegExp) são utilizadas para 
 \subsubsection{Ontology}
 \index{Website Parse Template!URLs}
 
+A seção Ontology contém enumerações e definições de todos os conceitos utilizados no website \cite{wpt}. Os conceitos listados precisam ser definidos dentro de das tags \texttt{<ow:ontology>} e \texttt{<ow:ontology>}. É necessário especificar o nome da ontologia dentro da tag \texttt{<ow:ontology>}. O WPT permite tanto o uso de OWL ou da \emph{WPT Ontology language} para definição de conceitos. A principal diferença dentre estas línguas é que a \emph{WPT Ontology language} fornece uma sintaxe simplificada para conceitos e definição de relações.
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Definição conceitual de ''artista'' utilizando a \emph{WPT Ontology language} \cite{wpt}},
+captionpos=b,
+}
+\begin{lstlisting}
+<ow:ontology ow:name="general">
+  <ow:concept ow:name="artist">
+    <ow:inherit>person</ow:inherit>
+    <ow:has>name</ow:has>
+    <ow:has>album</ow:has>
+    <ow:has>track</ow:has>
+    <ow:has>image</ow:has>
+    <ow:has>bio</ow:has>
+    <ow:has>video</ow:has>
+    <ow:has>id</ow:has>
+  </ow:concept>
+  <ow:concept>logo</ow:concept>
+  <ow:concept>menu</ow:concept>
+  <ow:concept>advertisement</ow:concept>
+</ow:ontology>
+\end{lstlisting}
+
+Cada definição de conceito inicia com a tag \texttt{<ow:concept>} e termina com a tag\texttt{</ow:concept>}. A tag \texttt{<ow:inherit>} mostra relações de herança e a tag \texttt{<ow:has>} mostra relações atribuíveis entre dois conceitos. Os conceitos definidos tem um atributo padrão - identificador de objeto (id) para ser utilizado por web crawlers para coordenar os mesmos atributos do objeto utilizados em páginas diferentes do mesmo website.
+
 \pagebreak
 \section{Protocol Buffers}
 \index{Protocol Buffers}
