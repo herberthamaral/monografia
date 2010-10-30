@@ -357,6 +357,32 @@ captionpos=b
 </ow:wpt>
 \end{lstlisting}
 
+\subsubsection{URLs}
+\index{Website Parse Template!URLs}
+
+Esta seção define as URLS/padrões de URLs das páginas web descritas na seção de Templates. Esta seção é mandatória se os templates não definem as URLs/padrões de URL das páginas web \cite{wpt}.
+
+De acordo com a seção de Templates, esta seção também pode consistir de vários blocos/unidades. Cada um destes blocos iniciam com a tag \texttt{<ow:urls>} e terminam com a tag \texttt{</ow:urls>}.
+
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Exemplo de padrões de URLs \cite{wpt}},
+captionpos=b,
+label="wpt_url_pattern"
+}
+\begin{lstlisting}
+\label{lst:wpt_url_pattern}
+<ow:urls ow:name="Artist page on Yahoo! Music" ow:template="Artist page on Yahoo! Music">
+  <ow:url>http://music.yahoo.com/ar-8206256---Amy-Winehouse</ow:url>
+  <ow:url>http://music.yahoo.com/ar-([artist.id[0-9]*])---(artist.name[[A-Za-z0-9-]*])</ow:url>
+</urls>
+\end{lstlisting}
+
+Especificações utilizando expressões regulares (RegExp) são utilizadas para descrição de padrões de URL. O padrão de URL informado na listagem 1.4 também inclui a real URL representada. Os conceitos necessários para definição de padrões de URL (tais como "id" e "nome") são definidos na seção Ontology.
+
+\subsubsection{Ontology}
+\index{Website Parse Template!URLs}
 
 \pagebreak
 \section{Protocol Buffers}
