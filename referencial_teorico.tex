@@ -415,11 +415,11 @@ Cada definição de conceito inicia com a tag \texttt{<ow:concept>} e termina co
 \section{Protocol Buffers}
 \index{Protocol Buffers}
 
-\emph{Protocol Buffers} (\emph{Protobuf})é uma forma de de codificar dados estruturados em um formato eficiente e extensível \cite{protobuf}. 
+\emph{Protocol Buffers} (ou simplesmente \emph{protobuf})é uma forma de de codificar dados estruturados em um formato eficiente e extensível \cite{protobuf}. 
 
 O \emph{protobuf} foi inicialmente desenvolvido no Google para lidar com um protocolo de requisição/resposta num servidor de índices \cite{protobuf_overview}. Antes do \emph{protobuf}, havia um formato para as requisições e respostas que utilizava uma seleção/desseleção manual e dava suporte à várias versões do protocolo, o que resultava num código difícil de ler, manter e escrever \cite{protobuf_overview} . 
 
-Devido ao versionamento manual do protocolo, havia grandes dificuldades no desenvolvimento e implantação de um novo. Os desenvolvedores precisavam certificar se todos os servidores entre o que origina a requisição e o que manipula a requisção estavam aptos a entender o novo protocolo antes de utiliza-lo \cite{protobuf_overview}.
+Devido ao versionamento manual do protocolo, havia grandes dificuldades no desenvolvimento e implantação de um novo. Os desenvolvedores precisavam certificar se todos os servidores entre o que origina a requisição e o que manipula a requisição estavam aptos a entender o novo protocolo antes de utiliza-lo \cite{protobuf_overview}.
 
 Segundo \cite{protobuf_overview}, o \emph{protobuf} foi desenvolvido para resolver muitos destes problemas:
 
@@ -431,7 +431,7 @@ Segundo \cite{protobuf_overview}, o \emph{protobuf} foi desenvolvido para resolv
 
 \subsection{Esquema de funcionamento}
 
-A informação a ser serializada é espeficada através da definição de mensagens \emph{protobuf} em arquivos \texttt{.proto}. Cada mensagem \emph{protobuf} é um pequeno registro lógico de informação, contendo uma séria de pares nome-valor \cite{protobuf_overview} . Eis um exemplo básico de um arquivo \texttt{.proto} que define uma mensagem contendo informações sobre uma pessoa:
+A informação a ser serializada é espeficada através da definição de mensagens \emph{protobuf} em arquivos \texttt{.proto}. Cada mensagem \emph{protobuf} é um pequeno registro lógico de informação, contendo uma série de pares nome-valor \cite{protobuf_overview} . Eis um exemplo básico de um arquivo \texttt{.proto} que define uma mensagem contendo informações sobre uma pessoa:
 
 \pagebreak
 \lstset{language=java,
@@ -536,5 +536,19 @@ person {
 
 O JSON (JavaScript Objetct Notation) é um dos principais formatos de troca de dados na Internet hoje. Ele se baseia na forma como são construídos objetos em JavaScript para serialização dos dados. Apesar do nome remeter à uma única linguagem, o JSON pode ser utilizado em várias linguagens e plataformas atuais, como pode ser visto em \cite{json}.
 
-Não foram encontrados comparações diretas com outros formatos de dados além do XML com o \emph{protbuf} em sua documentação oficial, tampouco comparações que fossem agnósticas a plataformas. No entanto, pode-se fazer algumas comparações entre o JSON e o \emph{protobuf}:
+Não foram encontrados comparações diretas com outros formatos de dados além do XML com o \emph{protbuf} em sua documentação oficial, tampouco comparações que fossem agnósticas a plataformas. No entanto, há algumas vantagens naturais que o protobuf oferece:
 
+\begin{itemize}
+	\item É mais descritivo, uma vez que suporta vários tipos de mensagens e tipos de dados, enquanto o JSON suporta apenas objetos (ou lista de objetos) em formato chave-valor.
+	\item Permite a adição de regras de negócio: um campo dentro de uma mensagem protobuf pode ser opcional, obrigatório ou repetido e pode respeitar à um determinado tipo, seja ele enumeração, inteiro ou string, por exemplo. No JSON, só há a representação dos dados, nada obrigatoriamente descrevendo sua estrutura.
+	\item Protocol Buffers podem ser organizados em pacotes \cite{protobuf_docs}, da mesma forma que várias linguagens de programação orientadas a objeto permitem a organização de classes em pacotes ou \emph{namespaces}.
+	\item É mais reutilizável e possuem menos \emph{overhead} no armazenamento de dados \cite{twitter_hadoop}.
+\end{itemize}
+
+Entretanto, o JSON possui alguns contrapontos em relação ao \emph{protobuf}, o que o faz mais interessantes para sistemas mais heterogêneos (em que vários sistemas escritos em várias linguagens/plataformas precisam se comunicar):
+
+\begin{itemize}
+	\item Em comparação com o \emph{protobuf}, é mais fácil extrair informações (\emph{parsear}) do JSON, devido à sua natureza mais simplificada.
+	\item É suportado pela maioria das linguagens/plataformas \emph{json}.
+	\item Está se tornando rapidamente um padrão de mercado [?].
+\end{itemize}
