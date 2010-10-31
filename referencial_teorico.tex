@@ -10,7 +10,7 @@
 
 Um sistema de recuperação de informações (SRI) é um sistema capaz de armazenar, obter e dar manutenção em informações \cite[p. 2]{kowalski}. Neste contexto, informação pode composto por texto, imagens, audio, vídeo e outros objetos multimídia.
 
-Um SRI consiste em um programa de software que facilita a busca de informação por um usuário. O grau de sucesso de um SRI é dado no quanto o mesmo diminui a burocracia (\emph{overhead}) para o usuário encontrar uma informação. O sucesso de um SRI é muito subjetivo e baseia-se em qual informação que o usuário quer e sua predisposição a enfrentar ou não a burocracia do processo \cite[p. 4]{kowalsky}
+Um SRI consiste em um programa de software que facilita a busca de informação por um usuário. O grau de sucesso de um SRI é dado no quanto o mesmo diminui a burocracia (\emph{overhead}) para o usuário encontrar uma informação. O sucesso de um SRI é muito subjetivo e baseia-se em qual informação que o usuário quer e sua predisposição a enfrentar ou não a burocracia do processo \cite[p. 4]{kowalski}
 
 \subsection{SRIs para Web}
 \index{Recuperação de informação!SRIs para Web}
@@ -50,9 +50,12 @@ Todos os serviços citados anteriormente estão de acordo com as necessidades di
 \subsubsection{Motores de busca de propósito específico}
 \index{Recuperação de informação!SRIs para Web!Motores de busca de propósito específico}
 
-\pagebreak
-\section{Web crawlers e web scrapers}
-\index{Web crawlers e web scrapers}
+\subsection{Web crawlers e web scrapers}
+\index{Recuperação de Informação!Web crawlers e web scrapers}
+
+\emph{Web crawlers} ou \emph{spiders} são programas de computador que navegam pela World Wide Web de maneira metódica e automatizada \cite{herberth}.
+
+Dentre os \emph{web crawlers} mais famosos, pode-se destacar o GoogleBot, o Yahoo! Slurp e o MSNBot.
 
 \pagebreak
 \section{Python}
@@ -550,5 +553,5 @@ Entretanto, o JSON possui alguns contrapontos em relação ao \emph{protobuf}, o
 \begin{itemize}
 	\item Em comparação com o \emph{protobuf}, é mais fácil extrair informações (\emph{parsear}) do JSON, devido à sua natureza mais simplificada.
 	\item É suportado pela maioria das linguagens/plataformas \emph{json}.
-	\item Está se tornando rapidamente um padrão de mercado [?].
+	\item Está se tornando rapidamente um padrão na Web, em que iniciativas como o JSON RPC \cite{json_rpc} e a pretenção do Twitter abandonar o XML em detrimento do JSON \cite{twitter_deprecates_xml} provam isso.
 \end{itemize}
