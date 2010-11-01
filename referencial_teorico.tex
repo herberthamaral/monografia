@@ -30,7 +30,7 @@ Comparado com SRIs clássicos, os SRIs para Web encara conjunto de dados totalme
 
 Sendo assim, é possível concluir que o grande desafio de SRIs para Web é suprir as necessidades de informação dos usuários dado a heterogenidade da Web.
 
-\subsubsection{Motores de busca de propósito geral}
+\subsection{Motores de busca de propósito geral}
 \index{Recuperação de informação!SRIs para Web!Motores de busca de propósito geral}
 
 Dentre os motores de busca de propósito geral mais utilizados, pode-se citar o Google, Bing e o AltaVista. Dentre os principais objetivos de um motor de busca de propósito geral pode-se destacar: 
@@ -44,7 +44,7 @@ Dentre os motores de busca de propósito geral mais utilizados, pode-se citar o 
 
 Todos os serviços citados anteriormente estão de acordo com as necessidades dispostas acima. Devido à natureza destes motores de busca, é difícil, buscar por somente uma informação em específico, como "Altura em centímetros do Michael Jordan". O máxmimo que estes motores podem fazer é retornar uma página que possa conter esta informação, não a informação em si.
 
-\subsubsection{Motores de busca de domínio específico}
+\subsection{Motores de busca de domínio específico}
 \index{Recuperação de informação!SRIs para Web!Motores de busca de domínio específico}
 
 Ao contrário dos motores de busca de propósito geral, que buscam informações em sites sem distinção, os motores de busca de domínio específico buscam por informações específicas em sites específicos.
@@ -57,22 +57,24 @@ Um outro problema com grandes motores de busca é sua falha em manter índices a
 
 A funcionalidade extra se refere à apresentação de interfaces mais sofisticadas para usuários que são configurados para um domínio particular de busca. Desde que todos os usuários visitando uma busca de domínio específico pertecem a um grupo de pessoas com interesses e desejos similares, a busca específica por domínio pode utilizar mais efetivamente o perfil do usuário para dar recomendações mais precisas quando o mesmo tiver dificuldades de especificar suas necessidades \cite[p. 9]{wober}.
 
+\subsection{Busca semântica}
+
+A Web semântica é uma estensão da web atual em que a informação dada possui significado bem definido, permitindo que os computadores e pessoas possam trabalhar em cooperação \cite[p. 13]{wober}. Este novo formato da World Wide Web tem como visão ser tão capaz  quanto a World Wide Web (WWW) atual, mas consiste em dados legíveis por máquina, que possui o potencial para ter um maior impacto na busca na web.
+
+Na prática, o ''significado bem definido das informações'' é feito com o uso de metadados nas páginas Web. \emph{Tags} HTML como \texttt{<title>} e \texttt{<meta>} possuem grande valor no processo de definição de significado da página. Outros fatores como URLs semânticas auxiliam neste processo também.
+
+Apesar do RDF e do XML estarem se tornando amplamente reconhecidos como veículo padrão para descrição de metadados, uma enorme parcela de dados semânticos ainda reside dentro de documentos HTML \cite[p. 14]{wober}.
 
 
-\subsection{Web crawlers e web scrapers}
-\index{Recuperação de Informação!Web crawlers e web scrapers}
-
-\emph{Web crawlers} ou \emph{spiders} são programas de computador que navegam pela World Wide Web de maneira metódica e automatizada \cite{herberth}.
-
-Dentre os \emph{web crawlers} mais famosos, pode-se destacar o GoogleBot, o Yahoo! Slurp e o MSNBot.
 
 \pagebreak
 \section{Python}
 \index{Python}
 
+Segundo \cite{pythondoc}, o Python é uma linguagem poderosa, de propósitos gerais, fácil de aprender e programar, interpretada, orientada a objetos e com alguns outros atributos que a tornam uma linguagem ideal para \emph{scripting} e desenvolvimento rápido de aplicações.
+
 \subsection{Histórico}
 \index{Python!Historico}
-Segundo \cite{pythondoc}, o Python é uma linguagem poderosa, de propósitos gerais, fácil de aprender e programar, interpretada, orientada a objetos e com alguns outros atributos que a tornam uma linguagem ideal para \emph{scripting} e desenvolvimento rápido de aplicações.
 
 A linguagem Python foi criada no início dos anos 1990 por Guido Van Rossum \cite{pythonlicense}, no Stichting Mathematisch Centrum, na Holanda, com o intuito de ser uma linguagem substituta ao ABC, que apresentava uma série de problemas, especialmente com estensibilidade \cite{pythonfaq}. A linguagem Python, inicialmente, foi criada para ser uma substituta da linguagem ABC e com os poderes da API 
 
