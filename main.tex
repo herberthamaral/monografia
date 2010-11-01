@@ -18,7 +18,7 @@
 
 \renewcommand{\contentsname}{Índice}
 \renewcommand{\chaptername}{Capítulo}
-\renewcommand{\bibname}{Referências Bibliográficas}
+\renewcommand{\bibname}{Bibliografia}
 \renewcommand{\lstlistingname}{Listagem}
 
 %atalho par o underscore
@@ -29,7 +29,9 @@
 \doublespacing
 \include{referencial_teorico}
 
-\bibliographystyle{plain}
+\clearpage
+\addcontentsline{toc}{chapter}{Bibliografia}
+\bibliographystyle{abnt-alf}
 \bibliography{main}
 
 \end{document}
