@@ -15,7 +15,7 @@ Um SRI consiste em um programa de software que facilita a busca de informação 
 \subsection{SRIs para Web}
 \index{Recuperação de informação!SRIs para Web}
 
-Comparado com SRIs clássicos, os SRIs para Web encara conjunto de dados totalmente diferentes \cite[p. 2]{surveyir}. Segundo \cite{surveyir}, dentre os motivos que tornam únicos os SRIs para Web, pode-se citar:
+Comparado com SRIs clássicos, os SRIs para Web encara um conjunto de dados totalmente diferentes \cite[p. 2]{surveyir}. Segundo \cite{surveyir}, dentre os motivos que tornam únicos os SRIs para Web, pode-se citar:
 
 \begin{itemize}
 	\item \textbf{Internet Dinâmica} - A Internet muda a cada dia enquanto a maioria dos SRIs clássicos são feitos para bancos de dados estáticos.
@@ -28,21 +28,24 @@ Comparado com SRIs clássicos, os SRIs para Web encara conjunto de dados totalme
 	\item \textbf{Comportamento específicos} - É estimado que cerca de 85\% olham somente na primeira página dos resultados retornados dos motores de busca. 78\% dos usuários nunca modificam seu primeiro termo de consulta.
 \end{itemize}
 
-Sendo assim, é possível concluir que o grande desafio de SRIs para Web é suprir as necessidades de informação dos usuários dado a heterogenidade da Web.
+Sendo assim, é possível concluir que o grande desafio de SRIs para Web é suprir as necessidades de informação dos usuários dado que há grande heterogenidade na Web.
 
 \subsection{Motores de busca de propósito geral}
 \index{Recuperação de informação!SRIs para Web!Motores de busca de propósito geral}
+%verificar se está numerando as subseções
 
-Dentre os motores de busca de propósito geral mais utilizados, pode-se citar o Google, Bing e o AltaVista. Dentre os principais objetivos de um motor de busca de propósito geral pode-se destacar: 
+Dentre os motores de busca de propósito geral mais utilizados, há o Google, o Bing e o AltaVista. Dentre os principais objetivos de um motor de busca de propósito geral destaca-se: 
 
 \begin{itemize}
 	\item Resultados de qualidade, independentemente da consulta utilizada.
 	\item Uma boa cobertura dos documentos disponíveis na Web.
 	\item Facilidade de uso.
 	\item Ser agnóstico quanto ao tipo de mídia e documento a ser pesquisado.
+%agnóstico soa estranho
 \end{itemize}
 
-Todos os serviços citados anteriormente estão de acordo com as necessidades dispostas acima. Devido à natureza destes motores de busca, é difícil, buscar por somente uma informação em específico, como "Altura em centímetros do Michael Jordan". O máxmimo que estes motores podem fazer é retornar uma página que possa conter esta informação, não a informação em si.
+Todos os serviços citados anteriormente estão de acordo com as necessidades dispostas acima. Devido à natureza destes motores de busca, é difícil buscar por somente uma informação em específico, como "Altura em centímetros do Michael Jordan". O máximo que esses motores podem fazer é retornar uma página que possa conter esta informação, não a informação em si.
+%explicar a frase acima melhor
 
 \subsection{Motores de busca de domínio específico}
 \index{Recuperação de informação!SRIs para Web!Motores de busca de domínio específico}
@@ -51,15 +54,17 @@ Ao contrário dos motores de busca de propósito geral, que buscam informações
 
 Tais motores de busca podem ser utilizados para suprir a necessidade de precisão que se perde com os motores de busca de propósito geral, fornecendo ao usuário resultados mais completos, relevantes e/ou específicos.
 
-Motores de busca de domínio específico estão se tornando populares porque oferecem uma melhor precisão com recursos extra que não são possíveis com motores de busca de propósito específico \cite[p. 8]{wober}.
+Motores de busca de domínio específico estão se tornando populares porque oferecem uma melhor precisão com recursos extras que não são possíveis com motores de busca de propósito específico \cite[p. 8]{wober}.
 
-Um outro problema com grandes motores de busca é sua falha em manter índices atualizados, que é um resultado do vasto número de páginas que precisam ser indexadas. Um motor de busca de propósito específico possui um conjunto menor de páginas para indexar e consequentemente podem atualiza-las mais frequentemente, o que leva a resultados mais atualizados para os usuários.
+Um outro problema dos grandes motores de busca é sua falha em manter índices atualizados, devido ao fato de haver um vasto número de páginas que precisam ser indexadas. Um motor de busca de propósito específico possui um conjunto menor de páginas para indexar e consequentemente podem atualizá-las mais frequentemente, o que leva a resultados mais atualizados para os usuários.
 
 A funcionalidade extra se refere à apresentação de interfaces mais sofisticadas para usuários que são configurados para um domínio particular de busca. Desde que todos os usuários visitando uma busca de domínio específico pertecem a um grupo de pessoas com interesses e desejos similares, a busca específica por domínio pode utilizar mais efetivamente o perfil do usuário para dar recomendações mais precisas quando o mesmo tiver dificuldades de especificar suas necessidades \cite[p. 9]{wober}.
+% não ficou bom a partir de "Desde"
 
 \subsection{Busca semântica}
 
-A Web semântica é uma estensão da web atual em que a informação dada possui significado bem definido, permitindo que os computadores e pessoas possam trabalhar em cooperação \cite[p. 13]{wober}. Este novo formato da World Wide Web tem como visão ser tão capaz  quanto a World Wide Web (WWW) atual, mas consiste em dados legíveis por máquina, que possui o potencial para ter um maior impacto na busca na web.
+A Web semântica é uma extensão da web atual em que a informação dada possui significado bem definido, permitindo que os computadores e pessoas possam trabalhar em cooperação \cite[p. 13]{wober}. Este novo formato da World Wide Web tem como visão ser tão capaz  quanto a World Wide Web (WWW) atual, mas consiste em dados legíveis por máquina, que possui o potencial para ter um maior impacto na busca na web.
+%WWW repetido
 
 Na prática, o ''significado bem definido das informações'' é feito com o uso de metadados nas páginas Web. \emph{Tags} HTML como \texttt{<title>} e \texttt{<meta>} possuem grande valor no processo de definição de significado da página. Outros fatores como URLs semânticas auxiliam neste processo também.
 
@@ -76,37 +81,39 @@ Segundo \cite{pythondoc}, o Python é uma linguagem poderosa, de propósitos ger
 \subsection{Histórico}
 \index{Python!Historico}
 
-A linguagem Python foi criada no início dos anos 1990 por Guido Van Rossum \cite{pythonlicense}, no Stichting Mathematisch Centrum, na Holanda, com o intuito de ser uma linguagem substituta ao ABC, que apresentava uma série de problemas, especialmente com estensibilidade \cite{pythonfaq}. A linguagem Python, inicialmente, foi criada para ser uma substituta da linguagem ABC e com os poderes da API 
+A linguagem Python foi criada no início dos anos 1990 por Guido Van Rossum \cite{pythonlicense}, no Stichting Mathematisch Centrum, na Holanda, com o intuito de ser uma linguagem substituta ao ABC, que apresentava uma série de problemas, especialmente com extensibilidade \cite{pythonfaq}. A linguagem Python, inicialmente, foi criada para ser uma substituta da linguagem ABC e com os poderes da API 
 
 Van Rossum permanece como o principal autor da linguagem Python, apesar de receber várias contribuições de colaboradores externos.
 
-Um erro comum é associar a origem o nome da linguagem Python com o nome da serpente. De fato, Van Rossum se inspirou num grupo de comediantes britânicos, o Monty Python, para dar nome à linguagem \cite{pythonfaq} . %referencias?
+Um erro comum é associar a origem o nome da linguagem Python com o nome da serpente. De fato, Van Rossum se inspirou num grupo de comediantes britânicos, o Monty Python, para dar nome à linguagem \cite{pythonfaq} . %referencias? algo desnecessário
 
 
 %colocar mais sobre o histórico
 
 \subsection{Características}
 \index{Python!Caracteristicas}
-Qualidade de software, produtividade do programador, portabilidade, bibliotecas de suporte, integração de componentes e diversão, são os principais motivos do uso da linguagem \cite{learningpython}. % colocar página 48 e 49
+Qualidade de software, produtividade do programador, portabilidade, bibliotecas de suporte, integração de componentes e diversão são os principais motivos do uso da linguagem \cite{learningpython}. % colocar página 48 e 49
 
 Em seu \emph{design}, o Python implementa uma sintaxe deliberadamente simples e legível e um modelo de programação coerente \cite{learningpython}. %página 50
 
 Dentre as razões históricas, a linguagem Python foi concebida no início da década de 1990, quando ocorreu o \emph{boom} da Internet e quando o número de programadores se tornou escasso para a demanda de Software. Enquanto linguagens de baixo nível como Assembly ou C focam em \emph{produtividade de máquina}, Python foca em \emph{produtividade do programador}. 
-
-Python é deliberadamente otimizada para produtividade do programador. Recursos como sintaxe simples, tipagem dinâmica, falta de necessidade de compilação e um conjunto de ferramentas embutidas permitem que programadores desenvolvam programas em uma fração de tempo necessária em comparação a quando usam outras ferramentas \cite{learningpython}. % página 50
+%evitar o uso de termos fortes como deliberado
+Python é otimizada para produtividade do programador. Recursos como sintaxe simples, tipagem dinâmica, falta de necessidade de compilação e um conjunto de ferramentas embutidas permitem que programadores desenvolvam programas em uma fração de tempo necessária em comparação a quando usam outras ferramentas \cite{learningpython}. % página 50
 
 Entretanto, existe um \emph{tradeoff} no uso da linguagem Python: a velocidade de execução. Programadores tendem a ser mais produtivos com o uso de linguagens com os atributos que Python possui. Porém, o código Python não é um código de máquina, portanto o mesmo precisa ser interpretado a cada execução, o que o torna mais lento. 
 
-Outros fatores como a tipagem dinâmica tendem a trazer mais \emph{overhead} na execução dos programas em Python, o que degrada ainda mais sua velocidade de execução, o que torna seu uso difícil ou inviável para projetos que dependam estritamente de velocidade de execução (ex: componentes de baixo nível, como Kernels e drivers de dispositivos, aplicativos de produtividade, como suítes de escritórios e CAD e outros softwares de grande porte).
+Outros fatores como a tipagem dinâmica tendem a trazer mais \emph{overhead} na execução dos programas em Python, degrando ainda mais sua velocidade de execução, e seu uso difícil ou inviável para projetos que dependam estritamente de velocidade de execução (ex: componentes de baixo nível, como Kernels e drivers de dispositivos, aplicativos de produtividade, como suítes de escritórios e CAD e outros softwares de grande porte).
 
 \subsubsection{Tipagem dinâmica}
 \index{Python!Ambientes e plataformas!Tipagem Dinâmica}
 
-A tipagem dinâmica é uma propriedade de uma linguagem de programação que permite que a checagem de tipo seja feito em tempo de execução, em detrimento da tipagem estática, onde a verificação de tipo é feita em tempo de compilação.
+A tipagem dinâmica é uma propriedade de uma linguagem de programação que permite que a checagem de tipo seja feito em tempo de execução, ao contrário da tipagem estática, onde a verificação de tipo é feita em tempo de compilação.
+%detrimento significa prejuízo
 
 Segundo \cite{dynamic_langs}, as principais vantagens ao se utilizar uma linguagem de tipagem dinâmica é evitar a rigidez de linguagens estaticamente tipadas, tornar mais fácil a prototipação de sistemas que possuem requisitos ainda não conhecidos ou que mudam de uma forma não previsível, aumentar o reuso de código, diminuir a verbosidade e o custo do projeto, sem necessariamente ser menos seguras que as linguagens de tipagem estática.
 
 Devido à seu baixo nível de burocracia e alto poder de prototipação, as linguagens dinâmicas são freqüentemente usadas como "cola" entre componentes \cite{scripting}. Por este motivo, as linguagens dinâmicas também são conhecidas por \emph{glue languages} ou \emph{system integration languages}.
+%o que signifca cola entre componentes? explicar logo a seguir o termo, não depois
 
 Uma linguagem que não é apegada a tipos permite que a integração entre componentes seja bem mais fácil, pois não há restrições primárias sobre como os retornos de cada componente devam ser utilizados: todos eles são apresentados de uma única forma \cite{scripting}.
 
@@ -129,8 +136,8 @@ O CPython é a implementação padrão da linguagem Python e é escrita na lingu
 \subsubsection{IronPython}
 \index{Python!Ambientes e plataformas!IronPython}
 
-O IronPython \cite{ironpython} é uma implementação da linguagem de programação Python que é execuatada no framework .NET e Silverlight. Suporta um shell interativo (como a maioria das implementações da linguagem Python) com completa compilação dinâmica. É bem integrado com o resto do framework .NET e torna todas as bibliotecas do .NET facilmente disponíveis para programadores Python, enquanto mantém a compatibilidade com a linguagem Python.
-
+O IronPython \cite{ironpython} é uma implementação da linguagem de programação Python que é executada no framework .NET e Silverlight. Suporta um shell interativo (como a maioria das implementações da linguagem Python) com completa compilação dinâmica. É bem integrado com o resto do framework .NET e torna todas as bibliotecas do .NET facilmente disponíveis para programadores Python, enquanto mantém a compatibilidade com a linguagem Python.
+%você usa termos fortes demais, eu já entendi que python é perfeito
 
 \subsubsection{Jython}
 \index{Python!Ambientes e plataformas!Jython}
@@ -149,10 +156,11 @@ Segundo \cite{python_scientific_world}, Python e estensões como o NumPy \cite{n
 
 Conferências anuais especificamente voltadas para usos de Python em computação científica, como o SciPy \cite{scipy} (tanto na versão norte-americana quanto na européia) vem ganhando peso a cada ano.
 
-Ambientes de desenvolvimento integrado como o PythonXY \cite{pythonxy} ajuda a mostrar para cientistas que a linguagem Python com seus pacotes de bibliotecas e softwares para computação científica pode ser uma excelente alternativa para ambientes como o Matlab.
+Ambientes de desenvolvimento integrado como o PythonXY \cite{pythonxy} ajuda a mostrar para cientistas que a linguagem Python com seus pacotes de bibliotecas e softwares para computação científica pode ser uma excelente alternativa para ambientes como o Matlab. 
+%coloca uma nota de rodapé para o matlab
 
-Um dos casos mais famosos da linguagem Python sistemas de recuperação de informações é o Google.\cite{google}. Python representa um papel fundamental dentro da estrutura de motores de busca do Google, sendo responsável pelos seus \emph{crawlers} e pelos seus servidores de URL \cite{surveyir}.
-
+Um dos casos mais famosos da linguagem Python para os sistemas de recuperação de informações é o Google.\cite{google}. Python representa um papel fundamental dentro da estrutura de motores de busca do Google, sendo responsável pelos seus \emph{crawlers} e pelos seus servidores de URL \cite{surveyir}.
+%você traduziu esse trecho no translate?
 
 \pagebreak
 \section{Scrapy}
@@ -162,7 +170,7 @@ Um dos casos mais famosos da linguagem Python sistemas de recuperação de infor
 Scrapy é um framework rápido ede alto nível para \emph{scrren scraping} e \emph{web crawling}, usado para navegar por websites e extrair dados estruturados de suas páginas. Pode ser usado para um grande número de propósitos, desde mineração de dados a monitoramento e automação de testes \cite{scrapy}.
 
 Mesmo que o Scrapy tenha sido originalmente feito para \emph{screen scraping} (mais precisamente para \emph{web scraping}), ele também pode ser usado para extrair dados usando APIs (como as APIs de serviços da Amazon) ou pode ser usado como um \emph{web crawler} de propósito geral.
-
+% o 	que é screen scraping?
 Dentre as principais funcionalidades que o Scrapy apresenta, pode-se citar:
 
 \begin{itemize}
@@ -170,15 +178,15 @@ Dentre as principais funcionalidades que o Scrapy apresenta, pode-se citar:
 	\item Suporte embutido para limpeza e sanitização dos dados obtidos utilizando uma coleção de filtros reusáveis (chamados de \emph{Item Loaders}) compartilhados entre todos os \emph{web crawlers}.
 	\item Suporte embutido para geração e exportação de \emph{feeds} em múltiplos formatos (como JSON, XML e CSV) e armazenamento dos mesmos (seja em FTP ou localmente).
 	\item Um \emph{pipeline} de mídia para download automático de imagens (ou qualquer outro tipo de mídia) associado com os itens obtidos.
-	\item Suporte para estensão do Scrapy, onde é possível adicionar funcionalidades ao framework através do uso de sinais e uma API bem definida.
-	\item Grande quantidade de \emph{middlewares} e estensões para gerenciamento de cookies e sessões, compressão HTTP, autenticação HTTP, cache HTTP, mudança do header \emph{user-agent} e restições sobre a profundidade de \emph{crawling}.
+	\item Suporte para extensão do Scrapy, onde é possível adicionar funcionalidades ao framework através do uso de sinais e uma API bem definida.
+	\item Grande quantidade de \emph{middlewares} e extensões para gerenciamento de cookies e sessões, compressão HTTP, autenticação HTTP, cache HTTP, mudança do header \emph{user-agent} e restições sobre a profundidade de \emph{crawling}.
 	\item Suporte robusto para auto-detecção de encoding assim como manipulação de encodes estrangeiros, quebrados e fora dos padrões.
 	\item Extensa coleção de status para métricas do \emph{crawler}, úteis para monitoramento de performance e de disponibilidade.
 	\item Um console interativo para teste de XPaths, úteis para debugging.
 	\item Um serviço a nível de sistema feitos para facilitar a implantação e execução dos crawlers em produção.
 	\item Webservices e console telnet embutidos para monitoração, controle, introspecção e debugging do crawler.
 \end{itemize}
-
+%não entendi metade dos aspectos citados anteriormente
 \subsection{Arquitetura}
 \index{Scrapy!Arquitetura}
 
@@ -205,7 +213,7 @@ O scheduler recebe requisições do engine e as enfileira para realimentação d
 \subsubsection{Downloader}
 \index{Scrapy!Arquitetura!Downloader}
 
-O Downloader é responsável por obter páginas da Web e alimetar o engine, que por sua vez alimenta os crawlers/spiders.
+O Downloader é responsável por obter páginas da Web e alimentar o engine, que por sua vez alimenta os crawlers/spiders.
 
 \subsubsection{Item pipeline}
 \index{Scrapy!Arquitetura!Item pipeline}
@@ -232,12 +240,12 @@ Scheduler middlewares são \emph{ganchos} específicos que ficam entre a Engine 
 O fluxo de dados do Scrapy é controlado pela Engine e funciona da seguinte forma:
 
 \begin{enumerate}
-	\item Engine abre um domínio, localiza o Spider que manipula aquele domínio e pede para o Spider a primeira URL para navegar.
+	\item O Engine abre um domínio, localiza o Spider que manipula aquele domínio e pede para o Spider a primeira URL para navegar.
 	\item O Engine pega a primeira URL para navegar do Spider e a agenda no Scheduler como Requisições.
 	\item O Engine pede para o Scheduler as próximas URLs para navegar.
-	\item O Scheduler retorna a próxima URL para navegação para o Engine e o Engine a manda para o Downloader passando pelo Downloader Middleware.
+	\item O Scheduler retorna a próxima URL para navegação para o Engine e este a envia para o Downloader passando pelo Downloader Middleware.
 	\item Uma vez que o download da página terminou, o Downloader gera uma Response (com a página) e a manda para o Engine, passando pelo Downloader Middleware.
-	\item O Engine recebe a resposta do downloader e a envia para o Spider processar, passando pelo Spider Middleware.
+	\item O Engine recebe a resposta do Downloader e a envia para o Spider processar, passando pelo Spider Middleware.
 	\item O Spider processa a Response e retorna os itens obtidos e novas Requests para o Engine.
 	\item O Engine envia os itens obtidos (retornados pelo spider) para o Item Pipeline e envia as Requests (retornadas pelo Spider) para o Scheduler.
 	\item O processo se repete a partir do passo 2 até que não haja mais Requests no Scheduler e o Engine fecha o domínio.
@@ -251,7 +259,7 @@ O Scrapy é escrito utilizando o Twisted \cite{twisted}, um framework popular pa
 \subsection{Serviços embutidos}
 \index{Scrapy!Serviços embutidos}
 
-O Scrapy possui uma gama de serviços embutidos feitos para facilitar a monitoração e manutenção do sistema. A seguir, é apresentado cada um destes serviços embutidos bem como uma descrição breve.
+O Scrapy possui uma gama de serviços embutidos feitos para facilitar a monitoração e a manutenção do sistema. A seguir, é apresentado cada um destes serviços embutidos bem como uma descrição breve.
 
 \subsubsection{Logging}
 \index{Scrapy!Serviços embutidos!Logging}
@@ -564,5 +572,9 @@ Entretanto, o JSON possui alguns contrapontos em relação ao \emph{protobuf}, o
 \begin{itemize}
 	\item Em comparação com o \emph{protobuf}, é mais fácil extrair informações (\emph{parsear}) do JSON, devido à sua natureza mais simplificada.
 	\item É suportado pela maioria das linguagens/plataformas \emph{json}.
-	\item Está se tornando rapidamente um padrão na Web, em que iniciativas como o JSON RPC \cite{json_rpc} e a pretenção do Twitter abandonar o XML em detrimento do JSON \cite{twitter_deprecates_xml} provam isso.
+	\item Está se tornando rapidamente um padrão na Web, em que iniciativas como o JSON RPC \cite{json_rpc} e a pretensão do Twitter abandonar o XML para adotar o JSON \cite{twitter_deprecates_xml} provam isso.
 \end{itemize}
+
+%mais imagens seria interessante.
+%quando tem código é bom explicar melhor o que o código faz
+%
