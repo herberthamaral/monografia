@@ -4,7 +4,6 @@
 \chapter{Referencial teórico}
 \index{Referencial Teórico}
 
-\pagebreak
 \section{Recuperação de informação}
 \index{Recuperação de informação}
 
@@ -40,12 +39,12 @@ Dentre os motores de busca de propósito geral mais utilizados, há o Google, o 
 	\item Resultados de qualidade, independentemente da consulta utilizada.
 	\item Uma boa cobertura dos documentos disponíveis na Web.
 	\item Facilidade de uso.
-	\item Ser agnóstico quanto ao tipo de mídia e documento a ser pesquisado.
-%agnóstico soa estranho
+	\item Ser flexível quanto ao tipo de mídia e documento a ser pesquisado.
+%agnóstico soa estranho - mudando para flexível
 \end{itemize}
 
 Todos os serviços citados anteriormente estão de acordo com as necessidades dispostas acima. Devido à natureza destes motores de busca, é difícil buscar por somente uma informação em específico, como "Altura em centímetros do Michael Jordan". O máximo que esses motores podem fazer é retornar uma página que possa conter esta informação, não a informação em si.
-%explicar a frase acima melhor
+%explicar a frase acima melhor -- como?
 
 \subsection{Motores de busca de domínio específico}
 \index{Recuperação de informação!SRIs para Web!Motores de busca de domínio específico}
@@ -63,14 +62,12 @@ A funcionalidade extra se refere à apresentação de interfaces mais sofisticad
 
 \subsection{Busca semântica}
 
-A Web semântica é uma extensão da web atual em que a informação dada possui significado bem definido, permitindo que os computadores e pessoas possam trabalhar em cooperação \cite[p. 13]{wober}. Este novo formato da World Wide Web tem como visão ser tão capaz  quanto a World Wide Web (WWW) atual, mas consiste em dados legíveis por máquina, que possui o potencial para ter um maior impacto na busca na web.
-%WWW repetido
+A Web semântica é uma extensão da web atual em que a informação dada possui significado bem definido, permitindo que os computadores e pessoas possam trabalhar em cooperação \cite[p. 13]{wober}. Este novo formato da World Wide Web (WWW) tem como visão ser tão capaz  quanto a WWW atual, mas consiste em dados legíveis por máquina, que possui o potencial para ter um maior impacto na busca na web.
+%WWW repetido -- consertado
 
 Na prática, o ''significado bem definido das informações'' é feito com o uso de metadados nas páginas Web. \emph{Tags} HTML como \texttt{<title>} e \texttt{<meta>} possuem grande valor no processo de definição de significado da página. Outros fatores como URLs semânticas auxiliam neste processo também.
 
 Apesar do RDF e do XML estarem se tornando amplamente reconhecidos como veículo padrão para descrição de metadados, uma enorme parcela de dados semânticos ainda reside dentro de documentos HTML \cite[p. 14]{wober}.
-
-
 
 \pagebreak
 \section{Python}
@@ -94,11 +91,11 @@ Um erro comum é associar a origem o nome da linguagem Python com o nome da serp
 \index{Python!Caracteristicas}
 Qualidade de software, produtividade do programador, portabilidade, bibliotecas de suporte, integração de componentes e diversão são os principais motivos do uso da linguagem \cite{learningpython}. % colocar página 48 e 49
 
-Em seu \emph{design}, o Python implementa uma sintaxe deliberadamente simples e legível e um modelo de programação coerente \cite{learningpython}. %página 50
+Em seu \emph{design}, o Python implementa uma sintaxe deliberadamente simples e legível e um modelo de programação coerente \cite[p. 50]{learningpython}. 
 
 Dentre as razões históricas, a linguagem Python foi concebida no início da década de 1990, quando ocorreu o \emph{boom} da Internet e quando o número de programadores se tornou escasso para a demanda de Software. Enquanto linguagens de baixo nível como Assembly ou C focam em \emph{produtividade de máquina}, Python foca em \emph{produtividade do programador}. 
-%evitar o uso de termos fortes como deliberado
-Python é otimizada para produtividade do programador. Recursos como sintaxe simples, tipagem dinâmica, falta de necessidade de compilação e um conjunto de ferramentas embutidas permitem que programadores desenvolvam programas em uma fração de tempo necessária em comparação a quando usam outras ferramentas \cite{learningpython}. % página 50
+%evitar o uso de termos fortes como deliberado  -- ok
+Python é otimizada para produtividade do programador. Recursos como sintaxe simples, tipagem dinâmica, falta de necessidade de compilação e um conjunto de ferramentas embutidas permitem que programadores desenvolvam programas em uma fração de tempo necessária em comparação a quando usam outras ferramentas \cite[p. 50]{learningpython}. 
 
 Entretanto, existe um \emph{tradeoff} no uso da linguagem Python: a velocidade de execução. Programadores tendem a ser mais produtivos com o uso de linguagens com os atributos que Python possui. Porém, o código Python não é um código de máquina, portanto o mesmo precisa ser interpretado a cada execução, o que o torna mais lento. 
 
@@ -108,12 +105,12 @@ Outros fatores como a tipagem dinâmica tendem a trazer mais \emph{overhead} na 
 \index{Python!Ambientes e plataformas!Tipagem Dinâmica}
 
 A tipagem dinâmica é uma propriedade de uma linguagem de programação que permite que a checagem de tipo seja feito em tempo de execução, ao contrário da tipagem estática, onde a verificação de tipo é feita em tempo de compilação.
-%detrimento significa prejuízo
+%detrimento significa prejuízo -- consertado
 
 Segundo \cite{dynamic_langs}, as principais vantagens ao se utilizar uma linguagem de tipagem dinâmica é evitar a rigidez de linguagens estaticamente tipadas, tornar mais fácil a prototipação de sistemas que possuem requisitos ainda não conhecidos ou que mudam de uma forma não previsível, aumentar o reuso de código, diminuir a verbosidade e o custo do projeto, sem necessariamente ser menos seguras que as linguagens de tipagem estática.
 
-Devido à seu baixo nível de burocracia e alto poder de prototipação, as linguagens dinâmicas são freqüentemente usadas como "cola" entre componentes \cite{scripting}. Por este motivo, as linguagens dinâmicas também são conhecidas por \emph{glue languages} ou \emph{system integration languages}.
-%o que signifca cola entre componentes? explicar logo a seguir o termo, não depois
+Devido à seu baixo nível de burocracia e alto poder de prototipação, as linguagens dinâmicas são freqüentemente para integração entre componentes \cite{scripting}. Por este motivo, as linguagens dinâmicas também são conhecidas por \emph{glue languages} ou \emph{system integration languages}.
+%o que signifca cola entre componentes? explicar logo a seguir o termo, não depois -- consertado => utilizando termo "integração entre componentes"
 
 Uma linguagem que não é apegada a tipos permite que a integração entre componentes seja bem mais fácil, pois não há restrições primárias sobre como os retornos de cada componente devam ser utilizados: todos eles são apresentados de uma única forma \cite{scripting}.
 
@@ -136,8 +133,8 @@ O CPython é a implementação padrão da linguagem Python e é escrita na lingu
 \subsubsection{IronPython}
 \index{Python!Ambientes e plataformas!IronPython}
 
-O IronPython \cite{ironpython} é uma implementação da linguagem de programação Python que é executada no framework .NET e Silverlight. Suporta um shell interativo (como a maioria das implementações da linguagem Python) com completa compilação dinâmica. É bem integrado com o resto do framework .NET e torna todas as bibliotecas do .NET facilmente disponíveis para programadores Python, enquanto mantém a compatibilidade com a linguagem Python.
-%você usa termos fortes demais, eu já entendi que python é perfeito
+O IronPython \cite{ironpython} é uma implementação da linguagem de programação Python que é executada no framework .NET e Silverlight. Suporta um shell interativo (como a maioria das implementações da linguagem Python) com compilação dinâmica. É integrado com o resto do framework .NET e torna todas as bibliotecas do .NET disponíveis para programadores Python, enquanto mantém a compatibilidade com a linguagem Python.
+%você usa termos fortes demais, eu já entendi que python é perfeito -- isso não são minhas palavras, mas as da documentação. Remoção de alguns termos "fortes"
 
 \subsubsection{Jython}
 \index{Python!Ambientes e plataformas!Jython}
@@ -157,20 +154,19 @@ Segundo \cite{python_scientific_world}, Python e estensões como o NumPy \cite{n
 Conferências anuais especificamente voltadas para usos de Python em computação científica, como o SciPy \cite{scipy} (tanto na versão norte-americana quanto na européia) vem ganhando peso a cada ano.
 
 Ambientes de desenvolvimento integrado como o PythonXY \cite{pythonxy} ajuda a mostrar para cientistas que a linguagem Python com seus pacotes de bibliotecas e softwares para computação científica pode ser uma excelente alternativa para ambientes como o Matlab. 
-%coloca uma nota de rodapé para o matlab
+%coloca uma nota de rodapé para o matlab -- contendo o que? link?
 
 Um dos casos mais famosos da linguagem Python para os sistemas de recuperação de informações é o Google.\cite{google}. Python representa um papel fundamental dentro da estrutura de motores de busca do Google, sendo responsável pelos seus \emph{crawlers} e pelos seus servidores de URL \cite{surveyir}.
-%você traduziu esse trecho no translate?
+%você traduziu esse trecho no translate? -- não
 
 \pagebreak
 \section{Scrapy}
 \index{Scrapy}
 
+Scrapy é um framework rápido e de alto nível para \emph{scrren scraping} e \emph{web crawling}, usado para navegar por websites e extrair dados estruturados de suas páginas. Pode ser usado para um grande número de propósitos, desde mineração de dados a monitoramento e automação de testes \cite{scrapy}.
 
-Scrapy é um framework rápido ede alto nível para \emph{scrren scraping} e \emph{web crawling}, usado para navegar por websites e extrair dados estruturados de suas páginas. Pode ser usado para um grande número de propósitos, desde mineração de dados a monitoramento e automação de testes \cite{scrapy}.
-
-Mesmo que o Scrapy tenha sido originalmente feito para \emph{screen scraping} (mais precisamente para \emph{web scraping}), ele também pode ser usado para extrair dados usando APIs (como as APIs de serviços da Amazon) ou pode ser usado como um \emph{web crawler} de propósito geral.
-% o 	que é screen scraping?
+Mesmo que o Scrapy tenha sido originalmente feito para \emph{screen scraping} (retirada de informações específicas de uma página), ele também pode ser usado para extrair dados usando APIs (como as APIs de serviços da Amazon) ou pode ser usado como um \emph{web crawler} de propósito geral.
+% o 	que é screen scraping? -- explicado
 Dentre as principais funcionalidades que o Scrapy apresenta, pode-se citar:
 
 \begin{itemize}
@@ -186,7 +182,9 @@ Dentre as principais funcionalidades que o Scrapy apresenta, pode-se citar:
 	\item Um serviço a nível de sistema feitos para facilitar a implantação e execução dos crawlers em produção.
 	\item Webservices e console telnet embutidos para monitoração, controle, introspecção e debugging do crawler.
 \end{itemize}
-%não entendi metade dos aspectos citados anteriormente
+
+%não entendi metade dos aspectos citados anteriormente -- sinto muito...
+
 \subsection{Arquitetura}
 \index{Scrapy!Arquitetura}
 
@@ -432,149 +430,3 @@ captionpos=b,
 \end{lstlisting}
 
 Cada definição de conceito inicia com a tag \texttt{<ow:concept>} e termina com a tag\texttt{</ow:concept>}. A tag \texttt{<ow:inherit>} mostra relações de herança e a tag \texttt{<ow:has>} mostra relações atribuíveis entre dois conceitos. Os conceitos definidos tem um atributo padrão - identificador de objeto (id) para ser utilizado por web crawlers para coordenar os mesmos atributos do objeto utilizados em páginas diferentes do mesmo website.
-
-\pagebreak
-\section{Protocol Buffers}
-\index{Protocol Buffers}
-
-\emph{Protocol Buffers} (ou simplesmente \emph{protobuf})é uma forma de de codificar dados estruturados em um formato eficiente e extensível \cite{protobuf}. 
-
-O \emph{protobuf} foi inicialmente desenvolvido no Google para lidar com um protocolo de requisição/resposta num servidor de índices \cite{protobuf_overview}. Antes do \emph{protobuf}, havia um formato para as requisições e respostas que utilizava uma seleção/desseleção manual e dava suporte à várias versões do protocolo, o que resultava num código difícil de ler, manter e escrever \cite{protobuf_overview} . 
-
-Devido ao versionamento manual do protocolo, havia grandes dificuldades no desenvolvimento e implantação de um novo. Os desenvolvedores precisavam certificar se todos os servidores entre o que origina a requisição e o que manipula a requisição estavam aptos a entender o novo protocolo antes de utiliza-lo \cite{protobuf_overview}.
-
-Segundo \cite{protobuf_overview}, o \emph{protobuf} foi desenvolvido para resolver muitos destes problemas:
-
-\begin{itemize}
-	\item Novos campos podem ser facilmente introduzidos e servidores intermediários que não precisavam inspecionar os dados simplesmente o passavam adiante, sem precisar saber sobre todos os campos.
-	\item Os formatos eram mais auto-descritíveis e poderiam lidar com uma variedade de linguagens (C++, Java, Python, etc.)
-	\item Possuem uma performance superior ao XML, além de serem mais simples e menos ambíguos.
-\end{itemize}
-
-\subsection{Esquema de funcionamento}
-
-A informação a ser serializada é espeficada através da definição de mensagens \emph{protobuf} em arquivos \texttt{.proto}. Cada mensagem \emph{protobuf} é um pequeno registro lógico de informação, contendo uma série de pares nome-valor \cite{protobuf_overview} . Eis um exemplo básico de um arquivo \texttt{.proto} que define uma mensagem contendo informações sobre uma pessoa:
-
-\pagebreak
-\lstset{language=java,
-basicstyle=\scriptsize,
-caption={Exemplo de uma mensagem em \emph{protobuf}, que contém informações sobre uma pessoa\label{protobuf_msg}},
-captionpos=b,
-}
-\begin{lstlisting}
-message Person {
-  required string name = 1;
-  required int32 id = 2;
-  optional string email = 3;
-
-  enum PhoneType {
-    MOBILE = 0;
-    HOME = 1;
-    WORK = 2;
-  }
-
-  message PhoneNumber {
-    required string number = 1;
-    optional PhoneType type = 2 [default = HOME];
-  }
-
-  repeated PhoneNumber phone = 4;
-}
-\end{lstlisting}
-
-
-Uma vez que as mensagens foram definidas, é necessario executar o compilador do \emph{protobuf} para a linguagem da sua aplicação no seu arquivo \texttt{protobuf} para que as classes de acesso à dados sejam geradas. Segundo \cite{protobuf_overview}, estas classes fornecem meios de acessos simples para cada campo (como \texttt{query()} e  \texttt{set\_query()}) e métodos para serializar e \emph{parsear} toda a estrutura de e para bytes brutos. Por exemplo, se a linguagem a ser trabalhada fosse C++, executar o compilador \emph{protobuf} no exemplo acima irá fazer com que seja gerada uma classe \texttt{Person}. Esta classe poderia ser usada na sua aplicação para popular, serializar e obter mensagens do tipo \texttt{Person} no estilo \emph{protobuf} e poderia ser utilizada como no exemplo a seguir:
-
-\pagebreak
-\lstset{language=C++,
-basicstyle=\scriptsize,
-caption={Exemplo de uso da classe para C++ gerada a partir da mensagem \texttt{Person}},
-captionpos=b,
-}
-\begin{lstlisting}
-// serializacao
-Person person;
-person.set_name("John Doe");
-person.set_id(1234);
-person.set_email("jdoe@example.com");
-fstream output("myfile", ios::out | ios::binary);
-person.SerializeToOstream(&output);	
-
-// deserializacao
-
-fstream input("myfile", ios::in | ios::binary);
-Person person;
-person.ParseFromIstream(&input);
-cout << "Name: " << person.name() << endl;
-cout << "E-mail: " << person.email() << endl;
-\end{lstlisting}
-
-
-
-\subsection{Vantagens sobre outros formatos}
-
-\subsubsection{XML}
-
-São várias as vantagens que o \emph{protobuf} tem sobre o XML. \cite{protobuf_overview} cita algumas:
-
-\begin{itemize}
-	\item \emph{protobuf} é mais simples
-	\item É de três a dez vezes menor
-	\item É De vinte a cem vezes mais rápido
-	\item É menos ambíguo
-	\item Geram classes de acesso à dados que são mais simples de usar programaticamente
-\end{itemize}
-
-Um exemplo é necessário para tornar a ilustração das diferenças do protocol buffer mais óbvias. Suponha que os dados cadastrais de uma pessoa sejam representados em XML desta forma:
-
-\lstset{language=XML,
-basicstyle=\scriptsize,
-caption={Exemplo de modelagem de dados de uma pessoa utilizando XML},
-captionpos=b,
-}
-\begin{lstlisting}
- <person>
-    <name>John Doe</name>
-    <email>jdoe@example.com</email>
-  </person>
-\end{lstlisting}
-
-O código equivalente em \emph{protobuf} seria este:
-
-\lstset{language=XML,
-basicstyle=\scriptsize,
-caption={Exemplo de modelagem de dados de uma pessoa utilizando \emph{protobuf}},
-captionpos=b,
-}
-\begin{lstlisting}
-person {
-  name: "John Doe"
-  email: "jdoe@example.com"
-}
-\end{lstlisting}
-
-
-\subsubsection{JSON}
-
-O JSON (JavaScript Objetct Notation) é um dos principais formatos de troca de dados na Internet hoje. Ele se baseia na forma como são construídos objetos em JavaScript para serialização dos dados. Apesar do nome remeter à uma única linguagem, o JSON pode ser utilizado em várias linguagens e plataformas atuais, como pode ser visto em \cite{json}.
-
-Não foram encontrados comparações diretas com outros formatos de dados além do XML com o \emph{protbuf} em sua documentação oficial, tampouco comparações que fossem agnósticas a plataformas. No entanto, há algumas vantagens naturais que o protobuf oferece:
-
-\begin{itemize}
-	\item É mais descritivo, uma vez que suporta vários tipos de mensagens e tipos de dados, enquanto o JSON suporta apenas objetos (ou lista de objetos) em formato chave-valor.
-	\item Permite a adição de regras de negócio: um campo dentro de uma mensagem protobuf pode ser opcional, obrigatório ou repetido e pode respeitar à um determinado tipo, seja ele enumeração, inteiro ou string, por exemplo. No JSON, só há a representação dos dados, nada obrigatoriamente descrevendo sua estrutura.
-	\item Protocol Buffers podem ser organizados em pacotes \cite{protobuf_docs}, da mesma forma que várias linguagens de programação orientadas a objeto permitem a organização de classes em pacotes ou \emph{namespaces}.
-	\item É mais reutilizável e possuem menos \emph{overhead} no armazenamento de dados \cite{twitter_hadoop}.
-\end{itemize}
-
-Entretanto, o JSON possui alguns contrapontos em relação ao \emph{protobuf}, o que o faz mais interessantes para sistemas mais heterogêneos (em que vários sistemas escritos em várias linguagens/plataformas precisam se comunicar):
-
-\begin{itemize}
-	\item Em comparação com o \emph{protobuf}, é mais fácil extrair informações (\emph{parsear}) do JSON, devido à sua natureza mais simplificada.
-	\item É suportado pela maioria das linguagens/plataformas \emph{json}.
-	\item Está se tornando rapidamente um padrão na Web, em que iniciativas como o JSON RPC \cite{json_rpc} e a pretensão do Twitter abandonar o XML para adotar o JSON \cite{twitter_deprecates_xml} provam isso.
-\end{itemize}
-
-%mais imagens seria interessante.
-%quando tem código é bom explicar melhor o que o código faz
-%
