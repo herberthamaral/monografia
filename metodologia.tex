@@ -1,2 +1,81 @@
 % metodologia
 \chapter{Metodologia}
+
+A elaboração do presente trabalho se deu em 3 etapas distintas:
+
+\begin{enumerate}
+	\item Estudo de viabilidade do \emph{Website Parse Template} (WPT) como \emph{Domain Specific Language} (DSL) para \emph{web scrapers}, assim como busca de melhores alternativas.
+	\item Estudo do funcionamento e arquitetura do framework Scrapy.
+	\item Implementação de um protótipo e seus respectivos testes automatizados para compilação do WPT em um \emph{spider} do Scrapy.
+\end{enumerate}
+
+A seguir, é mostrada uma descrição mais detalhada de cada etapa de produção deste trabalho.
+
+\section{Estudo de viabilidade do WPT e outras alternativas}
+
+Uma preocupação constante no desenvolvimento do presente trabalho foi a procura por adoção de padrões abertos, que sejam amplamente utilizados e que não representem um gargalo durante o desenvolvimento.
+
+Além do Website Parse Template, outras duas alternativas foram pesquisadas: o Protocol Buffer \cite{protobuf} e o JSON \cite{JSON}. Ambas foram descartadas pelos motivos citados anteriormente ao passo que o WPT se encaixou bem na lista de requisitos.
+
+\section{Estudo do Scrapy}
+
+Uma das grandes vantagens percebidas do framework Scrapy é a sua abundante documentação, seja a oficial em documentos HTML ou a documentação disponível dentro do próprio código fonte do mesmo.
+
+O Scrapy possui um utilitário de linha de comando que permite a criação de novos projetos de \emph{web scrapers}, assim como sua execução, manutenção e observação de funcionamento do projeto. O exemplo a seguir ilustra a saída da execução do comando "scrapy":
+
+
+\lstset{basicstyle=\scriptsize,
+caption={Saída da execução do comando ''scrapy''},
+captionpos=b
+}
+\begin{lstlisting}
+Scrapy 0.11 - no active project
+
+Usage:
+  scrapy <command> [options] [args]
+
+Available commands:
+  fetch         Fetch a URL using the Scrapy downloader
+  runspider     Run a self-contained spider (without creating a project)
+  settings      Get settings values
+  shell         Interactive scraping console
+  startproject  Create new project
+  version       Print Scrapy version
+  view          Open URL in browser, as seen by Scrapy
+
+Use "scrapy <command> -h" to see more info about a command
+\end{lstlisting}
+
+O protótipo desenvolvido neste trabalho foi incluído no comando apresentado anteriormente e pode ser observado quando o Scrapy detecta que está dentro de uma pasta de projeto:
+
+\pagebreak
+\lstset{basicstyle=\scriptsize,
+caption={Saída da execução do comando ''scrapy'' dentro da pasta de um projeto},
+captionpos=b
+}
+\begin{lstlisting}
+Scrapy 0.11 - project: scrapytest
+
+Usage:
+  scrapy <command> [options] [args]
+
+Available commands:
+  crawl         Start crawling from a spider or URL
+  deploy        Deploy project in Scrapyd server
+  fetch         Fetch a URL using the Scrapy downloader
+  genspider     Generate new spider using pre-defined templates
+  importwpt     Create a spider based on a Website Parse Template (WPT) file
+  list          List available spiders
+  parse         Parse URL (using its spider) and print the results
+  queue         Control execution queue
+  runserver     Start Scrapy in server mode
+  runspider     Run a self-contained spider (without creating a project)
+  settings      Get settings values
+  shell         Interactive scraping console
+  startproject  Create new project
+  version       Print Scrapy version
+  view          Open URL in browser, as seen by Scrapy
+
+Use "scrapy <command> -h" to see more info about a command
+
+\end{lstlisting}
