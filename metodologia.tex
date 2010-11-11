@@ -79,3 +79,10 @@ Available commands:
 Use "scrapy <command> -h" to see more info about a command
 
 \end{lstlisting}
+
+O comando \texttt{importwpt} lê um arquivo XML utilizando o formato WPT e cria um \emph{spider} do scrapy a partir dele. Aṕos isso, a execução do comando \texttt{scrapy crawl nome_do_spider_gerado} irá executar o processo de extração de informações conforme descrito no XML que foi importado.
+
+%acho que isso deveria ficar nos resultados...
+Como este trabalho ainda está em andamento, algumas funcionalidades, tais como exportação dos dados obtidos, não estão presentes. Como este é um projeto de código aberto, há a possibilidade deste protótipo ser desenvolvido por outras pessoas e mais funcionalidades serem adicionadas com o passar do tempo.
+
+No entanto, no que tange á criação de \emph{spiders}, o projeto está funcionando conforme as especificações do WPT (disponíveis em \cite{wpt}). Como estas especificações ainda estão em desenvolvimento, é possível que em um futuro próximo seja necessária a manutenção do projeto a fim de ser compatível com a última versão do WPT.
