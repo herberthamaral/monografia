@@ -19,10 +19,21 @@ Para o contexto deste trabalho, o XML desempenha um papel fundamental, onde as r
 
 O formato XML utilizado é o WPT (Website Parse Template)\cite{wpt}. O principal motivo para utiliza-lo é fazer uso de padrões Web já estabelecidos e documentados que descrevam a estrutura de páginas HTML.
 
-Com isso, o XML se torna uma \emph{DSL} (\emph{Domain Specific Language} - Linguagem Específica de um domínio) que é dedicada para o domínio de \emph{web scraping}. O uso de \emph{DSLs} faz com que não seja estritamente necessário codificar em uma linguagem de domínio geral, o que torna a tarefa específica de criação e manutenção de \emph{web scrapers} mais fácil e produtiva.
+Com isso, o XML se torna uma \emph{DSL} (\emph{Domain Specific Language} - Linguagem Específica de um Domínio) que é dedicada para o domínio de \emph{web scraping}. O uso de \emph{DSLs} faz com que não seja estritamente necessário codificar em uma linguagem de domínio geral, o que torna a tarefa específica de criação e manutenção de \emph{web scrapers} mais fácil e produtiva.
 
 \section{Python}
 
+A produtividade inerente à linguagem Python combinado com seu poder de prototipação, permite que \emph{web scrapers} sejam desenvolvidos e testados mais rapidamente.
+
+O shell interativo (\emph{REPL - Read and Eval Print Loop}) disponível na distribuição da linguagem Python permite a criação e execução instantânea de código, sem precisar passar por passos como criação de arquivo com o código-fonte, linkagem e compilação.
+
+Há também um histórico da linguagem Python para tarefas de recuperação de informação, como o motor de busca do Google, que possui vários componentes escritos em Python \cite{google}.
 
 \section{Scrapy}
+
+O framework de \emph{web scraping} Scrapy, escrito em Python, é um dos poucos disponíveis no mercado. Ele permite a criação de projetos de \emph{web scrapers} profissionais, com uma maior produtividade e organização.
+
+A arquitetura do Scrapy permite que o projeto ganhe uma maior escala facilmente, tanto no âmbito de tamanho de projeto quanto na escalabilidade de recursos computacionais. Ele é construído usando o Twisted \cite{twisted}, uma engine de comunicação para redes e orientado a eventos, que possibilita a realização de operações de I/O não bloqueantes e, consequentemente, um modelo de concorrência sem uso de threads. 
+
+Esta característica é vital, pois \emph{web scrapers} dependem de várias operações de I/O em rede para recuperação das páginas Web. Sem os recursos de I/O orientada à eventos, múltiplos processos do Python precisariam ser utilizados para haver concorrência, uma vez que a implementação original da linguagem não possui threads a nível de Kernel \cite{python_threads}.
 
