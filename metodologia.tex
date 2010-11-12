@@ -21,8 +21,13 @@ Além do Website Parse Template, outras duas alternativas foram pesquisadas: o P
 
 Uma das grandes vantagens percebidas do framework Scrapy é a sua abundante documentação, seja a oficial em documentos HTML ou a documentação disponível dentro do próprio código fonte do mesmo.
 
-O Scrapy possui um utilitário de linha de comando que permite a criação de novos projetos de \emph{web scrapers}, assim como sua execução, manutenção e observação de funcionamento do projeto. O exemplo a seguir ilustra a saída da execução do comando "scrapy":
+Os principais itens estudados foram a geração de código, comandos disponíveis na linha de comando, testes unitários automatizados e estratégias de desenvolvimento.
 
+O Scrapy possui uma coleção de testes automatizados, que permitem um melhor entendimento do framewok ao observar o que e como os componentes do mesmo estão sendo testados. Além disso, os testes disponíveis fornecem um esquema pré-definido de como os testes para novas funcionalidades deverão ser feitos. Os testes deste protótipo se encontram no pacote \texttt{scrapy.tests.test\_commands}, ao passo que sua implementação se encontra em \texttt{scrapy.commands.importwpt}.
+
+\section{Desenvolvimento do protótipo}
+
+O Scrapy possui um utilitário de linha de comando que permite a criação de novos projetos de \emph{web scrapers}, assim como sua execução, manutenção e observação de funcionamento do projeto. O exemplo a seguir ilustra a saída da execução do comando "scrapy":
 
 \lstset{basicstyle=\scriptsize,
 caption={Saída da execução do comando ''scrapy''},
@@ -80,7 +85,55 @@ Use "scrapy <command> -h" to see more info about a command
 
 \end{lstlisting}
 
-O comando \texttt{importwpt} lê um arquivo XML utilizando o formato WPT e cria um \emph{spider} do scrapy a partir dele. Aṕos isso, a execução do comando \texttt{scrapy crawl nome_do_spider_gerado} irá executar o processo de extração de informações conforme descrito no XML que foi importado.
+O comando \texttt{importwpt} cd lê um arquivo XML utilizando o formato WPT e cria um \emph{spider} do scrapy a partir dele. Após isso, a execução do comando \texttt{scrapy crawl nome\_do\_spider\_gerado} irá executar o processo de extração de informações conforme descrito no XML que foi importado.
+
+Dentre todos os elementos e seus atributos que a especificação do WPT apresenta, não há nenhum que diz sobre o tratamento e armazenamento dos dados obtidos. Por este motivo, somente a especificação do WPT é insuficiente para construir um sistema de recuperação de informações completo. Por exemplo, o atributo não-oficial \texttt{name} dentro da tag \texttt{<ow:block>} é necessário para nomeação de objetos dentro do \emph{spider}:
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Conteúdo do arquivo de entrada para o comando \texttt{scrapy importwpt}},
+captionpos=b
+}
+\begin{lstlisting}
+  <ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
+            ow:host="http://example.com">
+  <ow:template ow:name="Template Example" ow:url="http://www.example.com/index.php">
+      <ow:block ow:tagid="ex1" name="ex1"></ow:block>
+  </ow:template> 
+  </ow:wpt>
+\end{lstlisting}
+
+Como o principal objetivo deste trabalho é facilitar a criação e manutenção de sistemas de recuperação de informação, não é desejável ter nomes de variáveis geradas aleatoriamente no processo de conversão do WPT para o spider do Scrapy. Observa-se, então, o uso do conteúdo do atributo \texttt{name} no código gerado:
+
+\lstset{language=Python,
+basicstyle=\scriptsize,
+caption={\emph{Spider} gerado a partir do arquivo de entrada apresentado na listagem 5.3},
+captionpos=b
+}
+\begin{lstlisting}
+from scrapy.item import Item, Field
+
+class TemplateExampleItem1(Item):
+    ex1 = Field()
+
+from scrapy.spider import BaseSpider
+from scrapy.contrib.loader import XPathItemLoader
+
+class TemplateExample(BaseSpider):
+    name = 'example.com'
+    allowed_domains = ['example.com']
+    start_urls = [
+        'http://www.example.com/index.php',
+    ]
+
+    def parse(self, response):
+        l = XPathItemLoader(item = TemplateExampleItem1(),response=response)
+        l.add_xpath('bubble','id("ex1")/text()') 
+        i = l.load_item()
+        yield i
+
+\end{lstlisting}
+
 
 %acho que isso deveria ficar nos resultados...
 Como este trabalho ainda está em andamento, algumas funcionalidades, tais como exportação dos dados obtidos, não estão presentes. Como este é um projeto de código aberto, há a possibilidade deste protótipo ser desenvolvido por outras pessoas e mais funcionalidades serem adicionadas com o passar do tempo.
