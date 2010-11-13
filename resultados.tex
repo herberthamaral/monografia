@@ -3,6 +3,12 @@
 
 O protótipo aqui apresentado ainda encontra-se em desenvolvimento. Por ser uma contribuição ao Scrapy, um framework de código aberto, este protótipo poderá ser desenvolvido por outros membros da comunidade.
 
+Um dos aspectos positivos da abordagem adotada é que a ferramenta desenvolvida gera código na linguagem de programação Python a partir de código em XML, permitindo que o programador faça altarações no código gerado, caso seja necessário. 
+
+Como este trabalho não contempla, tampouco pretende contemplar, todas as facetas da criação de sistemas de recuperação de informações estruturadas na Web, a possibilidade do programador alterar o código gerado pode vir a ser bem útil em situações mais específicas.
+
+A seguir, é mostrado duas avaliações, quantitativas e qualitativas, dos resultados obtidos.
+
 \section{Avaliação quantitativa}
 
 A avaliação de sucesso no cumprimento dos objetivos deste projeto pode ser meramente subjetiva, porém, há alguns critérios quantitativos ou subjetivos que podem ser discutidos, como a economia em linhas de código. No exemplo mais simples possível, há o seguinte template:
@@ -23,7 +29,6 @@ captionpos=b
 
 O template anterior gera o seguinte código em Python:
 
-\pagebreak
 \lstset{language=Python,
 basicstyle=\scriptsize,
 caption={\emph{Spider} gerado a partir do arquivo de entrada apresentado na listagem 5.3},
