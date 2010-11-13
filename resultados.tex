@@ -160,5 +160,12 @@ Quando se deixa de usar uma linguagem de propósito específico (Python) para ut
 O uso de XML pode trazer várias vantagens à criação de sistemas de recuperação de informação. A principal é que qualquer linguagem de programação que dê suporte à XML pode criar templates. Como o trabalho de \emph{não} escrever código é sempre menor do que escrever \emph{algum} código, os usuários podem se beneficiar com a criação de sistemas que geram templates automaticamente. Por exemplo, um \emph{plugin} de um navegador Web pode permitir que o usuário selecione as seções de uma determinada página que gostaria que fossem recuperadas automaticamente e então gerar o template para o mesmo.
 
 \pagebreak
-\section{Problemas encontrados}
+\section{Dificuldades encontradas}
 
+Apesar da abundante documentação e mesmo não possuindo uma má qualidade de código ou baixa cobertura de testes, uma das principais dificuldades foi aderir à arquitetura e estilo de codificação do Scrapy para que a padronização entre componentes fosse mantida.
+
+O framework em si possui um tamanho considerável (759 arquivos em 13/11/2010 \footnote{Informação obtida através do comando \texttt{find | wc -l} }), portanto, leva-se um tempo para acostumar-se com a estrutura de diretórios, arquivos e padrões de nome.
+
+Não foi possível encontrar referências acadêmicas do Scrapy, um dos motivos pelos quais somente a respectiva documentação oficial foi utilizada.
+
+O formato WPT possui apenas informações sobre a disposição dos elementos em uma página e seus respectivos significados (ontologia). Tal fato leva ao incoveniente de haver diferentes \emph{schemas} XML em um mesmo arquivo para determinar outras informações, como nome dos variáveis do código gerado e formato de persistência dos dados obtidos.
