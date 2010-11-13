@@ -1,2 +1,152 @@
 % resultados.tex
 \chapter{Resultados}
+
+O protótipo aqui apresentado ainda encontra-se em desenvolvimento. Por ser uma contribuição ao Scrapy, um framework de código aberto, este protótipo poderá ser desenvolvido por outros membros da comunidade.
+
+A avaliação de sucesso no cumprimento dos objetivos deste projeto pode ser meramente subjetiva, porém, há alguns critérios quantitativos ou subjetivos que podem ser discutidos, como a economia em linhas de código. No exemplo mais simples possível, há o seguinte template:
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Exemplo de template em WPT},
+captionpos=b
+}
+\begin{lstlisting}
+  <ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
+            ow:host="http://example.com">
+  <ow:template ow:name="Template Example" ow:url="http://www.example.com/index.php">
+      <ow:block ow:tagid="ex1" name="ex1"></ow:block>
+  </ow:template> 
+  </ow:wpt>
+\end{lstlisting}
+
+O template anterior gera o seguinte código em Python:
+
+\lstset{language=Python,
+basicstyle=\scriptsize,
+caption={\emph{Spider} gerado a partir do arquivo de entrada apresentado na listagem 5.3},
+captionpos=b
+}
+\begin{lstlisting}
+from scrapy.item import Item, Field
+
+class TemplateExampleItem1(Item):
+    ex1 = Field()
+
+from scrapy.spider import BaseSpider
+from scrapy.contrib.loader import XPathItemLoader
+
+class TemplateExample(BaseSpider):
+    name = 'example.com'
+    allowed_domains = ['example.com']
+    start_urls = [
+        'http://www.example.com/index.php',
+    ]
+    
+    def parse(self, response):
+        l = XPathItemLoader(item = TemplateExampleItem1(),response=response)
+        l.add_xpath('bubble','id("ex1")/text()') 
+        i = l.load_item()
+        yield i
+\end{lstlisting}
+
+O código em Python possui 20 linhas, 16 sem as linhas em branco, ao passo que o template possui apenas 5 linhas de código. Neste exemplo, na pior das hipóteses, a economia de código gira em torno de 2/3 do original. A diferença fica mais evidente em um exemplo mais completo:
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Exemplo mais completo de template em WPT},
+captionpos=b
+}
+\begin{lstlisting}
+<ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
+ow:host="http://example.com">
+<ow:template ow:name="Template Example" ow:url="http://www.example.com/index.php">
+  <ow:block ow:tagid="ex1" name="ex1"></ow:block>
+  <ow:block ow:xpath="/html/body/p/text()" name="paragraph"></ow:block>
+  
+  <ow:block ow:xpath="/html/body/ul/li" name="menu">
+    <ow:block ow:xpath="//a/text()" name="item" ow:type="repetable"></ow:block>
+    <ow:block ow:xpath="//a[@href]" name="url" ow:type="repetable"></ow:block>
+  </ow:block>
+  
+  <ow:block ow:xpath="/html/body/div[2]/ul/li" name="paginate">
+    <ow:block ow:xpath="//a[@href]" name="url" ow:type="follow"></ow:block> <!-- follow -->
+  </ow:block>
+</ow:template> 
+</ow:wpt>
+\end{lstlisting}
+
+
+\lstset{language=Python,
+basicstyle=\scriptsize,
+caption={\emph{Spider} gerado a partir do arquivo de entrada apresentado na listagem 5.3},
+captionpos=b
+}
+\begin{lstlisting}
+from scrapy.item import Item, Field
+
+class TemplateExampleItem1(Item):
+    ex1 = Field()
+
+class TemplateExampleItem2(Item):
+    paragraph = Field()
+    
+class MenuItem(Item):
+    item = Field()
+    url = Field()
+    
+class Paginate(Item):
+    url = Field()
+
+from scrapy.spider import BaseSpider
+from scrapy.contrib.loader import XPathItemLoader
+from scrapy.selector import HtmlXPathSelector
+from scrapy.http import Request
+
+class TemplateExample(BaseSpider):
+    name = 'example.com'
+    allowed_domains = ['example.com']
+    start_urls = [
+        'http://www.example.com/index.php',
+    ]
+
+    def parse(self, response):
+        l = XPathItemLoader(item = TemplateExampleItem1(),response=response)
+        l.add_xpath('bubble','id("ex1")/text()') 
+        i = l.load_item()
+        yield i
+        
+        l = XPathItemLoader(item = TemplateExampleItem2(),response=response)
+        l.add_xpath('paragraph','/html/body/p/text()') 
+        i = l.load_item()
+        yield i
+        
+        hxs = HtmlXPathSelector(response)
+        for item in hxs.select('/html/body/ul/li'):
+            l = XPathItemLoader(item = MenuItem(), selector=item)
+            l.add_xpath('item','//li/a/text()') 
+            l.add_xpath('url','//li/a[@href]') 
+            i = l.load_item()
+            yield i
+                        
+        hxs = HtmlXPathSelector(response)
+        for item in hxs.select('/html/body/div[2]/ul/li'):
+            l = XPathItemLoader(item = Paginate(), selector=item)
+            l.add_xpath('url','//li/a[@href]') 
+            i = l.load_item()
+            yield Request(item=i['url'],callback=self.parse)
+            yield i
+\end{lstlisting}
+
+Neste segundo exemplo, o arquivo XML possui 15 linhas, ao passo que o código gerado possui cerca de 60 linhas, aproximadamente 4 vezes menos código.
+
+Em uma comparação qualitativa, pode-se citar alguns critérios:
+
+\begin{enumerate}
+	\item Linguagens de propósito geral \emph{versus} linguagens de proposíto específico (ou Domain Specific Languages).
+	\item Ganho de produtividade.
+	\item Facilidade para o usuário final.
+\end{enumerate}
+
+Linguagens de propósito geral servem para construção de mais diversos tipos de sistemas, ao passo que linguagens de propósito específico são projetadas para resolver problemas em um domínio específico. Há um \emph{tradeoff} entre as duas abordagens: enquanto as linguagens de propósito geral são mais completas, elas também são mais complexas se comparadas com as linguagens de propósito específico para a mesma categoria de problema.
+
+Quando se deixa de usar uma linguagem de propósito específico (Python) para utilizar outra de propósito geral (XML/WPT) o ganho de produtividade estará em eliminar preocupações não inerentes ao domínio. Com menos recursos e preocupações para se trabalhar, o trabalho do usuário final é facilitado.
