@@ -3,6 +3,8 @@
 
 O protótipo aqui apresentado ainda encontra-se em desenvolvimento. Por ser uma contribuição ao Scrapy, um framework de código aberto, este protótipo poderá ser desenvolvido por outros membros da comunidade.
 
+\section{Avaliação quantitativa}
+
 A avaliação de sucesso no cumprimento dos objetivos deste projeto pode ser meramente subjetiva, porém, há alguns critérios quantitativos ou subjetivos que podem ser discutidos, como a economia em linhas de código. No exemplo mais simples possível, há o seguinte template:
 
 \lstset{language=XML,
@@ -21,6 +23,7 @@ captionpos=b
 
 O template anterior gera o seguinte código em Python:
 
+\pagebreak
 \lstset{language=Python,
 basicstyle=\scriptsize,
 caption={\emph{Spider} gerado a partir do arquivo de entrada apresentado na listagem 5.3},
@@ -75,7 +78,7 @@ ow:host="http://example.com">
 </ow:wpt>
 \end{lstlisting}
 
-
+\pagebreak
 \lstset{language=Python,
 basicstyle=\scriptsize,
 caption={\emph{Spider} gerado a partir do arquivo de entrada apresentado na listagem 5.3},
@@ -139,6 +142,9 @@ class TemplateExample(BaseSpider):
 
 Neste segundo exemplo, o arquivo XML possui 15 linhas, ao passo que o código gerado possui cerca de 60 linhas, aproximadamente 4 vezes menos código.
 
+\pagebreak
+\section{Avaliação qualitativa}
+
 Em uma comparação qualitativa, pode-se citar alguns critérios:
 
 \begin{enumerate}
@@ -150,3 +156,9 @@ Em uma comparação qualitativa, pode-se citar alguns critérios:
 Linguagens de propósito geral servem para construção de mais diversos tipos de sistemas, ao passo que linguagens de propósito específico são projetadas para resolver problemas em um domínio específico. Há um \emph{tradeoff} entre as duas abordagens: enquanto as linguagens de propósito geral são mais completas, elas também são mais complexas se comparadas com as linguagens de propósito específico para a mesma categoria de problema.
 
 Quando se deixa de usar uma linguagem de propósito específico (Python) para utilizar outra de propósito geral (XML/WPT) o ganho de produtividade estará em eliminar preocupações não inerentes ao domínio. Com menos recursos e preocupações para se trabalhar, o trabalho do usuário final é facilitado.
+
+O uso de XML pode trazer várias vantagens à criação de sistemas de recuperação de informação. A principal é que qualquer linguagem de programação que dê suporte à XML pode criar templates. Como o trabalho de \emph{não} escrever código é sempre menor do que escrever \emph{algum} código, os usuários podem se beneficiar com a criação de sistemas que geram templates automaticamente. Por exemplo, um \emph{plugin} de um navegador Web pode permitir que o usuário selecione as seções de uma determinada página que gostaria que fossem recuperadas automaticamente e então gerar o template para o mesmo.
+
+\pagebreak
+\section{Problemas encontrados}
+
