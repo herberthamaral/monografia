@@ -174,3 +174,12 @@ O framework em si possui um tamanho considerável (759 arquivos em 13/11/2010 \f
 Não foi possível encontrar referências acadêmicas do Scrapy, um dos motivos pelos quais somente a respectiva documentação oficial foi utilizada.
 
 O formato WPT possui apenas informações sobre a disposição dos elementos em uma página e seus respectivos significados (ontologia). Tal fato leva ao incoveniente de haver diferentes \emph{schemas} XML em um mesmo arquivo para determinar outras informações, como nome dos variáveis do código gerado e formato de persistência dos dados obtidos.
+
+A biblioteca padrão para testes disponíveis no Python 2.6 (utilizado neste trabalho), a \texttt{unittest}, não possui um método de comparação de strings linha-a-linha. Isso significa que, se um texto precisa ser comparado com outro em um teste unitário, os dois serão comparados em sua totalidade, não linha-a-linha. 
+
+Esta dificuldade torna os testes de geração de código mais trabalhosos, pois é necessário observar cada caractere com cautela quando os dois textos, o esperado e o obtido, falham no teste unitário.
+
+Outra dificuldade encontrada nos testes unitários foi o teste de comandos, devido ao tempo que os testes levam para serem executados. A suíte de testes do Scrapy levam aproximadamente 30 segundos para serem executados\footnote{Os testes são executados com o comando \texttt{bin/runtests.sh scrapy.tests} dentro do diretório raiz do código fonte do Scrapy }, o que atrasa o desenvolvimento, já que a cada modificação no código, os testes precisam ser executados.
+
+\pagebreak
+\section{Trabalhos futuros}
