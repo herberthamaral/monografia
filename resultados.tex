@@ -7,7 +7,7 @@ Um dos aspectos positivos da abordagem adotada é que a ferramenta desenvolvida 
 
 Como este trabalho não contempla, tampouco pretende contemplar, todas as facetas da criação de sistemas de recuperação de informações estruturadas na Web, a possibilidade do programador alterar o código gerado pode vir a ser bem útil em situações mais específicas.
 
-A seguir, é mostrado duas avaliações, quantitativas e qualitativas, dos resultados obtidos.
+A seguir, duas avaliações são mostradas, quantitativas e qualitativas, dos resultados obtidos. Logo a seguir, há exemplos de spiders reais gerados a partir da ferramenta.
 
 \section{Avaliação quantitativa}
 
@@ -156,11 +156,14 @@ Em uma comparação qualitativa, pode-se citar alguns critérios:
 	\item Linguagens de propósito geral \emph{versus} linguagens de proposíto específico (ou Domain Specific Languages).
 	\item Ganho de produtividade.
 	\item Facilidade para o usuário final.
+	\item Automação de processos.
 \end{enumerate}
 
 Linguagens de propósito geral servem para construção de mais diversos tipos de sistemas, ao passo que linguagens de propósito específico são projetadas para resolver problemas em um domínio específico. Há um \emph{tradeoff} entre as duas abordagens: enquanto as linguagens de propósito geral são mais completas, elas também são mais complexas se comparadas com as linguagens de propósito específico para a mesma categoria de problema.
 
-Quando se deixa de usar uma linguagem de propósito específico (Python) para utilizar outra de propósito geral (XML/WPT) o ganho de produtividade estará em eliminar preocupações não inerentes ao domínio. Com menos recursos e preocupações para se trabalhar, o trabalho do usuário final é facilitado.
+Quando se deixa de usar uma linguagem de propósito geral (Python) para utilizar outra de propósito específico (XML/WPT) o ganho de produtividade estará em eliminar preocupações não inerentes ao domínio. Com menos recursos e preocupações para se trabalhar, o trabalho do usuário final é facilitado.
+
+Por exemplo, quando se trabalha com uma linguagem de propósito geral (como Python, C/C++ ou Java), o programador dispõe de uma maior flexibilidade, pois o mesmo pode valer de estruturas de controle, repetição, variáveis, funções ou métodos, classes, objetos, interação com o sistema de arquivos e E/S, interação com outros sistemas e tratamento de exceções para desenvolver suas soluções. Além de todos os itens relacionados à linguagem de programação, o programador precisa ter domínio de técnicas de extração de informações de páginas na Web, em que, nos casos mais simples envolve o conhecimento de uma linguagem de marcação (HTML, por exemplo), bibliotecas utilizadas para \emph{parsing} e bibliotecas para comunicação com servidores HTTP (\emph{HyperText Transfer Protocol} - Protocolo de Transferência de HiperTexto). No caso de uma linguagem específica de domínio baseada em XML, o programador precisará ter as mesmas noções de extração de informações de páginas na Web, porém sem a complexidade de lidar com uma linguagem de propósito geral e todas as suas respectivas dependências (bibliotecas), limitando-se apenas a conhecer a sintaxe do XML e as regras inerentes ao WPT.
 
 O uso de XML pode trazer várias vantagens à criação de sistemas de recuperação de informação. A principal é que qualquer linguagem de programação que dê suporte à XML pode criar templates. Como o trabalho de \emph{não} escrever código é sempre menor do que escrever \emph{algum} código, os usuários podem se beneficiar com a criação de sistemas que geram templates automaticamente. Por exemplo, um \emph{plugin} de um navegador Web pode permitir que o usuário selecione as seções de uma determinada página que gostaria que fossem recuperadas automaticamente e então gerar o template para o mesmo.
 
@@ -189,3 +192,5 @@ O atual sistema ainda possui algumas limitações, como a falta de persistência
 O presente trabalho conseguiu atingir o objetivo de facilitar a criação e manutenção de sistemas de recuperação estruturada na Web, porém é possível facilitar ainda mais este trabalho. Plugins para navegadores Web podem ser criados de forma que os usuários possam criar os Website Parse Templates (WPT) através de uma interface visual.
 
 Como o significado dos dados obtidos (metadados) não fazem parte deste trabalho, a seção \texttt{<ow:ontology>} do WPT é deliberadamente ignorada. Em trabalhos futuros, é provável que a mesma seja utilizada e então o protótipo aqui criado terá de ser modificado. 
+
+\emph{Plugins} como o Firebug \cite{firebug} para o navegador Mozilla Firefox permitem inspecionar a estrutura do conteúdo de sítios na Web. Com ele, é possível selecionar elementos, mudar estilos e conteúdo, analisar o tráfego utilizado pelo acesso ao sítio e \emph{debugar} JavaScript. Usando o Firebug como plataforma, é possível desenvolver um outro complemento que facilite a criação de templates, o que poderia facilitar ainda mais o trabalho de criação de sistemas de recuperção de informações na Web.
