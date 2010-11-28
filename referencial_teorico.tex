@@ -284,6 +284,30 @@ O Scrapy é um \emph{framework} de código aberto, em que seu código está disp
 \pagebreak
 \section{Git e Github}
 
+Git é um sistema de controle de versões distribuído escrito inicialmente por Linus Torvalds, criador do kernel do Linux e atualmente mantido por Junio Hamano \cite{progit}.
+
+\subsection{Controle de versões}
+
+Um controle de versões é um sistema que guarda modificações a um arquivo ou conjunto de arquivos com o passar do tempo, com o principal intuito de obter versões específicas a qualquer momento \cite[p. 1]{progit}.
+
+\subsubsection{Controle de versões locais}
+
+Segundo \cite[p.2]{progit}, é comum pessoas controlarem versões manualmente através da cópia de arquivos para outras pastas, provavelmente com alguma indicação de data. Apesar de simples, este sistema de versionamento é propenso a erros devido ao fato que se vale da memória humana para encontrar versões específicas e controlar alterações.
+
+Com o passar do tempo, pequenos e simples sistemas de controle de versão com banco de dados locais para guardar listas de alterações foram criados para ajudar a resolver este problema.
+
+\subsubsection{Controle de versões centralizado}
+
+O maior problema com controle de versões locais é a dificuldade de colaboração \cite[p. 3]{progit}. Para lidar com este problema, sistemas de controle de versão centralizados foram criados. Estes sistemas, como o CVS, Subversion e Perforce, possuem um único servidor que contém todos os arquivos versionados e um número de clientes que acessam os arquivos de um repositório central.
+
+Apesar de permitir a colaboração, há várias desvantagens com esta abordagem, principalmente no que diz respeito a acesso: se o servidor que guarda estas informações sofrer um problema, ninguem poderá colaborar em um projeto ou salvar as últimas alterações (\emph{commit}) feitas.
+
+\subsubsection{Controle de versões distribuídos}
+
+Os sistemas de controle de versões distribuídos, pois, ao invés de apenas obter apenas as últimas versões dos arquivos de um servidor central, uma cópia completa do repositório é copiada para a máquina local \cite[p. 4]{progit}.
+
+
+
 \pagebreak
 
 
