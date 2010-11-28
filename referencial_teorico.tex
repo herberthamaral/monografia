@@ -319,7 +319,7 @@ Apesar de permitir a colaboração, há várias desvantagens com esta abordagem,
 
 \subsubsection{Controle de versões distribuídos}
 
-Os sistemas de controle de versões distribuídos, pois, ao invés de apenas obter apenas as últimas versões dos arquivos de um servidor central, uma cópia completa do repositório é copiada para a máquina local \cite[p. 4]{progit}.
+Os sistemas de controle de versões distribuídos, pois, ao invés de apenas obter apenas as últimas versões dos arquivos de um servidor central, uma cópia completa do repositório é copiada para a máquina local \cite[p. 4]{progit}. Dentre exemplos de sistemas de controle de versão distribuídos, pode-se citar o Git, Mercurial, Bazaar e Darcs.
 
 \begin{figure} [ht]
 	\centering
@@ -327,6 +327,39 @@ Os sistemas de controle de versões distribuídos, pois, ao invés de apenas obt
 	\caption{Diagrama de um controle de versões distribuído \cite[p. 4]{progit}}
 	\label{dist_version_control}
 \end{figure}
+
+Com sistemas de controle de versão distribuídos podem haver servidores centrais, mas a queda ou desconexão do mesmo não impede a colaboração, já que, como todos os usuários de um determinado repositório possuem uma cópia completa do repositório localmente, eles podem trocar informações entre si sem maiores problemas \cite[p. 4]{progit}.
+
+\subsection{Uma breve história do Git}
+
+O Git surgiu da necessidade de criar um sistema de controle de versões para substituir o BitKeeper, um sistema de controle de versões distribuídos, devido à problemas com a empresa que o desenvolvia \cite[p. 5]{progit}. Alguns objetivos do novo sistema de controle de versões do kernel foram:
+
+\begin{itemize}
+	\item Velocide.
+	\item Design simples.
+	\item Forte suporte para desenvolvimento não-linear (milhares de \emph{branches} - Ramificações).
+	\item Totalmente distribuído.
+	\item Habilidade para gerenciar grandes projetos, como o kernel do Linux, eficientemente. 
+\end{itemize}
+
+
+Segundo \cite{progit}, desde 2005, o Git evoluiu e se tornou maduro para ser fácil, mantendo as qualidades iniciais e sendo incrivelmente rápido, muito eficiente com projetos grandes e possui um sistema de \emph{branching} incrível para desenvolvimento não-linear.
+
+\subsection{Arquitetura do Git}
+
+A seguir, é mostrado os itens mais relevantes no que diz respeito à arquitetura do Git.
+
+\subsubsection{\emph{Snapshots} ao invés de diffs}
+
+Uma das maiores diferenças entre o Git e outros Sistemas de Controle de Versão (SCM), como o Subversion e o Mercurial, é a forma como o Git trata os dados \cite[p. 6]{progit}. Estes sistemas tratam as informações como uma série de mudanças (deltas ou diffs) ao longo do tempo, como ilustrado na figura a seguir:
+
+\begin{figure} [ht]
+	\centering
+	\includegraphics[scale=0.5]{scm_delta.png}
+	\caption{Diagrama que ilustra como outros sistemas tratam informações ao longo do tempo\cite[p. 6]{progit}}
+	\label{scm_delta}
+\end{figure}
+
 
 
 \pagebreak
