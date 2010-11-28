@@ -71,6 +71,7 @@ Dezembro - 2010
 \renewcommand{\bibname}{Bibliografia}
 \renewcommand{\lstlistingname}{Listagem}
 \renewcommand{\appendixname}{Apêndice}
+\renewcommand{\listfigurename}{Lista de figuras}
 %
 
 
@@ -78,6 +79,18 @@ Dezembro - 2010
 \def\us{\char`\_}
 
 \tableofcontents
+\listoffigures
+
+%list of listings
+\newcommand\stdsection{}
+\newcommand\stdaddcontentsline{}
+\let\stdsection\section
+\let\stdaddcontentsline\addcontentsline
+\let\section\subsection
+\renewcommand\addcontentsline[3]{}
+\lstlistoflistings
+\let\section\stdsection
+\let\addcontentsline\stdaddcontentsline
 
 \doublespacing
 \include{introducao}
