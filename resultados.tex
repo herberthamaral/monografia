@@ -1,7 +1,7 @@
 % resultados.tex
 \chapter{Resultados}
 
-O protótipo aqui apresentado ainda encontra-se em desenvolvimento. Por ser uma contribuição ao Scrapy, um framework de código aberto, este protótipo poderá ser desenvolvido por outros membros da comunidade.
+O protótipo aqui apresentado ainda encontra-se em desenvolvimento. Por ser uma contribuição ao Scrapy, um framework de código aberto, este protótipo poderá ser desenvolvido por outros membros da comunidade. O código-fonte deste protótipo encontra-se num repositório do Github disponível em \texttt{http://github.com/herberthamaral/}, no \emph{branch} "crawling-template".
 
 Um dos aspectos positivos da abordagem adotada é que a ferramenta desenvolvida gera código na linguagem de programação Python a partir de código em XML, permitindo que o programador faça altarações no código gerado, caso seja necessário. 
 
@@ -187,6 +187,7 @@ A biblioteca padrão para testes disponíveis no Python 2.6 (utilizado neste tra
 Esta dificuldade torna os testes de geração de código mais trabalhosos, pois é necessário observar cada caractere com cautela quando os dois textos, o esperado e o obtido, falham no teste unitário.
 
 Outra dificuldade encontrada nos testes unitários foi o teste de comandos, devido ao tempo que os testes levam para serem executados. A suíte de testes do Scrapy levam aproximadamente 30 segundos para serem executados\footnote{Os testes são executados com o comando \texttt{bin/runtests.sh scrapy.tests} dentro do diretório raiz do código fonte do Scrapy }, o que atrasa o desenvolvimento, já que a cada modificação no código, os testes precisam ser executados.
+\vfill
 
 \pagebreak
 \section{Trabalhos futuros}
