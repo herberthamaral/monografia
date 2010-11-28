@@ -1,13 +1,15 @@
 % resultados.tex
 \chapter{Resultados}
 
-O protótipo aqui apresentado ainda encontra-se em desenvolvimento. Por ser uma contribuição ao Scrapy, um framework de código aberto, este protótipo poderá ser desenvolvido por outros membros da comunidade. O código-fonte deste protótipo encontra-se num repositório do Github (\emph{http://github.com/}) disponível em \texttt{http://github.com/herberthamaral/}, no \emph{branch} "crawling-template".
+Como resultado deste trabalho, é apresentado uma ferramenta construida para operar junto ao Scrapy. Esta ferramenta utiliza o código do template em XML/WPT como entrada e produz o respectivo spider na linguagem Python, que utiliza o framework Scrapy como base para cumprir os objetivos de extração de informações estruturadas na Web.
 
-Por não se tratar de uma funcionalidade estável, o código originado do presente trabalho ainda não foi incorporado na linha de desenvolvimento principal do Scrapy, mas espera-se que isto seja feito em breve.
+O ferramenta aqui apresentada ainda encontra-se em desenvolvimento. Por ser uma contribuição ao Scrapy, um framework de código aberto, este protótipo poderá ser desenvolvido por outros membros da comunidade. O código-fonte deste protótipo encontra-se num repositório do Github (\texttt{http://github.com/}) disponível em \texttt{http://github.com/herberthamaral/}, no \emph{branch} "crawling-template".
 
-Apesar de ser um projeto de código aberto e disponibilizado publicamente, ainda não há contribuições de outros desenvolvedores. Um dos motivos é a falta de divulgação: espera-se ter uma versão que possa ser considerada estável antes de apresentar este projeto formalmente à comunidade.
+Por não se tratar de uma ferramenta estável, o código originado do presente trabalho ainda não foi incorporado na linha de desenvolvimento principal do Scrapy, mas espera-se que isto seja feito em breve.
 
-Um dos aspectos positivos da abordagem adotada é que a ferramenta desenvolvida gera código na linguagem de programação Python a partir de código em XML, permitindo que o programador faça altarações no código gerado, caso seja necessário. 
+Apesar de ser um projeto de código aberto e disponibilizado publicamente, ainda não há contribuições de outros desenvolvedores. Um dos motivos é a proposital falta de divulgação: espera-se ter uma versão que possa ser considerada estável antes de apresentar este projeto formalmente à comunidade.
+
+Um dos aspectos positivos da abordagem adotada é que a ferramenta desenvolvida gera o código de spiders na linguagem de programação Python a partir de código em XML, permitindo que o programador faça altarações no código gerado, caso seja necessário. 
 
 Como este trabalho não contempla, tampouco pretende contemplar, todas as facetas da criação de sistemas de recuperação de informações estruturadas na Web, a possibilidade do programador alterar o código gerado pode vir a ser bem útil em situações mais específicas. Por isso o objetivo deste trabalho é \emph{gerar código} ao invés de \emph{interpretar código} com o intuito de criar sistemas de recuperação de informações.
 
@@ -15,7 +17,11 @@ Pelo fato dos objetivos deste trabalho se basearem na criação de uma ferrament
 
 \section{Avaliação quantitativa}
 
-A avaliação de sucesso no cumprimento dos objetivos deste projeto pode ser meramente subjetiva, porém, há alguns critérios quantitativos ou subjetivos que podem ser discutidos, como a economia em linhas de código. No exemplo mais simples possível, há o seguinte template:
+A avaliação de sucesso no cumprimento dos objetivos deste projeto pode ser meramente subjetiva, porém, há alguns critérios quantitativos ou subjetivos que podem ser discutidos, como a economia em linhas de código. 
+
+A avaliação quantitativa leva em conta o número de linhas no formato XML/WPT necessárias para gerar o código em Python com o uso da ferramenta desenvolvida neste trabalho e é mensurada através da comparação do número de linhas de código, em ambas linguagens, necessárias para obter o mesmo resultado. Uma avaliação positiva é dada se o número de linhas de código gerado em Python for superior ao número de linhas utilizadas para escrever o template em XML.
+
+No exemplo mais simples possível, há o seguinte template:
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
@@ -31,7 +37,7 @@ captionpos=b
   </ow:wpt>
 \end{lstlisting}
 
-O template anterior gera o seguinte código em Python:
+Com o uso da ferramenta desenvolvida neste trabalho, o template anterior corresponde seguinte código gerado em Python:
 
 \lstset{language=Python,
 basicstyle=\scriptsize,
@@ -87,7 +93,8 @@ ow:host="http://example.com">
 </ow:wpt>
 \end{lstlisting}
 
-\pagebreak
+Com o auxílio da ferramenta citada anteriormente, o código anterior em XML é utilizado para gerar o seguinte código em Python: 
+
 \lstset{language=Python,
 basicstyle=\scriptsize,
 caption={\emph{Spider} gerado a partir do arquivo de entrada apresentado na listagem 5.3},
