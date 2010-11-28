@@ -6,6 +6,7 @@
 \usepackage{a4wide}
 \usepackage{setspace}
 \usepackage{graphicx}
+\usepackage{listing}
 \usepackage{listings}
 \usepackage{pslatex}
 \usepackage[left=3cm,top=3cm,right=2cm,bottom=2cm]{geometry}
@@ -82,16 +83,7 @@ Dezembro - 2010
 \tableofcontents
 \listoffigures
 
-%list of listings
-\newcommand\stdsection{}
-\newcommand\stdaddcontentsline{}
-\let\stdsection\section
-\let\stdaddcontentsline\addcontentsline
-\let\section\subsection
-\renewcommand\addcontentsline[3]{}
-\lstlistoflistings
-\let\section\stdsection
-\let\addcontentsline\stdaddcontentsline
+\listoflistings
 
 \doublespacing
 \include{introducao}
