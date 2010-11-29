@@ -9,15 +9,16 @@
 \usepackage{listing}
 \usepackage{listings}
 \usepackage{pslatex}
+\usepackage{sectsty}
+\usepackage{titlesec}
 \usepackage[left=3cm,top=3cm,right=2cm,bottom=2cm]{geometry}
+
 
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-\rfoot{\thepage}
-\lhead[]{}
-\chead[]{}
-\rhead[]{}
-\cfoot{}
+\fancyhead{}
+\fancyfoot{}
+\fancyfoot[FR]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
 
 \makeindex
@@ -48,8 +49,8 @@ Dezembro - 2010
 \end{titlepage}
 
 %folha de rosto
-\thispagestyle{empty}
-\addtocounter{page}{-1}
+\addtocounter{page}{+1}
+\thispagestyle{plain}
 
 \begin{center}
 	Herberth Giuliano Amaral Silva
@@ -74,24 +75,31 @@ Dezembro - 2010
 	Dezembro - 2010 
 \end{center}
 
-
-\renewcommand{\contentsname}{Índice}
-%\renewcommand{\thechapter}{\ }
+\renewcommand{\contentsname}{Sumário}
 \renewcommand{\chaptername}{Capítulo}
+\renewcommand{\figurename}{Figura}
 \renewcommand{\bibname}{Bibliografia}
 \renewcommand{\lstlistingname}{Listagem}
 \renewcommand{\appendixname}{Apêndice}
 \renewcommand{\listfigurename}{Lista de Figuras}
 \renewcommand{\listlistingname}{Lista de Listagens}
+\allsectionsfont{\large}
+\chapterfont{\Large}
+
+
 %
 
 
 %atalho par o underscore
 \def\us{\char`\_}
 
+\thispagestyle{fancy}
 \tableofcontents
+\thispagestyle{fancy}
 \listoffigures
+\thispagestyle{fancy}
 \listoflistings
+\thispagestyle{fancy}
 
 \doublespacing
 \include{introducao}
