@@ -20,6 +20,17 @@
 \fancyfoot{}
 \fancyfoot[FR]{\thepage}
 \renewcommand{\headrulewidth}{0pt}
+\renewcommand{\contentsname}{Sumário}
+\renewcommand{\chaptername}{Capítulo}
+\renewcommand{\figurename}{Figura}
+\renewcommand{\bibname}{Bibliografia}
+\renewcommand{\lstlistingname}{Listagem}
+\renewcommand{\appendixname}{Apêndice}
+\renewcommand{\listfigurename}{Lista de Figuras}
+\renewcommand{\listlistingname}{Lista de Listagens}
+\allsectionsfont{\large}
+\chapterfont{\Large}
+
 
 \makeindex
 \begin{document}
@@ -49,8 +60,8 @@ Dezembro - 2010
 \end{titlepage}
 
 %folha de rosto
-\addtocounter{page}{+1}
-\thispagestyle{plain}
+\addtocounter{page}{-1}
+\thispagestyle{empty}
 
 \begin{center}
 	Herberth Giuliano Amaral Silva
@@ -75,34 +86,23 @@ Dezembro - 2010
 	Dezembro - 2010 
 \end{center}
 
-\renewcommand{\contentsname}{Sumário}
-\renewcommand{\chaptername}{Capítulo}
-\renewcommand{\figurename}{Figura}
-\renewcommand{\bibname}{Bibliografia}
-\renewcommand{\lstlistingname}{Listagem}
-\renewcommand{\appendixname}{Apêndice}
-\renewcommand{\listfigurename}{Lista de Figuras}
-\renewcommand{\listlistingname}{Lista de Listagens}
-\allsectionsfont{\large}
-\chapterfont{\Large}
-
-
-%
-
+\include{resumo}
 
 %atalho par o underscore
 \def\us{\char`\_}
 
 \thispagestyle{fancy}
+\addcontentsline{toc}{chapter}{Sumário}
 \tableofcontents
 \thispagestyle{fancy}
 \listoffigures
+\addcontentsline{toc}{chapter}{Lista de figuras}
 \thispagestyle{fancy}
 \listoflistings
+\addcontentsline{toc}{chapter}{Lista de listagens}
 \thispagestyle{fancy}
 
 \doublespacing
-\include{resumo}
 \include{introducao}
 \include{referencial_teorico}
 \include{justificativa}
