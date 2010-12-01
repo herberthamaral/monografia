@@ -147,7 +147,7 @@ class TemplateExample(BaseSpider):
             l.add_xpath('url','//li/a[@href]') 
             i = l.load_item()
             yield i
-                        
+
         hxs = HtmlXPathSelector(response)
         for item in hxs.select('/html/body/div[2]/ul/li'):
             l = XPathItemLoader(item = Paginate(), selector=item)
@@ -182,11 +182,13 @@ O uso de XML pode trazer várias vantagens à criação de sistemas de recupera�
 \pagebreak
 \section{Exemplos reais}
 
-Provas de conceitos são úteis para demonstração das principais funcionalidades da ferramenta, porém ainda são incompletos por não abordar situações reais de uso. 
+Para fornecer melhores bases entendimento deste trabalho, a seguir são apresentadas exemplos de casos de uso da ferramenta desenvolvida em conjunto com todo o processo de identificação de elementos na página e escrita do template.
 
-Para fornecer melhores bases para avaliação deste trabalho, a seguir são apresentadas algumas formas de uso da ferramenta desenvolvida.
+\subsection{Exemplo 1 - Obtendo todos os documentos do Microsoft Word e Adobe PDF do sítio da Unimontes}
 
-\subsection{Exemplo 1 - Página de editais do Ministério da Cultura}
+Em breve, não percam no próximo commit ;)
+
+\subsection{Exemplo 2 - Página de editais do Ministério da Cultura}
 
 A página de editais do Ministério da Cultura, que se encontra em \url{http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/}, contém a lista dos últimos editais publicados, com seus respectivos títulos, categorias e informações gerais, como demonstrado na figura \ref{minc}.
 
@@ -216,8 +218,7 @@ Analisando o código HTML da seleção, obtemos os seguintes seletores XPATH:
 
 Como os itens desejados (chamadas de notícias) se repetem na página, é necessário indicar qual será o padrão de repetição, o que neste caso é indicado pelo seletor \textbf{Base}: todos os itens de lista (\texttt{li}) que se encontram em \texttt{/html/body/div[2]/div[1]/ol[1]}. Os demais seletores derivam de cada item da lista indicada por \textbf{Base}.
 
-Seguindo as especificações do Website Parse Template (WPT), o template necessário para obter a lista de notícias com seus respetivos atributos se encontra na listagem \ref{wpt_minc}
-
+Seguindo as especificações do Website Parse Template (WPT), o template necessário para obter a lista de editais com seus respetivos atributos se encontra na listagem \ref{wpt_minc}.
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
@@ -227,24 +228,58 @@ captionpos=b
 \begin{lstlisting}[label=wpt_minc]
 <ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
  ow:host="http://example.com">
- 
 <ow:template ow:name="minc_news" 
  ow:url="http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/">
-  
   <ow:block ow:xpath="/html/body/div[2]/div[1]/ol[1]/li" name="lista_news">
-  
     <ow:block ow:xpath="//h3/a/text()" name="titulo" ow:type="repetable"></ow:block>
     <ow:block ow:xpath="//p/text()" name="meta" ow:type="repetable"></ow:block>
     <ow:block ow:xpath="//div/p/text()" name="mais_info" ow:type="repetable"></ow:block>
-    
   </ow:block>
-  
 </ow:template> 
-
 </ow:wpt>
-
 \end{lstlisting}
 
+O template anterior reflete nas regras definidas anteriormente, com o bloco \texttt{lista\_news} como seletor dos itens de lista onde ficam as chamadas dos editais e contendo três blocos: o \texttt{titlulo}, o \texttt{meta} e o \texttt{mais\_info}, que representam as informações de cada chamada edital.
+
+Tendo salvo o template anterior num arquivo chamado \texttt{minc.xml}, o comando \texttt{scrapy importwpt minc.xml} exibe a saída mostrada na listagem \ref{python_wpt_minc}.
+
+\pagebreak
+\lstset{language=Python,
+basicstyle=\scriptsize,
+caption={Código gerado pela ferramenta desenvolvida utilizando o arquivo \texttt{minc.xml} da listagem \ref{wpt_minc} como entrada},
+captionpos=b
+}
+\begin{lstlisting}[label=python_wpt_minc]
+from scrapy.item import Item, Field
+
+class minc_newsItem1(Item):
+    lista_news = Field()
+    titulo = Field()
+    meta = Field()
+    mais_info = Field()
+
+
+from scrapy.spider import BaseSpider
+from scrapy.contrib.loader import XPathItemLoader
+
+class minc_news(BaseSpider):
+    name = 'www.cultura.gov.br'
+    allowed_domains = ['www.cultura.gov.br']
+    start_urls = ['http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/']
+
+    def parse(self, response):
+        
+        hxs = HtmlXPathSelector(response)
+        for item in hxs.select('/html/body/div[2]/div[1]/ol[1]/li'):
+            l = XPathItemLoader(item = minc_newsItem2(), selector=item)
+            l.add_xpath('titulo','//h3/a/text()')
+            l.add_xpath('meta','//p/text()')
+            l.add_xpath('mais_info','//div/p/text()')
+
+            i = l.load_item()
+            yield i
+
+\end{lstlisting}
 
 
 \pagebreak
