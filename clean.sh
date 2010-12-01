@@ -18,3 +18,5 @@ rm *.lyx -Rf
 rm *.toc -Rf
 rm *.lot -Rf
 rm *.lof -Rf
+rm *.lol -Rf
+rm *.ist -Rf
