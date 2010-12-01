@@ -179,7 +179,73 @@ Por exemplo, quando se trabalha com uma linguagem de propósito geral (como Pyth
 
 O uso de XML pode trazer várias vantagens à criação de sistemas de recuperação de informação. A principal é que qualquer linguagem de programação que dê suporte à XML pode criar templates. Como o trabalho de \emph{não} escrever código é sempre menor do que escrever \emph{algum} código, os usuários podem se beneficiar com a criação de sistemas que geram templates automaticamente. Por exemplo, um \emph{plugin} de um navegador Web pode permitir que o usuário selecione as seções de uma determinada página que gostaria que fossem recuperadas automaticamente e então gerar o template para o mesmo.
 
+\pagebreak
 \section{Exemplos reais}
+
+Provas de conceitos são úteis para demonstração das principais funcionalidades da ferramenta, porém ainda são incompletos por não abordar situações reais de uso. 
+
+Para fornecer melhores bases para avaliação deste trabalho, a seguir são apresentadas algumas formas de uso da ferramenta desenvolvida.
+
+\subsection{Exemplo 1 - Página de editais do Ministério da Cultura}
+
+A página de editais do Ministério da Cultura, que se encontra em \url{http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/}, contém a lista dos últimos editais publicados, com seus respectivos títulos, categorias e informações gerais, como demonstrado na figura \ref{minc}.
+
+\begin{figure} [ht]
+	\centering
+	\includegraphics[scale=0.8]{minc.png}
+	\caption{Seleção dos elementos que compõem uma chamada de notícia de edital}
+	\label{minc}
+\end{figure}
+
+A seguir, as legendas das respectivas áreas destacadas:
+
+\begin{enumerate}
+	\item Título da notícia
+	\item Metadados (data e tags)
+	\item Mais informações
+\end{enumerate}
+
+Analisando o código HTML da seleção, obtemos os seguintes seletores XPATH:
+
+\begin{itemize}
+	\item \textbf{Base} - \texttt{/html/body/div[2]/div[1]/ol[1]/li}
+	\item \textbf{Título} - \texttt{//h3/a/text()}
+	\item \textbf{Metadados} - \texttt{//p/text()}
+	\item \textbf{Mais informações} - \texttt{//div/p/text()}
+\end{itemize}
+
+Como os itens desejados (chamadas de notícias) se repetem na página, é necessário indicar qual será o padrão de repetição, o que neste caso é indicado pelo seletor \textbf{Base}: todos os itens de lista (\texttt{li}) que se encontram em \texttt{/html/body/div[2]/div[1]/ol[1]}. Os demais seletores derivam de cada item da lista indicada por \textbf{Base}.
+
+Seguindo as especificações do Website Parse Template (WPT), o template necessário para obter a lista de notícias com seus respetivos atributos se encontra na listagem \ref{wpt_minc}
+
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Template utilizado para recuperar os editais do sítio do Ministério da Cultura},
+captionpos=b
+}
+\begin{lstlisting}[label=wpt_minc]
+<ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
+ ow:host="http://example.com">
+ 
+<ow:template ow:name="minc_news" 
+ ow:url="http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/">
+  
+  <ow:block ow:xpath="/html/body/div[2]/div[1]/ol[1]/li" name="lista_news">
+  
+    <ow:block ow:xpath="//h3/a/text()" name="titulo" ow:type="repetable"></ow:block>
+    <ow:block ow:xpath="//p/text()" name="meta" ow:type="repetable"></ow:block>
+    <ow:block ow:xpath="//div/p/text()" name="mais_info" ow:type="repetable"></ow:block>
+    
+  </ow:block>
+  
+</ow:template> 
+
+</ow:wpt>
+
+\end{lstlisting}
+
+
 
 \pagebreak
 \section{Dificuldades encontradas}
