@@ -282,6 +282,62 @@ class minc_news(BaseSpider):
 \end{lstlisting}
 
 
+O spider demonstrado na listagem \ref{python_wpt_minc} pode ser executado com o comando \texttt{scrapy runspider /caminho/para/minc.py} e produz a saída (devidamente adaptada para uma melhor folhas de papel A4) mostrada na listagem \ref{scrapy_wpt_minc}
+
+\lstset{basicstyle=\scriptsize,
+caption={Saída produzida pela execução do scraper da listagem \ref{python_wpt_minc}},
+captionpos=b
+}
+\begin{lstlisting}[label=scrapy_wpt_minc]
+scrapy runspider testescrapy/spiders/minc.py
+2010-12-02 07:49:31-0200 [scrapy] INFO: Scrapy 0.11.0 started (bot: testescrapy)
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled extensions: TelnetConsole, SpiderContext, 
+WebService, CoreStats, MemoryUsage, CloseSpider
+															  
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled scheduler middlewares: DuplicatesFilterMiddleware
+
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled downloader middlewares: HttpAuthMiddleware, 
+DownloadTimeoutMiddleware, UserAgentMiddleware, RetryMiddleware, DefaultHeadersMiddleware, 
+RedirectMiddleware, CookiesMiddleware, HttpCompressionMiddleware, DownloaderStats
+
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled spider middlewares: HttpErrorMiddleware, 
+OffsiteMiddleware, RefererMiddleware, UrlLengthMiddleware, DepthMiddleware
+																     
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled item pipelines: 
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Telnet console listening on 0.0.0.0:6023
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Web service listening on 0.0.0.0:6080
+2010-12-02 07:49:31-0200 [www.cultura.gov.br] INFO: Spider opened
+2010-12-02 07:49:32-0200 [www.cultura.gov.br] DEBUG: Crawled (200) 
+<GET http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/> (referer: None)
+Item recuperado: <titulo=Divulgada lista dos convocados para oficina presencial de Florianopolis> 
+
+Item recuperado: <titulo=Premio Hip Hop> 
+
+Item recuperado: <titulo=Edital Ideias Criativas para 20 de novembro de 2010 - 
+						 Dia Nacional da Consciencia Negra> 
+
+Item recuperado: <titulo=Edital do Programa de Apoio a Traducao de Autores Brasileiros> 
+
+Item recuperado: <titulo=Premio Luso-Brasileiro de Dramaturgia Antonio Jose da Silva - 2010> 
+
+Item recuperado: <titulo=Premio Mais Cultura Pontos de Leitura do estado do Ceara> 
+
+Item recuperado: <titulo=Programa de Intercambio e Difusao Cultural - Edital numero 1/2010> 
+
+Item recuperado: <titulo=Edital de Pontos de Leitura de Sao Leopoldo> 
+
+Item recuperado: <titulo=Premio Mais Cultura de Apoio as Bibliotecas Comunitarias do Estado do Ceara> 
+
+Item recuperado: <titulo=Edital 22 Anos da Palmares> 
+
+Item recuperado: <titulo=Premio Mais Cultura de Pontinhos de Cultura de Fortaleza 2010> 
+
+Item recuperado: <titulo=Premio Mais Cultura de Pontos de Leitura de Fortaleza> 
+
+2010-12-02 07:49:32-0200 [www.cultura.gov.br] INFO: Closing spider (finished)
+2010-12-02 07:49:32-0200 [www.cultura.gov.br] INFO: Spider closed (finished)
+\end{lstlisting}
+
 \pagebreak
 \section{Dificuldades encontradas}
 
@@ -356,4 +412,4 @@ O presente trabalho conseguiu atingir o objetivo de facilitar a criação e manu
 
 Como o significado dos dados obtidos (metadados) não fazem parte deste trabalho, a seção \texttt{<ow:ontology>} do WPT é deliberadamente ignorada. Em trabalhos futuros, é provável que a mesma seja utilizada e então o protótipo aqui criado terá de ser modificado. 
 
-\emph{Plugins} como o Firebug \cite{firebug} para o navegador Mozilla Firefox permitem inspecionar a estrutura do conteúdo de sítios na Web. Com ele, é possível selecionar elementos, mudar estilos e conteúdo, analisar o tráfego utilizado pelo acesso ao sítio e \emph{debugar} JavaScript. Usando o Firebug como plataforma, é possível desenvolver um outro complemento que facilite a criação de templates, o que poderia facilitar ainda mais o trabalho de criação de sistemas de recuperção de informações na Web.
+\emph{Plugins} como o Firebug \cite{firebug} para o navegador Mozilla Firefox permitem inspecionar a estrutura do conteúdo de sítios na Wieb. Com ele, é possível selecionar elementos, mudar estilos e conteúdo, analisar o tráfego utilizado pelo acesso ao sítio e \emph{debugar} JavaScript. Usando o Firebug como plataforma, é possível desenvolver um outro complemento que facilite a criação de Htmltemplates, o que poderia facilitar ainda mais o trabalho de criação de sistemas de recuperção de informações na Web.
