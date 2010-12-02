@@ -83,8 +83,8 @@ ow:host="http://example.com">
   <ow:block ow:xpath="/html/body/p/text()" name="paragraph"></ow:block>
   
   <ow:block ow:xpath="/html/body/ul/li" name="menu">
-    <ow:block ow:xpath="//a/text()" name="item" ow:type="repetable"></ow:block>
-    <ow:block ow:xpath="//a[@href]" name="url" ow:type="repetable"></ow:block>
+    <ow:block ow:xpath="//a/text()" name="item" ow:type="repeatable"></ow:block>
+    <ow:block ow:xpath="//a[@href]" name="url" ow:type="repeatable"></ow:block>
   </ow:block>
   
   <ow:block ow:xpath="/html/body/div[2]/ul/li" name="paginate">
@@ -231,9 +231,9 @@ captionpos=b
 <ow:template ow:name="minc_news" 
  ow:url="http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/">
   <ow:block ow:xpath="/html/body/div[2]/div[1]/ol[1]/li" name="lista_news">
-    <ow:block ow:xpath="//h3/a/text()" name="titulo" ow:type="repetable"></ow:block>
-    <ow:block ow:xpath="//p/text()" name="meta" ow:type="repetable"></ow:block>
-    <ow:block ow:xpath="//div/p/text()" name="mais_info" ow:type="repetable"></ow:block>
+    <ow:block ow:xpath="//h3/a/text()" name="titulo" ow:type="repeatable"></ow:block>
+    <ow:block ow:xpath="//p/text()" name="meta" ow:type="repeatable"></ow:block>
+    <ow:block ow:xpath="//div/p/text()" name="mais_info" ow:type="repeatable"></ow:block>
   </ow:block>
 </ow:template> 
 </ow:wpt>
@@ -293,7 +293,54 @@ Não foi possível encontrar referências acadêmicas do Scrapy, um dos motivos 
 
 O formato WPT possui apenas informações sobre a disposição dos elementos em uma página e seus respectivos significados (ontologia). Tal fato leva ao incoveniente de haver diferentes \emph{schemas} XML em um mesmo arquivo para determinar outras informações, como nome dos variáveis do código gerado e formato de persistência dos dados obtidos.
 
-A biblioteca padrão para testes disponíveis no Python 2.6 (utilizado neste trabalho), a \texttt{unittest}, não possui um método de comparação de strings linha-a-linha. Isso significa que, se um texto precisa ser comparado com outro em um teste unitário, os dois serão comparados em sua totalidade, não linha-a-linha. 
+Uma outra dificuldade relacionada ao WPT foram as regras de validação: verificação de validade de URLs, caminhos XPATH, validação de templates, blocos e nomes de elementos. Como a validação ocorre em vários elementos e o XML é um formato hierárquico, validações recursivas precisaram ser feitas, e, dependendo do nível de recursão, tratamentos especiais teriam que ser dados. Como um exemplo, considere o trecho de código da listagem \ref{problemas_wpt_blocos1}:
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Hierarquia de blocos planos e de um nível},
+captionpos=b
+}
+\begin{lstlisting}[label=problemas_wpt_blocos1]
+ ...
+  <ow:block ow:xpath="/bloco1" name="raiz">
+    <ow:block ow:xpath="//caminho/para/um" name="raiz_um"></ow:block>
+    <ow:block ow:xpath="//caminho/para/dois" ow:type="repeatable" name="raiz_dois"></ow:block>
+  </ow:block>
+ 
+  <ow:block ow:xpath="/bloco2" name="dois"></ow:block>
+  ...
+\end{lstlisting}
+
+O bloco com nome \texttt{dois} é um bloco de nível único e o bloco com nome \texttt{raiz} é um bloco hierárquico com um nível. Os blocos de nível único são fáceis de serem interpretados pois representam apenas um item na página a ser obtido. Já os blocos com um nível formam itens compostos por um ou mais elementos de nível único. Blocos com o atributo \emph{ow:type="repeatable"} (como o bloco de nome \texttt{raiz\_dois}) em um contexto que nem todos são repetíveis precisam de um tratamento especial. Blocos de nível único repetíveis são tratados de maneira similar.
+
+O principal problema acontece quando há um bloco com um nível maior que um, como o mostrado na listagem \ref{problemas_wpt_blocos2}. Este tipo de caso ainda não é tratado pela ferramenta, por ainda ser complexo de lidar. De fato, ainda não há uma solução definitiva para blocos com mais de um nível, pois todas as regras anteriores, incluindo verificação de nomes e verificação de blocos com repetições, devem ser aplicadas.
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Hierarquia de blocos de dois níveis},
+captionpos=b
+}
+\begin{lstlisting}[label=problemas_wpt_blocos2]
+ ...
+  <ow:block ow:xpath="/bloco_raiz" name="raiz">
+
+    <ow:block ow:xpath="//caminho/para/um" name="um">
+    	<ow:block ow:xpath="//caminho/para/um_pt_um" name="um_pt_um"></ow:block>
+    	<ow:block ow:xpath="//caminho/para/um_pt_dois" name="um_pt_dois"></ow:block>
+    </ow:block>
+    
+    <ow:block ow:xpath="//caminho/para/dois" name="dois"></ow:block>
+    <ow:block ow:xpath="//caminho/para/tres" name="tres"></ow:block>
+    
+  </ow:block>
+  ...
+\end{lstlisting}
+
+Questões como "quantos níveis poderão ser suportados?", "como os blocos do nível N deverão ser tratados?","qual a profundidade máxima de níveis que a ferramenta poderá suportar?", "como blocos repetíveis serão tratados em cada nível", "como ficará a questão da navegação em outras páginas a partir de links para serem seguidos forem detectados em blocos de níveis mais inferiores?" ainda permanecem sem resposta, devido à natureza e complexidade de achar a resposta das mesmas.
+
+Há ainda a preocupação com a qualidade e legibilidade do código gerados, uma vez que a ferramenta desenvolvida não visa substituir o programador, mas sim auxilia-lo. A ferramenta precisa gerar código devidamente organizado e com alguns comentários para melhor orientação. A indentação obrigatória da linguagem Python é uma característica que ajuda neste quesito, porém não deixa de causar problemas com relação a indentação na geração de código.
+
+A biblioteca padrão para testes disponíveis no Python 2.6 (utilizado neste trabalho), a \texttt{unittest}, não possui um método de comparação de strings linha-a-linha, que é uma funcionalidade útil quando se trata testes de métodos que geram código. Isso significa que, se um texto precisa ser comparado com outro em um teste unitário, os dois serão comparados em sua totalidade, não linha-a-linha, o que dificulta os testes dos métodos responsáveis por geração de código.
 
 Esta dificuldade torna os testes de geração de código mais trabalhosos, pois é necessário observar cada caractere com cautela quando os dois textos, o esperado e o obtido, falham no teste unitário.
 
