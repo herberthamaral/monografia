@@ -41,10 +41,21 @@ class ${item}(Item):
 
 field_template="    ${field}=Field(${default})"
 
-item_load_template = """l = XPathItemLoader(item = TemplateExampleItem1(),response=response)
-        l.add_xpath('bubble','id("ex1")/text()') 
-        i = l.load_item()"""
+item_add_xpath_template = "l.add_xpath('${field_name}','${xpath}')"
 
+item_load_template = """l = XPathItemLoader(item = ${class_name}(),response=response)
+        ${items_xpath_template} 
+        i = l.load_item()
+        yield i
+        """
+
+item_load_repeatable_template="""
+        hxs = HtmlXPathSelector(response)
+        for item in hxs.select('${parent_selector}'):
+            l = XPathItemLoader(item = ${class_name}(), selector=item)
+${items_xpath_template}
+            i = l.load_item()
+            yield i"""
 
 wpt_url = "http://www.w3.org/Submission/WPT/"
 
@@ -75,8 +86,8 @@ class Command(ScrapyCommand):
         try:
             template = open(filename).read()
 
-            root = objectify.fromstring(template)
-            if not self._check_if_wpt_file_has_valid_url(root):
+            xml = objectify.fromstring(template)
+            if not self._check_if_wpt_file_has_valid_url(xml):
                 log.msg("ERROR: attribute 'host' of 'wpt' tag does not have a valid URL",log.ERROR)
 
             if not self._check_if_wpt_has_at_least_one_template_with_one_block(xml):
@@ -98,10 +109,16 @@ class Command(ScrapyCommand):
                 log.msg("ERROR: Every template which does not have an 'ow:url'\
                         attribute must declare it in urls section. \
                         See %s for more info" % wpt_url,log.ERROR )
+            
+            spider_code = self.generate_spider_from_wpt(open(filename).read())
+
+            print spider_code
 
         except XMLSyntaxError,e:
             log.msg("ERROR: There is a markup error in %s" %filename,log.ERROR)
-        except:
+        except Exception,e:
+            import traceback
+            traceback.print_exc(file=sys.stdout)
             log.msg("ERROR: File not found: %s" % filename,log.ERROR)
        
     def _check_if_wpt_file_has_valid_url(self,xml):
@@ -135,7 +152,7 @@ class Command(ScrapyCommand):
 
     def _check_if_every_block_has_at_least_one_html_element_reference(self,xml):
         for t in xml.template:
-            if not _check_if_every_block_has_at_least_one_html_element_reference(t.block):
+            if not self._check_if_block_has_at_least_one_html_element_reference(t.block):
                 return False
 
         return True
@@ -213,34 +230,82 @@ class Command(ScrapyCommand):
         blocks = xml.template.block
         class_counter = 1
         item_class_prefix = xml.template.attrib[XMLNS+'name'].replace(' ','')
+        
+        import pdb
+        
 
         for b in blocks:
             class_name = item_class_prefix+"Item"+str(class_counter) 
             class_counter += 1
-            fields = "%s = Field()" % b.attrib['name']
+            fields = self.get_fields_from_block(b) # get_fields_from_block
 
             t = string.Template(item_template) 
-            items += t.substitute(item=class_name,fields=fields) 
+            items += t.substitute(item=class_name,fields=fields)
+
+
         return items
+    
+    def get_fields_from_block(self,block):
+        fields = "%s = Field()\n" % block.attrib['name']
+
+        if (hasattr(block,'block')):
+            for b in block.block:
+                fields += "    "+self.get_fields_from_block(b)
+        
+        return fields
+
+
 
     def get_items_load_from_wpt(self,xml):
         blocks = xml.template.block
-        class_counter = 1
         item_class_prefix = xml.template.attrib[XMLNS+'name'].replace(' ','')
         item_load = ""
+        class_counter = 1
+
         for b in blocks:
-            class_name = item_class_prefix+"Item"+str(class_counter)
-            class_counter += 1
-            t = string.Template(item_load_template)
-
-            if b.attrib.__contains__(XMLNS+'tagid'):
-                xpath = 'id("%s")/text()' % b.attrib[XMLNS+'tagid']
-            
-            field_name = b.attrib['name']
-
-            item_load += t.substitute(class_name=class_name,field_name=field_name,xpath=xpath)
+            class_counter +=1
+            item_load += self.get_items_add_xpath_template_from_block(b,item_class_prefix,class_counter)+"\n"
 
         return item_load
+
+    def get_items_add_xpath_template_from_block(self,block,item_class_prefix,class_counter):
+        item_load = ""
+        class_name = item_class_prefix+"Item"+str(class_counter)
+
+        if hasattr(block,'block'): #block with repeatable content
+            t = string.Template(item_load_repeatable_template)
+            items_add_xpath = ""
+            for b in block.block:
+
+                field_name = b.attrib['name']
+                xpath = self._get_xpath_from_block(b)
+                item_add_xpath = string.Template(item_add_xpath_template).substitute(field_name=field_name,xpath=xpath)
+                items_add_xpath += "            "+item_add_xpath+"\n"
+
+            template_item_load = string.Template(item_load_repeatable_template)
+            parent_selector = self._get_xpath_from_block(block)
+            items_xpath_template = items_add_xpath
+             
+            item_load = template_item_load.substitute(parent_selector=parent_selector,
+                                                      class_name=class_name,
+                                                      items_xpath_template=items_xpath_template)
+
+            return item_load
+
+        t = string.Template(item_load_template)
+        xpath = self._get_xpath_from_block
+        field_name = b.attrib['name']
+
+        return t.substitute(class_name=class_name,field_name=field_name,xpath=xpath)
+
+    def _get_xpath_from_block(self,block):
+
+        if block.attrib.__contains__(XMLNS+'tagid'):
+            xpath = 'id("%s")/text()' % block.attrib[XMLNS+'tagid']
+        else:
+            xpath = block.attrib[XMLNS+'xpath']
+
+        return xpath
 \end{lstlisting}
 
 %-------------------------------------%<-------------------------------
