@@ -188,7 +188,7 @@ Para fornecer melhores bases entendimento deste trabalho, a seguir são apresent
 
 \subsection{Exemplo 1 - Obtendo as últimas perguntas no StackOverflow}
 
-O StackOverflow é um site gratuito de perguntas e respostas sobre programação \cite{stackoverflow}. O objetivo deste exemplo é recuperar as últimas perguntas feitas com alguns de seus respectivos dados: resumo da pergunta, usuário que a fez, número de visualizações, número de votos e número de respostas.
+O StackOverflow é um sítio gratuito de perguntas e respostas sobre programação \cite{stackoverflow}. O objetivo deste exemplo é recuperar as últimas perguntas feitas com alguns de seus respectivos dados: resumo da pergunta, usuário que a fez, número de visualizações, número de votos e número de respostas.
 
 A página em questão (\url{http://stackoverflow.com/about}) contém um índice com últimas perguntas feitas em que cada índice possui a seguite estrutura:
 
@@ -198,7 +198,6 @@ A página em questão (\url{http://stackoverflow.com/about}) contém um índice 
 	\caption{Seleção dos elementos que compõem um item da lista de perguntas do StackOverflow}
 	\label{stackoverflow}
 \end{figure}
-
 
 A seguir, as legendas das respectivas áreas destacadas:
 
@@ -211,6 +210,156 @@ A seguir, as legendas das respectivas áreas destacadas:
 	\item Nome do usuário que fez a pergunta
 \end{enumerate}
 
+Analisando o código HTML da seleção, obtemos os seguintes seletores XPATH:
+
+\begin{itemize}
+	\item \textbf{Base} - \texttt{//div[@id='questions']/div}
+	\item \textbf{Titulo} - \texttt{//div[@class='summary']/h3/a/text()}
+	\item \textbf{Resumo} - \texttt{//div[@class='summary']/div[1]/text()}
+	\item \textbf{Usuário} - \texttt{//div[@class='summary']/div[3]/div[3]/a/text()}
+	\item \textbf{Vizualizações} - \texttt{//div[@class='statscontainer']/div[@class='views']/text()}
+	\item \textbf{Votos} - \texttt{//div[1]/div[2]/div[1]/div[@class='votes']/span/strong/text()}
+	\item \textbf{Respostas} - \texttt{//div[1]/div[2]/div[2]/strong/text()}
+\end{itemize}
+
+O item \textbf{Base} indica a base de repetição da lista de perguntas da página. Dentro do container \textbf{Base} encontra-se os outros elementos que compõe o item a ser recuperado. O WPT equivalente às seleções anteriores é descrito na listagem \ref{wpt_stackoverflow}.
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Template utilizado para recuperar as últimas perguntas do sítio do StackOverflow},
+captionpos=b
+}
+\begin{lstlisting}[label=wpt_stackoverflow]
+<ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
+    ow:host="http://stackoverflow.com">
+      
+    <ow:template ow:name="stackoverflow" 
+        ow:url="http://stackoverflow.com/questions">
+       
+        <ow:block ow:xpath="//div[@id='questions']/div" name="questions" ow:type="repeatable"> 
+            <ow:block ow:xpath="//div[@class='summary']/h3/a/text()" name="tiulo" >
+            </ow:block>
+            
+            <ow:block ow:xpath="//div[@class='summary']/div[1]/text()" name="resumo"> 
+            </ow:block>
+            
+            <ow:block ow:xpath="//div[@class='summary']/div[3]/div[3]/a/text()" name="usuario" >
+            </ow:block>
+
+            <ow:block ow:xpath="//div[@class='statscontainer']/div[@class='views']/text()" 
+                name="views" ></ow:block>
+
+            <ow:block ow:xpath="//div[1]/div[2]/div[1]/div[@class='votes']/span/strong/text()" 
+                name="votes" >
+            </ow:block>
+
+            <ow:block ow:xpath="//div[1]/div[2]/div[2]/strong/text()" name="answers" >
+            </ow:block>
+        </ow:block>
+              
+     </ow:template> 
+
+</ow:wpt>
+\end{lstlisting}
+
+Tendo salvo o conteúdo descrito na listagem \ref{wpt_stackoverflow} no arquivo \texttt{stackoverflow.xml}, o comando para gerar o respectivo código em Python é \texttt{scrapy importwpt stackoverflow.xml}. O código gerado é mostrado na listagem \ref{py_stackoverflow}.
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Template utilizado para recuperar os editais do sítio do Ministério da Cultura},
+captionpos=b
+}
+\begin{lstlisting}[label=py_stackoverflow]
+
+from scrapy.item import Item, Field
+
+class stackoverflowItem1(Item):
+    questions = Field()
+    tiulo = Field()
+    resumo = Field()
+    usuario = Field()
+    views = Field()
+    votes = Field()
+    answers = Field()
+
+
+from scrapy.spider import BaseSpider
+from scrapy.contrib.loader import XPathItemLoader
+from scrapy.selector import HtmlXPathSelector
+from scrapy.http import Request
+
+class stackoverflow(BaseSpider):
+    name = 'stackoverflow.com'
+    allowed_domains = ['stackoverflow.com']
+    start_urls = ['http://stackoverflow.com/questions']
+
+    def parse(self, response):
+        
+        hxs = HtmlXPathSelector(response)
+        for item in hxs.select('//div[@id="questions"]/div'):
+            l = XPathItemLoader(item = stackoverflowItem1(), selector=item)
+            l.add_xpath('tiulo','//div[@class="summary"]/h3/a/text()')
+            l.add_xpath('resumo','//div[@class="summary"]/div[1]/text()')
+            l.add_xpath('usuario','//div[@class="summary"]/div[3]/div[3]/a/text()')
+            l.add_xpath('views','//div[@class="statscontainer"]/div[@class="views"]/text()')
+            l.add_xpath('votes','//div[1]/div[2]/div[1]/div[@class="votes"]/span/strong/text()')
+            l.add_xpath('answers','//div[1]/div[2]/div[2]/strong/text()')
+
+            i = l.load_item()
+            yield i
+\end{lstlisting}
+
+\begin{lstlisting}[label=out_stack]
+2010-12-04 21:04:17-0200 [scrapy] INFO: Scrapy 0.11.0 started (bot: testescrapy)
+2010-12-04 21:04:17-0200 [scrapy] DEBUG: Enabled extensions: TelnetConsole, 
+SpiderContext, WebService, CoreStats, MemoryUsage, CloseSpider
+
+2010-12-04 21:04:17-0200 [scrapy] DEBUG: Enabled scheduler middlewares: DuplicatesFilterMiddleware
+2010-12-04 21:04:17-0200 [scrapy] DEBUG: Enabled downloader middlewares: HttpAuthMiddleware, 
+  DownloadTimeoutMiddleware, UserAgentMiddleware, RetryMiddleware, DefaultHeadersMiddleware, 
+  RedirectMiddleware, CookiesMiddleware, HttpCompressionMiddleware, DownloaderStats
+  
+2010-12-04 21:04:17-0200 [scrapy] DEBUG: Enabled spider middlewares: HttpErrorMiddleware, 
+OffsiteMiddleware, RefererMiddleware, UrlLengthMiddleware, DepthMiddleware
+2010-12-04 21:04:17-0200 [scrapy] DEBUG: Enabled item pipelines: 
+2010-12-04 21:04:17-0200 [scrapy] DEBUG: Telnet console listening on 0.0.0.0:6023
+2010-12-04 21:04:17-0200 [scrapy] DEBUG: Web service listening on 0.0.0.0:6080
+2010-12-04 21:04:17-0200 [stackoverflow.com] INFO: Spider opened
+2010-12-04 21:04:23-0200 [stackoverflow.com] DEBUG: Crawled (200) 
+    <GET http://stackoverflow.com/questions> (referer: None)
+    
+Item recuperado <titulo=C# - sorting a list inside of a struct,usuario=Tyler>
+Item recuperado <titulo=JavaScript - Smooth Movement / Resizing,usuario=jSherz>
+Item recuperado <titulo=C++ Linker Errors,usuario=Yelnats>
+Item recuperado <titulo=How can I access my trackpad in C#?,usuario=Serg>
+Item recuperado <titulo=(English, Perl, Python, Ruby) comparison on a code 
+  fragment-by-fragment basis?,usuario=blunders>
+Item recuperado <titulo=MySQL 5.1 Memory Table ,usuario=James>
+Item recuperado <titulo=How to access the file which is in Production Server 
+  from a class in a Jar,usuario=kumar>
+
+Item recuperado <titulo=Does anyone know where I can find some good WebGl 
+  documentation?,usuario=Catalin Dumitru>
+  
+Item recuperado <titulo=Scaml syntax highlighting on Emacs,usuario=alp247>
+Item recuperado <titulo=Cx_freeze - How can I Install the shared libraries 
+  to /usr/lib,usuario=MetaDark>
+  
+Item recuperado <titulo=PHP random string generator,usuario=ssen>
+Item recuperado <titulo=How do I use Watir::Waiter::wait_until to force
+  Chrome to wait?,usuario=karim79>
+Item recuperado <titulo=React differently if second time user visits domain,
+  usuario=Mike Grace>
+  
+Item recuperado <titulo=return flat text from .net webservice ? ,usuario=user391179>
+Item recuperado <titulo=General Questions about Entity Framework 
+  vs. Enterprise Library & a few others,usuario=icode.cs>
+  
+2010-12-04 21:04:23-0200 [stackoverflow.com] INFO: Closing spider (finished)
+2010-12-04 21:04:23-0200 [stackoverflow.com] INFO: Spider closed (finished)
+\end{lstlisting}
+
+%----------------%<---------------------
 
 \subsection{Exemplo 2 - Página de editais do Ministério da Cultura}
 
@@ -254,10 +403,10 @@ captionpos=b
  ow:host="http://example.com">
 <ow:template ow:name="minc_news" 
  ow:url="http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/">
-  <ow:block ow:xpath="/html/body/div[2]/div[1]/ol[1]/li" name="lista_news">
-    <ow:block ow:xpath="//h3/a/text()" name="titulo" ow:type="repeatable"></ow:block>
-    <ow:block ow:xpath="//p/text()" name="meta" ow:type="repeatable"></ow:block>
-    <ow:block ow:xpath="//div/p/text()" name="mais_info" ow:type="repeatable"></ow:block>
+  <ow:block ow:xpath="/html/body/div[2]/div[1]/ol[1]/li" name="lista_news" ow:type="repeatable">
+    <ow:block ow:xpath="//h3/a/text()" name="titulo" ></ow:block>
+    <ow:block ow:xpath="//p/text()" name="meta"></ow:block>
+    <ow:block ow:xpath="//div/p/text()" name="mais_info"></ow:block>
   </ow:block>
 </ow:template> 
 </ow:wpt>
@@ -363,6 +512,9 @@ Item recuperado: <titulo=Premio Mais Cultura de Pontos de Leitura de Fortaleza>
 \end{lstlisting}
 
 \pagebreak
+\chapter{Considerações Finais}
+\thispagestyle{fancy}
+
 \section{Dificuldades encontradas}
 
 Apesar da abundante documentação e mesmo não possuindo uma má qualidade de código ou baixa cobertura de testes, uma das principais dificuldades foi aderir à arquitetura e estilo de codificação do Scrapy para que a padronização entre componentes fosse mantida.
