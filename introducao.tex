@@ -10,10 +10,45 @@ Os motores de busca de propósito específico são desenvolvidos para sanar a li
 
 As informações obtidas por motores de busca de propósito específico na Web podem ser úteis para várias organizações. Por exemplo, um determinado sistema de informações de uma empresa de transportes precisa armazenar as infrações cometidas pelos seus motoristas. No entanto, estas informações só estão disponíveis mediante consulta no sítio da Web da autoridade responsável pelo trânsito. Um motor de busca de propósito específico pode ser criado para realizar estas consultas e alimentar o banco de dados do sistema, sem necessidade de intervenção manual do sistema.
 
-Porém, o projeto destes sistemas necessitam de conhecimentos específicos por parte dos desenvolvedores que os criam, o que pode levar a um custo elevado do projeto.
+% ------------------------------
 
-O objetivo deste trabalho é a criação de uma ferramenta que gera sistemas de recuperação estruturada na Web através da compilação de templates para \emph{crawling} em XML no formato WPT (\emph{Website Parse Template}) para a linguagem Python.
+Recuperação de Informações na Web é uma tarefa fácil, porém trabalhosa e propensa a erros se feita manualmente por humanos. Fácil, pois conseguimos detectar padrões de informações, categoriza-las e armazena-las como quisermos. Trabalhosa, pois podem haver inúmeras páginas com grandes quantidades de informação, o que torna o processo de recuperação manual de informações caro, trabalhoso, tedioso e pouco confável em alguns casos. Dependendo do número de motoristas e da frequência de atualizações das bases de dados locais, a empresa citada no exemplo anterior precisaria contratar algumas pessoas a mais somente para realizar este tipo de tarefa.
 
-Os resultados mostram que a quantidade de código necessária para criação destes sistemas pôde ser diminuída para 20\% do código original na linguagem de programação Python, além de tornar a criação de sistemas de recuperação estruturada na Web uma tarefa mais fácil através do uso de uma linguagem específica de domínio (\emph{Domain Specific Languages}) ao invés de utilizar primariamente uma linguagem de propósito geral (Python).
+Soluções computacionais como \emph{web crawlers} ou \emph{web scrapers} fazem parte dos motores de busca de propósito específico  e ajudam na automação do processo de recuperação de informações estruturadas. 
 
-O código fonte resultado deste trabalho está disponível em seu repositório \emph{online} no endereço \texttt{http://github.com/herberthamaral/scrapy/}.
+No entanto, por serem soluções computacionais, demandam que sejam programadas e, geralmente, para um fim específico. Um \emph{web scraper} que foi originalmente desenvolvido para extrair informações de um determinado tipo de página, não conseguirá extrair as mesmas informações se a estrutura e/ou organização da página mudarem.
+
+Na prática, um \emph{web scraper} projetado para um sítio, precisará sofrer modificações de forma que consiga extrair informações caso a estrutura da página em HTML mude, seja por uma mudança na estrutura de páginas do sítio ou pelo uso de um novo sítio que possa prover as mesmas informações.
+
+Com a recuperação de informações de forma manual, havia o problema da falta de automação de processo, o que pode levar a um alto custo humano de recuperação de informações, sem mencionar a probabilidade de haver erros humanos. Com a automação do processo, pode haver o problema de alto custo de criação e manutenção dos softwares responsáveis pela recuperação de informação estruturada.
+
+
+O projeto destes sistemas necessitam de conhecimentos específicos por parte dos desenvolvedores que os criam, o que pode levar a um custo elevado do projeto.
+
+O objetivo deste trabalho é a criação de uma ferramenta que gera sistemas de recuperação estruturada na Web através da compilação de templates para \emph{crawling} em XML no formato WPT (\emph{Website Parse Template}) para a linguagem Python, além de contribuir com um projeto de código aberto.
+
+O padrão XML utilizado é o WPT (Website Parse Template)\cite{wpt}. O principal motivo para utiliza-lo é fazer uso de padrões Web já estabelecidos e documentados que descrevam a estrutura de páginas HTML.
+
+Com isso, o XML se torna uma \emph{DSL} (\emph{Domain Specific Language} - Linguagem Específica de um Domínio) que é dedicada para o domínio de \emph{web scraping}. O uso de \emph{DSLs} faz com que não seja estritamente necessário codificar em uma linguagem de domínio geral, o que torna a tarefa específica de criação e manutenção de \emph{web scrapers} mais fácil e produtiva.
+
+O uso de XML como meio para geração destes sistemas faz com que não haja uma dependência de uma única linguagem de programação, como a linguagem Python utilizada neste trabalho, uma vez que qualquer outra linguagem com as devidas bibliotecas pode interpretar XML e gerar código para qualquer outra linguagem de programação. Com isso, há como diminuir o nível de acoplamento entre a solução desenvolvida e a linguagem utilizada, de forma que todo o código em XML possa ser reaproveitado para geração de outros sistemas em outras linguagens de programação sem maiores problemas.
+
+A produtividade inerente à linguagem Python combinado com seu poder de prototipação, permite que \emph{web scrapers} sejam desenvolvidos e testados mais rapidamente.
+
+O shell interativo (\emph{REPL - Read and Eval Print Loop}) disponível na distribuição da linguagem Python permite a criação e execução instantânea de código, sem precisar passar por passos como criação de arquivo com o código-fonte, \emph{linkagem} e compilação.
+
+Há também um histórico da linguagem Python para tarefas de recuperação de informação, como o motor de busca do Google, que possui vários componentes escritos em Python \cite{google}.
+
+O framework de \emph{web scraping} Scrapy, escrito em Python, é um dos poucos disponíveis no mercado. Ele permite a criação de projetos de \emph{web scrapers} profissionais, com uma maior produtividade e organização.
+
+A arquitetura do Scrapy permite que o projeto ganhe uma maior escala facilmente, tanto no âmbito de tamanho de projeto quanto na escalabilidade de recursos computacionais. Ele é construído usando o Twisted \cite{twisted}, uma engine de comunicação para redes e orientado a eventos, que possibilita a realização de operações de I/O não bloqueantes e, consequentemente, um modelo de concorrência sem uso de threads. 
+
+A elaboração do presente trabalho se deu em 3 etapas distintas:
+
+\begin{enumerate}
+	\item Estudo de viabilidade do \emph{Website Parse Template} (WPT) como \emph{Domain Specific Language} (DSL) para \emph{web scrapers}, assim como busca de melhores alternativas.
+	\item Estudo do funcionamento e arquitetura do framework Scrapy.
+	\item Implementação de uma ferramenta e seus respectivos testes automatizados para compilação do WPT em um \emph{spider} do Scrapy.
+\end{enumerate}
+
+O código fonte resultado deste trabalho está disponível em seu repositório \emph{online} no endereço \texttt{http://github.com/herberthamaral/scrapy/} no \emph{branch} "crawling-template".

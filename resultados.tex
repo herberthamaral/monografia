@@ -177,7 +177,9 @@ Quando se deixa de usar uma linguagem de propósito geral (Python) para utilizar
 
 Por exemplo, quando se trabalha com uma linguagem de propósito geral (como Python, C/C++ ou Java), o programador dispõe de uma maior flexibilidade, pois o mesmo pode valer de estruturas de controle, repetição, variáveis, funções ou métodos, classes, objetos, interação com o sistema de arquivos e E/S, interação com outros sistemas e tratamento de exceções para desenvolver suas soluções. Além de todos os itens relacionados à linguagem de programação, o programador precisa ter domínio de técnicas de extração de informações de páginas na Web, em que, nos casos mais simples envolve o conhecimento de uma linguagem de marcação (HTML, por exemplo), bibliotecas utilizadas para \emph{parsing} e bibliotecas para comunicação com servidores HTTP (\emph{HyperText Transfer Protocol} - Protocolo de Transferência de HiperTexto). No caso de uma linguagem específica de domínio baseada em XML, o programador precisará ter as mesmas noções de extração de informações de páginas na Web, porém sem a complexidade de lidar com uma linguagem de propósito geral e todas as suas respectivas dependências (bibliotecas), limitando-se apenas a conhecer a sintaxe do XML e as regras inerentes ao WPT.
 
-z:tO uso de XML pode trazer várias vantagens à criação de sistemas de recuperação de informação. A principal é que qualquer linguagem de programação que dê suporte à XML pode criar templates. Como o trabalho de \emph{não} escrever código é sempre menor do que escrever \emph{algum} código, os usuários podem se beneficiar com a criação de sistemas que geram templates automaticamente. Por exemplo, um \emph{plugin} de um navegador Web pode permitir que o usuário selecione as seções de uma determinada página que gostaria que fossem recuperadas automaticamente e então gerar o template para o mesmo.
+O uso de XML pode trazer várias vantagens à criação de sistemas de recuperação de informação. A principal é que qualquer linguagem de programação que dê suporte à XML pode criar templates. Como o trabalho de \emph{não} escrever código é sempre menor do que escrever \emph{algum} código, os usuários podem se beneficiar com a criação de sistemas que geram templates automaticamente. Por exemplo, um \emph{plugin} de um navegador Web pode permitir que o usuário selecione as seções de uma determinada página que gostaria que fossem recuperadas automaticamente e então gerar o template para o mesmo. 
+
+Uma outra vantagem do uso de XML como meio para geração destes sistemas é a baixa dependência de uma única linguagem de programação, como a linguagem Python utilizada neste trabalho, uma vez que qualquer outra linguagem com as devidas bibliotecas pode interpretar XML e gerar código para qualquer outra linguagem de programação. Com isso, há como diminuir o nível de acoplamento entre a solução desenvolvida e a linguagem utilizada, de forma que todo o código em XML possa ser reaproveitado para geração de outros sistemas em outras linguagens de programação sem maiores problemas.
 
 \pagebreak
 \section{Exemplos reais}
@@ -186,7 +188,7 @@ Para fornecer melhores bases entendimento deste trabalho, a seguir são apresent
 
 \subsection{Exemplo 1 - Obtendo notícias do sítio da Unimontes}
 
-O sítio da Universidade Estadual de Montes Claros - Unimontes (\url{http://www.unimontes.br})
+O sítio da Universidade Estadual de Montes Claros - Unimontes (\url{http://www.unimontes.br}) é rico em chamada de notícias na sua página inicial.
 
 \subsection{Exemplo 2 - Página de editais do Ministério da Cultura}
 
@@ -349,7 +351,9 @@ Não foi possível encontrar referências acadêmicas do Scrapy, um dos motivos 
 
 O formato WPT possui apenas informações sobre a disposição dos elementos em uma página e seus respectivos significados (ontologia). Tal fato leva ao incoveniente de haver diferentes \emph{schemas} XML em um mesmo arquivo para determinar outras informações, como nome dos variáveis do código gerado e formato de persistência dos dados obtidos.
 
-Uma outra dificuldade relacionada ao WPT foram as regras de validação: verificação de validade de URLs, caminhos XPATH, validação de templates, blocos e nomes de elementos. Como a validação ocorre em vários elementos e o XML é um formato hierárquico, validações recursivas precisaram ser feitas, e, dependendo do nível de recursão, tratamentos especiais teriam que ser dados. Como um exemplo, considere o trecho de código da listagem \ref{problemas_wpt_blocos1}:
+Ainda não é possível o uso de WPT para determinar o verbo HTTP a ser utilizado. Atualmente, todas as requisições feitas com os spiders gerados a partir do WPT são feitas através do HTTP GET, não sendo possível utilizar outros verbos HTTP como POST, PUT, DELETE e PATCH. 
+
+As regras de validação formam outra dificuldade relacionada ao WPT: verificação de validade de URLs, caminhos XPATH, validação de templates, blocos e nomes de elementos. Como a validação ocorre em vários elementos e o XML é um formato hierárquico, validações recursivas precisaram ser feitas, e, dependendo do nível de recursão, tratamentos especiais teriam que ser dados. Como um exemplo, considere o trecho de código da listagem \ref{problemas_wpt_blocos1}:
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
