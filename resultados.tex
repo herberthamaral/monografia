@@ -186,9 +186,31 @@ Uma outra vantagem do uso de XML como meio para geração destes sistemas é a b
 
 Para fornecer melhores bases entendimento deste trabalho, a seguir são apresentadas exemplos de casos de uso da ferramenta desenvolvida em conjunto com todo o processo de identificação de elementos na página e escrita do template.
 
-\subsection{Exemplo 1 - Obtendo notícias do sítio da Unimontes}
+\subsection{Exemplo 1 - Obtendo as últimas perguntas no StackOverflow}
 
-O sítio da Universidade Estadual de Montes Claros - Unimontes (\url{http://www.unimontes.br}) é rico em chamada de notícias na sua página inicial.
+O StackOverflow é um site gratuito de perguntas e respostas sobre programação \cite{stackoverflow}. O objetivo deste exemplo é recuperar as últimas perguntas feitas com alguns de seus respectivos dados: resumo da pergunta, usuário que a fez, número de visualizações, número de votos e número de respostas.
+
+A página em questão (\url{http://stackoverflow.com/about}) contém um índice com últimas perguntas feitas em que cada índice possui a seguite estrutura:
+
+\begin{figure} [ht]
+	\centering
+	\includegraphics[scale=0.8]{stackoverflow.png}
+	\caption{Seleção dos elementos que compõem um item da lista de perguntas do StackOverflow}
+	\label{stackoverflow}
+\end{figure}
+
+
+A seguir, as legendas das respectivas áreas destacadas:
+
+\begin{enumerate}
+	\item Número de votos
+	\item Número de respostas
+	\item Número de visualizações
+	\item Título da pergunta
+	\item Resumo da pergunta
+	\item Nome do usuário que fez a pergunta
+\end{enumerate}
+
 
 \subsection{Exemplo 2 - Página de editais do Ministério da Cultura}
 
