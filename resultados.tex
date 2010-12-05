@@ -186,7 +186,158 @@ Uma outra vantagem do uso de XML como meio para geração destes sistemas é a b
 
 Para fornecer melhores bases entendimento deste trabalho, a seguir são apresentadas exemplos de casos de uso da ferramenta desenvolvida em conjunto com todo o processo de identificação de elementos na página e escrita do template.
 
-\subsection{Exemplo 1 - Obtendo as últimas perguntas no StackOverflow}
+\subsection{Exemplo 2 - Página de editais do Ministério da Cultura}
+
+A página de editais do Ministério da Cultura, que se encontra em \url{http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/}, contém a lista dos últimos editais publicados, com seus respectivos títulos, categorias e informações gerais, como demonstrado na figura \ref{minc}.
+
+\begin{figure} [ht]
+	\centering
+	\includegraphics[scale=0.8]{minc.png}
+	\caption{Seleção dos elementos que compõem uma chamada de notícia de edital}
+	\label{minc}
+\end{figure}
+
+A seguir, as legendas das respectivas áreas destacadas:
+
+\begin{enumerate}
+	\item Título da notícia
+	\item Metadados (data e tags)
+	\item Mais informações
+\end{enumerate}
+
+Analisando o código HTML da seleção, obtemos os seguintes seletores XPATH:
+
+\begin{itemize}
+	\item \textbf{Base} - \texttt{/html/body/div[2]/div[1]/ol[1]/li}
+	\item \textbf{Título} - \texttt{//h3/a/text()}
+	\item \textbf{Metadados} - \texttt{//p/text()}
+	\item \textbf{Mais informações} - \texttt{//div/p/text()}
+\end{itemize}
+
+Como os itens desejados (chamadas de notícias) se repetem na página, é necessário indicar qual será o padrão de repetição, o que neste caso é indicado pelo seletor \textbf{Base}: todos os itens de lista (\texttt{li}) que se encontram em \texttt{/html/body/div[2]/div[1]/ol[1]}. Os demais seletores derivam de cada item da lista indicada por \textbf{Base}.
+
+Seguindo as especificações do Website Parse Template (WPT), o template necessário para obter a lista de editais com seus respetivos atributos se encontra na listagem \ref{wpt_minc}.
+
+\lstset{language=XML,
+basicstyle=\scriptsize,
+caption={Template utilizado para recuperar os editais do sítio do Ministério da Cultura},
+captionpos=b
+}
+\begin{lstlisting}[label=wpt_minc]
+<ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
+ ow:host="http://example.com">
+<ow:template ow:name="minc_news" 
+ ow:url="http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/">
+  <ow:block ow:xpath="/html/body/div[2]/div[1]/ol[1]/li" name="lista_news" ow:type="repeatable">
+    <ow:block ow:xpath="//h3/a/text()" name="titulo" ></ow:block>
+    <ow:block ow:xpath="//p/text()" name="meta"></ow:block>
+    <ow:block ow:xpath="//div/p/text()" name="mais_info"></ow:block>
+  </ow:block>
+</ow:template> 
+</ow:wpt>
+\end{lstlisting}
+
+O template anterior reflete nas regras definidas anteriormente, com o bloco \texttt{lista\_news} como seletor dos itens de lista onde ficam as chamadas dos editais e contendo três blocos: o \texttt{titlulo}, o \texttt{meta} e o \texttt{mais\_info}, que representam as informações de cada chamada edital.
+
+Tendo salvo o template anterior num arquivo chamado \texttt{minc.xml}, o comando \texttt{scrapy importwpt minc.xml} exibe a saída mostrada na listagem \ref{python_wpt_minc}.
+
+\pagebreak
+\lstset{language=Python,
+basicstyle=\scriptsize,
+caption={Código gerado pela ferramenta desenvolvida utilizando o arquivo \texttt{minc.xml} da listagem \ref{wpt_minc} como entrada},
+captionpos=b
+}
+\begin{lstlisting}[label=python_wpt_minc]
+from scrapy.item import Item, Field
+
+class minc_newsItem1(Item):
+    lista_news = Field()
+    titulo = Field()
+    meta = Field()
+    mais_info = Field()
+
+
+from scrapy.spider import BaseSpider
+from scrapy.contrib.loader import XPathItemLoader
+
+class minc_news(BaseSpider):
+    name = 'www.cultura.gov.br'
+    allowed_domains = ['www.cultura.gov.br']
+    start_urls = ['http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/']
+
+    def parse(self, response):
+        
+        hxs = HtmlXPathSelector(response)
+        for item in hxs.select('/html/body/div[2]/div[1]/ol[1]/li'):
+            l = XPathItemLoader(item = minc_newsItem2(), selector=item)
+            l.add_xpath('titulo','//h3/a/text()')
+            l.add_xpath('meta','//p/text()')
+            l.add_xpath('mais_info','//div/p/text()')
+
+            i = l.load_item()
+            yield i
+
+\end{lstlisting}
+
+
+O spider demonstrado na listagem \ref{python_wpt_minc} pode ser executado com o comando \texttt{scrapy runspider /caminho/para/minc.py} e produz a saída (devidamente adaptada para uma melhor folhas de papel A4) mostrada na listagem \ref{scrapy_wpt_minc}
+
+\lstset{basicstyle=\scriptsize,
+caption={Saída produzida pela execução do scraper da listagem \ref{python_wpt_minc}},
+captionpos=b
+}
+\begin{lstlisting}[label=scrapy_wpt_minc]
+scrapy runspider testescrapy/spiders/minc.py
+2010-12-02 07:49:31-0200 [scrapy] INFO: Scrapy 0.11.0 started (bot: testescrapy)
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled extensions: TelnetConsole, SpiderContext, 
+WebService, CoreStats, MemoryUsage, CloseSpider
+															  
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled scheduler middlewares: DuplicatesFilterMiddleware
+
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled downloader middlewares: HttpAuthMiddleware, 
+DownloadTimeoutMiddleware, UserAgentMiddleware, RetryMiddleware, DefaultHeadersMiddleware, 
+RedirectMiddleware, CookiesMiddleware, HttpCompressionMiddleware, DownloaderStats
+
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled spider middlewares: HttpErrorMiddleware, 
+OffsiteMiddleware, RefererMiddleware, UrlLengthMiddleware, DepthMiddleware
+																     
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled item pipelines: 
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Telnet console listening on 0.0.0.0:6023
+2010-12-02 07:49:31-0200 [scrapy] DEBUG: Web service listening on 0.0.0.0:6080
+2010-12-02 07:49:31-0200 [www.cultura.gov.br] INFO: Spider opened
+2010-12-02 07:49:32-0200 [www.cultura.gov.br] DEBUG: Crawled (200) 
+<GET http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/> (referer: None)
+Item recuperado: <titulo=Divulgada lista dos convocados para oficina presencial de Florianopolis> 
+
+Item recuperado: <titulo=Premio Hip Hop> 
+
+Item recuperado: <titulo=Edital Ideias Criativas para 20 de novembro de 2010 - 
+						 Dia Nacional da Consciencia Negra> 
+
+Item recuperado: <titulo=Edital do Programa de Apoio a Traducao de Autores Brasileiros> 
+
+Item recuperado: <titulo=Premio Luso-Brasileiro de Dramaturgia Antonio Jose da Silva - 2010> 
+
+Item recuperado: <titulo=Premio Mais Cultura Pontos de Leitura do estado do Ceara> 
+
+Item recuperado: <titulo=Programa de Intercambio e Difusao Cultural - Edital numero 1/2010> 
+
+Item recuperado: <titulo=Edital de Pontos de Leitura de Sao Leopoldo> 
+
+Item recuperado: <titulo=Premio Mais Cultura de Apoio as Bibliotecas Comunitarias do Estado do Ceara> 
+
+Item recuperado: <titulo=Edital 22 Anos da Palmares> 
+
+Item recuperado: <titulo=Premio Mais Cultura de Pontinhos de Cultura de Fortaleza 2010> 
+
+Item recuperado: <titulo=Premio Mais Cultura de Pontos de Leitura de Fortaleza> 
+
+2010-12-02 07:49:32-0200 [www.cultura.gov.br] INFO: Closing spider (finished)
+2010-12-02 07:49:32-0200 [www.cultura.gov.br] INFO: Spider closed (finished)
+\end{lstlisting}
+
+
+\subsection{Exemplo 2 - Obtendo as últimas perguntas no StackOverflow}
 
 O StackOverflow é um sítio gratuito de perguntas e respostas sobre programação \cite{stackoverflow}. O objetivo deste exemplo é recuperar as últimas perguntas feitas com alguns de seus respectivos dados: resumo da pergunta, usuário que a fez, número de visualizações, número de votos e número de respostas.
 
@@ -363,155 +514,7 @@ Item recuperado <titulo=General Questions about Entity Framework
 
 %----------------%<---------------------
 
-\subsection{Exemplo 2 - Página de editais do Ministério da Cultura}
 
-A página de editais do Ministério da Cultura, que se encontra em \url{http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/}, contém a lista dos últimos editais publicados, com seus respectivos títulos, categorias e informações gerais, como demonstrado na figura \ref{minc}.
-
-\begin{figure} [ht]
-	\centering
-	\includegraphics[scale=0.8]{minc.png}
-	\caption{Seleção dos elementos que compõem uma chamada de notícia de edital}
-	\label{minc}
-\end{figure}
-
-A seguir, as legendas das respectivas áreas destacadas:
-
-\begin{enumerate}
-	\item Título da notícia
-	\item Metadados (data e tags)
-	\item Mais informações
-\end{enumerate}
-
-Analisando o código HTML da seleção, obtemos os seguintes seletores XPATH:
-
-\begin{itemize}
-	\item \textbf{Base} - \texttt{/html/body/div[2]/div[1]/ol[1]/li}
-	\item \textbf{Título} - \texttt{//h3/a/text()}
-	\item \textbf{Metadados} - \texttt{//p/text()}
-	\item \textbf{Mais informações} - \texttt{//div/p/text()}
-\end{itemize}
-
-Como os itens desejados (chamadas de notícias) se repetem na página, é necessário indicar qual será o padrão de repetição, o que neste caso é indicado pelo seletor \textbf{Base}: todos os itens de lista (\texttt{li}) que se encontram em \texttt{/html/body/div[2]/div[1]/ol[1]}. Os demais seletores derivam de cada item da lista indicada por \textbf{Base}.
-
-Seguindo as especificações do Website Parse Template (WPT), o template necessário para obter a lista de editais com seus respetivos atributos se encontra na listagem \ref{wpt_minc}.
-
-\lstset{language=XML,
-basicstyle=\scriptsize,
-caption={Template utilizado para recuperar os editais do sítio do Ministério da Cultura},
-captionpos=b
-}
-\begin{lstlisting}[label=wpt_minc]
-<ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
- ow:host="http://example.com">
-<ow:template ow:name="minc_news" 
- ow:url="http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/">
-  <ow:block ow:xpath="/html/body/div[2]/div[1]/ol[1]/li" name="lista_news" ow:type="repeatable">
-    <ow:block ow:xpath="//h3/a/text()" name="titulo" ></ow:block>
-    <ow:block ow:xpath="//p/text()" name="meta"></ow:block>
-    <ow:block ow:xpath="//div/p/text()" name="mais_info"></ow:block>
-  </ow:block>
-</ow:template> 
-</ow:wpt>
-\end{lstlisting}
-
-O template anterior reflete nas regras definidas anteriormente, com o bloco \texttt{lista\_news} como seletor dos itens de lista onde ficam as chamadas dos editais e contendo três blocos: o \texttt{titlulo}, o \texttt{meta} e o \texttt{mais\_info}, que representam as informações de cada chamada edital.
-
-Tendo salvo o template anterior num arquivo chamado \texttt{minc.xml}, o comando \texttt{scrapy importwpt minc.xml} exibe a saída mostrada na listagem \ref{python_wpt_minc}.
-
-\pagebreak
-\lstset{language=Python,
-basicstyle=\scriptsize,
-caption={Código gerado pela ferramenta desenvolvida utilizando o arquivo \texttt{minc.xml} da listagem \ref{wpt_minc} como entrada},
-captionpos=b
-}
-\begin{lstlisting}[label=python_wpt_minc]
-from scrapy.item import Item, Field
-
-class minc_newsItem1(Item):
-    lista_news = Field()
-    titulo = Field()
-    meta = Field()
-    mais_info = Field()
-
-
-from scrapy.spider import BaseSpider
-from scrapy.contrib.loader import XPathItemLoader
-
-class minc_news(BaseSpider):
-    name = 'www.cultura.gov.br'
-    allowed_domains = ['www.cultura.gov.br']
-    start_urls = ['http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/']
-
-    def parse(self, response):
-        
-        hxs = HtmlXPathSelector(response)
-        for item in hxs.select('/html/body/div[2]/div[1]/ol[1]/li'):
-            l = XPathItemLoader(item = minc_newsItem2(), selector=item)
-            l.add_xpath('titulo','//h3/a/text()')
-            l.add_xpath('meta','//p/text()')
-            l.add_xpath('mais_info','//div/p/text()')
-
-            i = l.load_item()
-            yield i
-
-\end{lstlisting}
-
-
-O spider demonstrado na listagem \ref{python_wpt_minc} pode ser executado com o comando \texttt{scrapy runspider /caminho/para/minc.py} e produz a saída (devidamente adaptada para uma melhor folhas de papel A4) mostrada na listagem \ref{scrapy_wpt_minc}
-
-\lstset{basicstyle=\scriptsize,
-caption={Saída produzida pela execução do scraper da listagem \ref{python_wpt_minc}},
-captionpos=b
-}
-\begin{lstlisting}[label=scrapy_wpt_minc]
-scrapy runspider testescrapy/spiders/minc.py
-2010-12-02 07:49:31-0200 [scrapy] INFO: Scrapy 0.11.0 started (bot: testescrapy)
-2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled extensions: TelnetConsole, SpiderContext, 
-WebService, CoreStats, MemoryUsage, CloseSpider
-															  
-2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled scheduler middlewares: DuplicatesFilterMiddleware
-
-2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled downloader middlewares: HttpAuthMiddleware, 
-DownloadTimeoutMiddleware, UserAgentMiddleware, RetryMiddleware, DefaultHeadersMiddleware, 
-RedirectMiddleware, CookiesMiddleware, HttpCompressionMiddleware, DownloaderStats
-
-2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled spider middlewares: HttpErrorMiddleware, 
-OffsiteMiddleware, RefererMiddleware, UrlLengthMiddleware, DepthMiddleware
-																     
-2010-12-02 07:49:31-0200 [scrapy] DEBUG: Enabled item pipelines: 
-2010-12-02 07:49:31-0200 [scrapy] DEBUG: Telnet console listening on 0.0.0.0:6023
-2010-12-02 07:49:31-0200 [scrapy] DEBUG: Web service listening on 0.0.0.0:6080
-2010-12-02 07:49:31-0200 [www.cultura.gov.br] INFO: Spider opened
-2010-12-02 07:49:32-0200 [www.cultura.gov.br] DEBUG: Crawled (200) 
-<GET http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/> (referer: None)
-Item recuperado: <titulo=Divulgada lista dos convocados para oficina presencial de Florianopolis> 
-
-Item recuperado: <titulo=Premio Hip Hop> 
-
-Item recuperado: <titulo=Edital Ideias Criativas para 20 de novembro de 2010 - 
-						 Dia Nacional da Consciencia Negra> 
-
-Item recuperado: <titulo=Edital do Programa de Apoio a Traducao de Autores Brasileiros> 
-
-Item recuperado: <titulo=Premio Luso-Brasileiro de Dramaturgia Antonio Jose da Silva - 2010> 
-
-Item recuperado: <titulo=Premio Mais Cultura Pontos de Leitura do estado do Ceara> 
-
-Item recuperado: <titulo=Programa de Intercambio e Difusao Cultural - Edital numero 1/2010> 
-
-Item recuperado: <titulo=Edital de Pontos de Leitura de Sao Leopoldo> 
-
-Item recuperado: <titulo=Premio Mais Cultura de Apoio as Bibliotecas Comunitarias do Estado do Ceara> 
-
-Item recuperado: <titulo=Edital 22 Anos da Palmares> 
-
-Item recuperado: <titulo=Premio Mais Cultura de Pontinhos de Cultura de Fortaleza 2010> 
-
-Item recuperado: <titulo=Premio Mais Cultura de Pontos de Leitura de Fortaleza> 
-
-2010-12-02 07:49:32-0200 [www.cultura.gov.br] INFO: Closing spider (finished)
-2010-12-02 07:49:32-0200 [www.cultura.gov.br] INFO: Spider closed (finished)
-\end{lstlisting}
 
 \pagebreak
 \chapter{Considerações Finais}
