@@ -24,17 +24,18 @@ Uma das grandes vantagens percebidas do framework Scrapy é a sua abundante docu
 
 Os principais itens estudados foram a geração de código, comandos disponíveis na linha de comando, testes unitários automatizados e estratégias de desenvolvimento.
 
-O Scrapy possui uma coleção de testes automatizados, que permitem um melhor entendimento do framewok ao observar o que e como os componentes do mesmo estão sendo testados. Além disso, os testes disponíveis fornecem um esquema pré-definido de como os testes para novas funcionalidades deverão ser feitos. Os testes desta ferramenta se encontram no pacote \texttt{scrapy.tests.test\_commands}, ao passo que sua implementação se encontra em \texttt{scrapy.commands.importwpt}.
+O Scrapy possui uma coleção de testes automatizados, que permitem um melhor entendimento do framewok ao observar o que e como os componentes do mesmo estão sendo testados. Além disso, os testes disponíveis fornecem um esquema pré-definido de como os testes para novas funcionalidades deverão ser feitos. Os testes desta ferramenta se encontram no pacote \texttt{scrapy.tests.test\_commands}, ao passo que sua implementação se encontra em \\
+ \texttt{scrapy.commands.importwpt}.
 
 \section{Desenvolvimento da ferramenta}
 
-O Scrapy possui um utilitário de linha de comando que permite a criação de novos projetos de \emph{web scrapers}, assim como sua execução, manutenção e observação de funcionamento do projeto. O exemplo a seguir ilustra a saída da execução do comando "scrapy":
+O Scrapy possui um utilitário de linha de comando que permite a criação de novos projetos de \emph{web scrapers}, assim como sua execução, manutenção e observação de funcionamento do projeto. O exemplo mostrado na Listagem \ref{scrapy_saida_comando_scrapy} ilustra a saída da execução do comando "scrapy":
 
 \lstset{basicstyle=\scriptsize,
 caption={Saída da execução do comando ''scrapy''},
 captionpos=b
 }
-\begin{lstlisting}
+\begin{lstlisting}[label=scrapy_saida_comando_scrapy]
 Scrapy 0.11 - no active project
 
 Usage:
@@ -52,14 +53,14 @@ Available commands:
 Use "scrapy <command> -h" to see more info about a command
 \end{lstlisting}
 
-A ferramenta desenvolvida neste trabalho foi incluída no comando apresentado anteriormente e pode ser observado quando o Scrapy detecta que está dentro de uma pasta de projeto:
+A ferramenta desenvolvida neste trabalho foi incluída no comando apresentado anteriormente e pode ser observado quando o Scrapy detecta que está dentro de uma pasta de projeto como demonstrado na Listagem \ref{scrapy_comando_pasta_projeto}.
 
 \pagebreak
 \lstset{basicstyle=\scriptsize,
 caption={Saída da execução do comando ''scrapy'' dentro da pasta de um projeto},
 captionpos=b
 }
-\begin{lstlisting}
+\begin{lstlisting}[label=scrapy_comando_pasta_projeto]
 Scrapy 0.11 - project: scrapytest
 
 Usage:
@@ -88,14 +89,14 @@ Use "scrapy <command> -h" to see more info about a command
 
 O comando \texttt{importwpt} cd lê um arquivo XML utilizando o formato WPT e cria um \emph{spider} do scrapy a partir dele. Após isso, a execução do comando \texttt{scrapy crawl nome\_do\_spider\_gerado} irá executar o processo de extração de informações conforme descrito no XML que foi importado.
 
-Dentre todos os elementos e seus atributos que a especificação do WPT apresenta, não há nenhum que diz sobre o tratamento e armazenamento dos dados obtidos. Por este motivo, somente a especificação do WPT é insuficiente para construir um sistema de recuperação de informações completo. Por exemplo, o atributo não-oficial \texttt{name} dentro da tag \texttt{<ow:block>} é necessário para nomeação de objetos dentro do \emph{spider}:
+Dentre todos os elementos e seus atributos que a especificação do WPT apresenta, não há nenhum que diz sobre o tratamento e armazenamento dos dados obtidos. Por este motivo, somente a especificação do WPT é insuficiente para construir um sistema de recuperação de informações completo. Por exemplo, o atributo não-oficial \texttt{name} dentro da tag \texttt{<ow:block>} é necessário para nomeação de objetos dentro do \emph{spider}, como demonstrado na listagem \ref{scrapy_conteudo_arquivo_entrada}.
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
 caption={Conteúdo do arquivo de entrada para o comando \texttt{scrapy importwpt}},
 captionpos=b
 }
-\begin{lstlisting}
+\begin{lstlisting}[label=scrapy_conteudo_arquivo_entrada]
   <ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
             ow:host="http://example.com">
   <ow:template ow:name="Template Example" ow:url="http://www.example.com/index.php">
@@ -104,14 +105,14 @@ captionpos=b
   </ow:wpt>
 \end{lstlisting}
 
-Como o principal objetivo deste trabalho é facilitar a criação e manutenção de sistemas de recuperação de informação, não é desejável ter nomes de variáveis geradas aleatoriamente no processo de conversão do WPT para o spider do Scrapy. Observa-se, então, o uso do conteúdo do atributo \texttt{name} no código gerado:
+Como o principal objetivo deste trabalho é facilitar a criação e manutenção de sistemas de recuperação de informação, não é desejável ter nomes de variáveis geradas aleatoriamente no processo de conversão do WPT para o spider do Scrapy. Observa-se, então, o uso do conteúdo do atributo \texttt{name} no código gerado, como mostrado na listagem \ref{scrapy_spider_gerado}.
 
 \lstset{language=Python,
 basicstyle=\scriptsize,
 caption={\emph{Spider} gerado a partir do arquivo de entrada apresentado na listagem 5.3},
 captionpos=b
 }
-\begin{lstlisting}
+\begin{lstlisting}[label=scrapy_spider_gerado]
 from scrapy.item import Item, Field
 
 class TemplateExampleItem1(Item):

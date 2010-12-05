@@ -387,7 +387,7 @@ A seção de templates descreve a estrutura do HTML fazendo referências aos ele
 
 O Template inicia com a tag \texttt{<ow:template>} e termina com  \texttt{</ow:template>}. É obrigatório especificar um nome de template único dentro da tag \texttt{<ow:template>} e definir a URL correspondente ao template específico.
 
-O Template é composto de blocos correspondentes a cada elemento estrutural de uma página web em específico. Cada template precisa ter ao menos um bloco. Um bloco faz referência ao elemento HTML apropriado através de uma ou muitas combinações dos seguintes métodos de referência: TagID, XPath e Pattern. Cada bloco precisa iniciar com uma tag \texttt{<ow:block>} e fechar com \texttt{</ow:block>}. É necessário indicar elementos HTML específicos dentro da tag de abertura do bloco.
+O Template é composto de blocos correspondentes a cada elemento estrutural de uma página web em específico. Cada template precisa ter ao menos um bloco. Um bloco faz referência ao elemento HTML apropriado através de uma ou muitas combinações dos seguintes métodos de referência: TagID, XPath e Pattern. Cada bloco precisa iniciar com uma tag \texttt{<ow:block>} e fechar com \texttt{</ow:block>}. É necessário indicar elementos HTML específicos dentro da tag de abertura do bloco, como demonstrado na Listagem \ref{wpt_exemplo_template_tres_blocos}.
 
 \pagebreak
 \lstset{language=XML,
@@ -395,7 +395,7 @@ basicstyle=\scriptsize,
 caption={Exemplo de um Template com três blocos \cite{wpt}},
 captionpos=b
 }
-\begin{lstlisting}
+\begin{lstlisting}[label=wpt_exemplo_template_tres_blocos]
 <ow:template ow:name="Template Example" ow:url="http://www.example.com/index.php">
   <ow:block ow:tagid="ex1" ow:xpath="/html/body/div/div" ow:pattern="content (object[[a-z]*])">
     <!--descricao do conteudo -->
@@ -409,14 +409,14 @@ captionpos=b
 </ow:template>
 \end{lstlisting}
 
-Cada bloco contém o a descrição do conteúdo dos elementos HTML representados isoladamente ou dentro de outro bloco. Blocos embutidos são usados para descrever elementos HTML específicos ("bloco pai") que inclui um ou mais elementos ("bloco filho").
+Cada bloco contém o a descrição do conteúdo dos elementos HTML representados isoladamente ou dentro de outro bloco. Blocos embutidos são usados para descrever elementos HTML específicos ("bloco pai") que inclui um ou mais elementos ("bloco filho"),como demonstrado na Listagem \ref{wpt_blocos_embutidos}.
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
 caption={Exemplo de um Template com blocos embutidos \cite{wpt}},
 captionpos=b
 }
-\begin{lstlisting}
+\begin{lstlisting}[label=wpt_blocos_embutidos]
 <ow:template ow:name="Template Example" ow:url="http://www.example.com/index.php">
 
   <ow:block ow:xpath="/html/body/div/div">
@@ -428,7 +428,7 @@ captionpos=b
 </ow:template>
 \end{lstlisting}
 
-A descrição do conteúdo pode ser informada usando conceitos definidos na seção \emph{Ontology} ou qualquer linguagem/formato suportado: RDF, CWL, etc. É necessário declarar namespaces dos schemas XML usados dentro da tag \texttt{<ow:wpt>} e o nome da ontologia dentro da tag \texttt{<ow:template>}
+A descrição do conteúdo pode ser informada usando conceitos definidos na seção \emph{Ontology} ou qualquer linguagem/formato suportado: RDF, CWL, etc. É necessário declarar namespaces dos schemas XML usados dentro da tag \texttt{<ow:wpt>} e o nome da ontologia dentro da tag \texttt{<ow:template>}, como mostrado na Listagem \ref{wpt_descricao_conteudo}.
 
 \pagebreak
 \lstset{language=XML,
@@ -436,7 +436,7 @@ basicstyle=\scriptsize,
 caption={Exemplo de um Template com instâncias de descrição de conteúdo\cite{wpt}},
 captionpos=b
 }
-\begin{lstlisting}
+\begin{lstlisting}[label=wpt_descricao_conteudo]
 <ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
  ow:host="http://www.example.com">
@@ -468,7 +468,7 @@ captionpos=b
 
 Esta seção define as URLS/padrões de URLs das páginas web descritas na seção de Templates. Esta seção é mandatória se os templates não definem as URLs/padrões de URL das páginas web \cite{wpt}.
 
-De acordo com a seção de Templates, esta seção também pode consistir de vários blocos/unidades. Cada um destes blocos iniciam com a tag \texttt{<ow:urls>} e terminam com a tag \texttt{</ow:urls>}.
+De acordo com a seção de Templates, esta seção também pode consistir de vários blocos/unidades. Cada um destes blocos iniciam com a tag \texttt{<ow:urls>} e terminam com a tag \texttt{</ow:urls>}, como mostrado na Listagem \ref{wpt_exemplo_padroes_urls}.
 
 
 \lstset{language=XML,
@@ -477,8 +477,7 @@ caption={Exemplo de padrões de URLs \cite{wpt}},
 captionpos=b,
 label="wpt_url_pattern"
 }
-\begin{lstlisting}
-\label{lst:wpt_url_pattern}
+\begin{lstlisting}[label=wpt_exemplo_padroes_urls]
 <ow:urls ow:name="Artist page on Yahoo! Music" ow:template="Artist page on Yahoo! Music">
   <ow:url>http://music.yahoo.com/ar-8206256---Amy-Winehouse</ow:url>
   <ow:url>http://music.yahoo.com/ar-([artist.id[0-9]*])---(artist.name[[A-Za-z0-9-]*])</ow:url>
@@ -490,14 +489,14 @@ Especificações utilizando expressões regulares (RegExp) são utilizadas para 
 \subsubsection{Ontology}
 \index{Website Parse Template!URLs}
 
-A seção Ontology contém enumerações e definições de todos os conceitos utilizados no website \cite{wpt}. Os conceitos listados precisam ser definidos dentro de das tags \texttt{<ow:ontology>} e \texttt{<ow:ontology>}. É necessário especificar o nome da ontologia dentro da tag \texttt{<ow:ontology>}. O WPT permite tanto o uso de OWL ou da \emph{WPT Ontology language} para definição de conceitos. A principal diferença dentre estas línguas é que a \emph{WPT Ontology language} fornece uma sintaxe simplificada para conceitos e definição de relações.
+A seção Ontology contém enumerações e definições de todos os conceitos utilizados no website \cite{wpt}. Os conceitos listados precisam ser definidos dentro de das tags \texttt{<ow:ontology>} e \texttt{<ow:ontology>}, como mostrado na Listagem \ref{wpt_exemplo_ontology}. É necessário especificar o nome da ontologia dentro da tag \texttt{<ow:ontology>}. O WPT permite tanto o uso de OWL ou da \emph{WPT Ontology language} para definição de conceitos. A principal diferença dentre estas línguas é que a \emph{WPT Ontology language} fornece uma sintaxe simplificada para conceitos e definição de relações.
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
 caption={Definição conceitual de ''artista'' utilizando a \emph{WPT Ontology language} \cite{wpt}},
 captionpos=b,
 }
-\begin{lstlisting}
+\begin{lstlisting}[label=wpt_exemplo_ontology]
 <ow:ontology ow:name="general">
   <ow:concept ow:name="artist">
     <ow:inherit>person</ow:inherit>
