@@ -188,7 +188,7 @@ Dentre as principais funcionalidades que o Scrapy apresenta, pode-se citar:
 \subsection{Arquitetura}
 \index{Scrapy!Arquitetura}
 
-O diagrama a seguir dá uma visão geral da arquitetura do Scrapy com seus componentes e o fluxo de dados que há dentro do sistema (mostrado em setas verdes). Uma breve descrição dos componentes e o fluxo de dados estão incluídos abaixo.
+O diagrama demonstrado na figura \ref{scrapy_architecture} dá uma visão geral da arquitetura do Scrapy com seus componentes e o fluxo de dados que há dentro do sistema (mostrado em setas verdes). Uma breve descrição dos componentes e o fluxo de dados estão incluídos abaixo.
 
 \begin{figure} [ht]
 	\centering
@@ -290,7 +290,7 @@ Um controle de versões é um sistema que guarda modificações a um arquivo ou 
 
 \subsubsection{Controle de versões locais}
 
-Segundo \cite[p.2]{progit}, é comum pessoas controlarem versões manualmente através da cópia de arquivos para outras pastas, provavelmente com alguma indicação de data. Apesar de simples, este sistema de versionamento é propenso a erros devido ao fato que se vale da memória humana para encontrar versões específicas e controlar alterações.
+Segundo \cite[p.2]{progit}, é comum pessoas controlarem versões manualmente através da cópia de arquivos para outras pastas, provavelmente com alguma indicação de data, como ilustrado na Figura \ref{local_version_control}. Apesar de simples, este sistema de versionamento é propenso a erros devido ao fato que se vale da memória humana para encontrar versões específicas e controlar alterações.
 
 \begin{figure} [ht]
 	\centering
@@ -303,7 +303,7 @@ Com o passar do tempo, pequenos e simples sistemas de controle de versão com ba
 
 \subsubsection{Controle de versões centralizado}
 
-O maior problema com controle de versões locais é a dificuldade de colaboração \cite[p. 3]{progit}. Para lidar com este problema, sistemas de controle de versão centralizados foram criados. Estes sistemas, como o CVS, Subversion e Perforce, possuem um único servidor que contém todos os arquivos versionados e um número de clientes que acessam os arquivos de um repositório central.
+O maior problema com controle de versões locais é a dificuldade de colaboração \cite[p. 3]{progit}. Para lidar com este problema, sistemas de controle de versão centralizados, ilustrados na Figura \ref{central_version_control}, foram criados. Estes sistemas, como o CVS, Subversion e Perforce, possuem um único servidor que contém todos os arquivos versionados e um número de clientes que acessam os arquivos de um repositório central.
 
 \begin{figure} [ht]
 	\centering
@@ -316,7 +316,7 @@ Apesar de permitir a colaboração, há várias desvantagens com esta abordagem,
 
 \subsubsection{Controle de versões distribuídos}
 
-Os sistemas de controle de versões distribuídos, pois, ao invés de apenas obter apenas as últimas versões dos arquivos de um servidor central, uma cópia completa do repositório é copiada para a máquina local \cite[p. 4]{progit}. Dentre exemplos de sistemas de controle de versão distribuídos, pode-se citar o Git, Mercurial, Bazaar e Darcs.
+Os sistemas de controle de versões distribuídos, ilustrados na Figura \ref{dist_version_control}, pois, ao invés de apenas obter apenas as últimas versões dos arquivos de um servidor central, uma cópia completa do repositório é copiada para a máquina local \cite[p. 4]{progit}. Dentre exemplos de sistemas de controle de versão distribuídos, pode-se citar o Git, Mercurial, Bazaar e Darcs.
 
 \begin{figure} [ht]
 	\centering
@@ -348,7 +348,7 @@ A seguir, é mostrado os itens mais relevantes no que diz respeito à arquitetur
 
 \subsubsection{\emph{Snapshots} ao invés de diffs}
 
-Uma das maiores diferenças entre o Git e outros Sistemas de Controle de Versão (SCM), como o Subversion e o Mercurial, é a forma como o Git trata os dados \cite[p. 6]{progit}. Estes sistemas tratam as informações como uma série de mudanças (deltas ou diffs) ao longo do tempo, como ilustrado na figura a seguir:
+Uma das maiores diferenças entre o Git e outros Sistemas de Controle de Versão (SCM), como o Subversion e o Mercurial, é a forma como o Git trata os dados \cite[p. 6]{progit}. Estes sistemas tratam as informações como uma série de mudanças (deltas ou diffs) ao longo do tempo, como ilustrado na Figura \ref{scm_delta}:
 
 \begin{figure} [ht]
 	\centering

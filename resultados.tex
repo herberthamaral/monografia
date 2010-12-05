@@ -22,14 +22,14 @@ A avaliação de sucesso no cumprimento dos objetivos deste projeto pode ser mer
 
 A avaliação quantitativa leva em conta o número de linhas no formato XML/WPT necessárias para gerar o código em Python com o uso da ferramenta desenvolvida neste trabalho e é mensurada através da comparação do número de linhas de código, em ambas linguagens, necessárias para obter o mesmo resultado. Uma avaliação positiva é dada se o número de linhas de código gerado em Python for superior ao número de linhas utilizadas para escrever o template em XML.
 
-No exemplo mais simples possível, há o seguinte template:
+No exemplo mais simples possível, há o template mostrado na Listagem \ref{wpt_exemplo}.
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
 caption={Exemplo de template em WPT},
 captionpos=b
 }
-\begin{lstlisting}
+\begin{lstlisting}[label=wpt_exemplo]
   <ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
             ow:host="http://example.com">
   <ow:template ow:name="Template Example" ow:url="http://www.example.com/index.php">
@@ -38,14 +38,14 @@ captionpos=b
   </ow:wpt>
 \end{lstlisting}
 
-Com o uso da ferramenta desenvolvida neste trabalho, o template anterior corresponde seguinte código gerado em Python:
+Com o uso da ferramenta desenvolvida neste trabalho, o template anterior corresponde ao código gerado em Python mostrado na Listagem \ref{spider_python_wpt_exemplo}.
 
 \lstset{language=Python,
 basicstyle=\scriptsize,
-caption={\emph{Spider} gerado a partir do arquivo de entrada apresentado na listagem 5.3},
+caption={\emph{Spider} gerado a partir do arquivo de entrada apresentado na listagem \ref{wpt_exemplo}},
 captionpos=b
 }
-\begin{lstlisting}
+\begin{lstlisting}[label=spider_python_wpt_exemplo]
 from scrapy.item import Item, Field
 
 class TemplateExampleItem1(Item):
@@ -68,14 +68,14 @@ class TemplateExample(BaseSpider):
         yield i
 \end{lstlisting}
 
-O código em Python possui 20 linhas, 16 sem as linhas em branco, ao passo que o template possui apenas 5 linhas de código. Neste exemplo, na pior das hipóteses, a economia de código gira em torno de 2/3 do original. A diferença fica mais evidente em um exemplo mais completo:
+O código em Python possui 20 linhas, 16 sem as linhas em branco, ao passo que o template possui apenas 5 linhas de código. Neste exemplo, na pior das hipóteses, a economia de código gira em torno de 2/3 do original. A diferença fica mais evidente em um exemplo mais completo, como o mostrado na listagem \ref{wpt_exemplo_mais_completo}.
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
 caption={Exemplo mais completo de template em WPT},
 captionpos=b
 }
-\begin{lstlisting}
+\begin{lstlisting}[label=wpt_exemplo_mais_completo]
 <ow:wpt xmlns:ow="http://www.omfica.org/schemas/ow/0.9"
 ow:host="http://example.com">
 <ow:template ow:name="Template Example" ow:url="http://www.example.com/index.php">
@@ -94,14 +94,14 @@ ow:host="http://example.com">
 </ow:wpt>
 \end{lstlisting}
 
-Com o auxílio da ferramenta citada anteriormente, o código anterior em XML é utilizado para gerar o seguinte código em Python: 
+Com o auxílio da ferramenta citada anteriormente, o código anterior em XML é utilizado para gerar código em Python mostrado na Listagem \ref{spider_python_wpt_exemplo_mais_completo}.
 
 \lstset{language=Python,
 basicstyle=\scriptsize,
-caption={\emph{Spider} gerado a partir do arquivo de entrada apresentado na listagem 5.3},
+caption={\emph{Spider} gerado a partir do arquivo de entrada apresentado na listagem \ref{wpt_exemplo_mais_completo}},
 captionpos=b
 }
-\begin{lstlisting}
+\begin{lstlisting}[label=spider_python_wpt_exemplo_mais_completo]
 from scrapy.item import Item, Field
 
 class TemplateExampleItem1(Item):
@@ -190,7 +190,7 @@ Para fornecer melhores bases entendimento deste trabalho, a seguir são apresent
 
 O StackOverflow é um sítio gratuito de perguntas e respostas sobre programação \cite{stackoverflow}. O objetivo deste exemplo é recuperar as últimas perguntas feitas com alguns de seus respectivos dados: resumo da pergunta, usuário que a fez, número de visualizações, número de votos e número de respostas.
 
-A página em questão (\url{http://stackoverflow.com/about}) contém um índice com últimas perguntas feitas em que cada índice possui a seguite estrutura:
+A página em questão (\url{http://stackoverflow.com/about}) contém um índice com últimas perguntas feitas em que cada índice possui a estrutura descrita na Figura \ref{stackoverflow}.
 
 \begin{figure} [ht]
 	\centering
@@ -308,6 +308,8 @@ class stackoverflow(BaseSpider):
             i = l.load_item()
             yield i
 \end{lstlisting}
+
+A Listagem \ref{out_stack} mostra uma saída adaptada da execução do spider descrito na Listagem \ref{py_stackoverflow}.
 
 \begin{lstlisting}[label=out_stack]
 2010-12-04 21:04:17-0200 [scrapy] INFO: Scrapy 0.11.0 started (bot: testescrapy)
