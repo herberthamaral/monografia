@@ -20,3 +20,10 @@ rm *.lot -Rf
 rm *.lof -Rf
 rm *.lol -Rf
 rm *.ist -Rf
+rm *.glo -Rf
+rm *.acr -Rf
+rm *.alg -Rf
+rm *.glg -Rf
+rm *.gls -Rf
+rm *.xdy -Rf
+
