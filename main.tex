@@ -1,6 +1,7 @@
 \documentclass[a4paper,12pt]{report}
 
 \usepackage{cite}
+\usepackage[portuguese]{babel}
 \usepackage[pdfborder={0 0 0}]{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{makeidx}
@@ -14,7 +15,7 @@
 \usepackage{titlesec}
 \usepackage[left=3cm,top=3cm,right=2cm,bottom=2cm]{geometry}
 \usepackage{url}
-\usepackage[xindy,toc]{glossaries}
+\usepackage[acronym,xindy]{glossaries}
 
 
 \usepackage{fancyhdr}
@@ -139,10 +140,9 @@ Dezembro - 2010
 \end{center}
 
 %atalho par o underscore
+\input{glossario}
 \include{resumo}
 \def\us{\char`\_}
-
-\newglossaryentry{wpt}{description={Website Parse Template}}
 
 \thispagestyle{fancy}
 \addcontentsline{toc}{chapter}{Sumário}
@@ -156,7 +156,7 @@ Dezembro - 2010
 \thispagestyle{fancy}
 \addcontentsline{toc}{chapter}{Lista de siglas}
 \thispagestyle{fancy}
-\printglossary
+\printglossaries
 
 
 \doublespacing
