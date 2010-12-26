@@ -71,12 +71,14 @@ Apesar do RDF e do XML estarem se tornando amplamente reconhecidos como veículo
 \section{Python}
 \index{Python}
 
+\hyphenation{a-tri-bu-tos}
+
 Segundo \cite{pythondoc}, o Python é uma linguagem poderosa, de propósitos gerais, fácil de aprender e programar, interpretada, orientada a objetos e com alguns outros atributos que a tornam uma linguagem ideal para \emph{scripting} e desenvolvimento rápido de aplicações.
 
 \subsection{Histórico}
 \index{Python!Historico}
 
-A linguagem Python foi criada no início dos anos 1990 por Guido Van Rossum \cite{pythonlicense}, no \emph{Stichting Mathematisch Centrum}, na Holanda, com o intuito de ser uma linguagem substituta ao ABC, que apresentava uma série de problemas, especialmente com extensibilidade \cite{pythonfaq}. A linguagem Python, inicialmente, foi criada para ser uma substituta da linguagem ABC e com os poderes da API 
+A linguagem Python foi criada no início dos anos 1990 por Guido Van Rossum \cite{pythonlicense}, no \emph{Stichting Mathematisch Centrum}, na Holanda, com o intuito de ser uma linguagem substituta ao ABC, que apresentava uma série de problemas, especialmente com extensibilidade \cite{pythonfaq}. A linguagem Python, inicialmente, foi criada para ser uma substituta da linguagem ABC, mantendo os poderes de sua API.
 
 Van Rossum permanece como o principal autor da linguagem Python, apesar de receber várias contribuições de colaboradores externos.
 
@@ -86,15 +88,15 @@ Um erro comum é associar a origem o nome da linguagem Python com o nome da serp
 \index{Python!Caracteristicas}
 Qualidade de software, produtividade do programador, portabilidade, bibliotecas de suporte, integração de componentes e diversão são os principais motivos do uso da linguagem \cite[p. 48,49]{learningpython}. 
 
-Em seu modelo, o Python implementa uma sintaxe deliberadamente simples e legível e um modelo de programação coerente \cite[p. 50]{learningpython}. 
+Em seu modelo, a linguagem Python implementa uma sintaxe deliberadamente simples e legível e um modelo de programação coerente \cite[p. 50]{learningpython}. 
 
-Dentre as razões históricas, a linguagem Python foi concebida no início da década de 1990, quando ocorreu o \emph{boom} da Internet e quando o número de programadores se tornou escasso para a demanda de Software. Enquanto linguagens de baixo nível como Assembly ou C focam em \emph{produtividade de máquina}, Python foca em \emph{produtividade do programador}. 
+Dentre as razões históricas, a linguagem Python foi concebida no início da década de 1990, quando ocorreu o \emph{boom} da Internet e quando o número de programadores se tornou escasso para a demanda de software. Enquanto linguagens de baixo nível como Assembly ou C priorizam a \emph{produtividade de máquina}, Python prioriza a \emph{produtividade do programador}. 
 
-Python é otimizada para produtividade do programador. Recursos como sintaxe simples, tipagem dinâmica, falta de necessidade de compilação e um conjunto de ferramentas embutidas permitem que programadores desenvolvam programas em uma fração de tempo necessária em comparação a quando usam outras ferramentas \cite[p. 50]{learningpython}. 
+Python é otimizada para produtividade do programador. Recursos como sintaxe simples, tipagem dinâmica, não necessidade de compilação e um conjunto de ferramentas embutidas permitem que programadores desenvolvam programas em uma fração de tempo necessária em comparação a quando usam outras ferramentas \cite[p. 50]{learningpython}. 
 
 Entretanto, existe um \gls{tradeoff} no uso da linguagem Python: a velocidade de execução. Programadores tendem a ser mais produtivos com o uso de linguagens com os atributos que Python possui. Porém, o código Python não é um código de máquina, portanto o mesmo precisa ser interpretado a cada execução, o que o torna mais lento. 
 
-Outros fatores como a tipagem dinâmica tendem a trazer mais \gls{overhead} na execução dos programas em Python, degrando ainda mais sua velocidade de execução, e seu uso difícil ou inviável para projetos que dependam estritamente de velocidade de execução (ex: componentes de baixo nível, como Kernels e drivers de dispositivos, aplicativos de produtividade, como suítes de escritórios e CAD e outros softwares de grande porte).
+Outros fatores como a tipagem dinâmica tendem a trazer mais \gls{overhead} na execução dos programas em Python, degradando ainda mais sua velocidade de execução, e seu uso difícil ou inviável para projetos que dependam estritamente de velocidade de execução (ex: componentes de baixo nível, como Kernels e drivers de dispositivos, aplicativos de produtividade, como suítes de escritórios e CAD e outros softwares de grande porte).
 
 \subsubsection{Tipagem dinâmica}
 \index{Python!Ambientes e plataformas!Tipagem Dinâmica}
@@ -104,7 +106,7 @@ A tipagem dinâmica é uma propriedade de uma linguagem de programação que per
 
 Segundo \cite{dynamic_langs}, as principais vantagens ao se utilizar uma linguagem de tipagem dinâmica é evitar a rigidez de linguagens estaticamente tipadas, tornar mais fácil a prototipação de sistemas que possuem requisitos ainda não conhecidos ou que mudam de uma forma não previsível, aumentar o reuso de código, diminuir a verbosidade e o custo do projeto, sem necessariamente ser menos seguras que as linguagens de tipagem estática.
 
-Devido à seu baixo nível de burocracia e alto poder de prototipação, as linguagens dinâmicas são freqüentemente para integração entre componentes \cite{scripting}. Por este motivo, as linguagens dinâmicas também são conhecidas por \emph{linguagens-cola} ou \emph{linguagens de integração de sistemas}.
+Devido ao seu baixo nível de burocracia e alto poder de prototipação, as linguagens dinâmicas são freqüentemente para integração entre componentes \cite{scripting}. Por esse motivo, as linguagens dinâmicas também são conhecidas por \emph{linguagens-cola} ou \emph{linguagens de integração de sistemas}.
 
 Uma linguagem que não é apegada a tipos permite que a integração entre componentes seja bem mais fácil, pois não há restrições primárias sobre como os retornos de cada componente devam ser utilizados: todos eles são apresentados de uma única forma \cite{scripting}.
 
@@ -115,9 +117,7 @@ Linguagens dinâmicas, como o Python, são ideais para pesquisas e provas de con
 
 Python é uma linguagem portável e multiplataforma. Isso significa que um código em Python pode ser executado nos mais diversos ambientes e sistemas operacionais, como Windows, Linux, Mac OS e em até sistemas operacionais móveis como Symbian e Android.
 
-Há também a possibilidade de executar a linguagem Python em outros ambientes diferentes do original (CPython). Iniciativas como Jython (Python para a \emph{Java Virtual Machine}) e o IronPython (Python para o ambiente Microsoft.NET) permitem que o Python seja executado dentro das duas das maiores plataformas de desenvolvimento de software da atualidade, aproveitando seus recursos e suas funcionalidades. 
-
-Desta forma, um programa em Python pode utilizar o Swing através do Jython para o desenvolvimento de uma interface gráfica em ambiente Java ou pode utilizar o \emph{Windows Communication Foundation} como \emph{framework} de troca de mensagens no ambiente Microsoft.NET.
+Há também a possibilidade de executar a linguagem Python em outros ambientes diferentes do original (CPython). Iniciativas como Jython (Python para a \emph{Java Virtual Machine}) e o IronPython (Python para o ambiente Microsoft.NET) permitem que o Python seja executado dentro das duas das maiores plataformas de desenvolvimento de software da atualidade, aproveitando seus recursos e suas funcionalidades. Dessa forma, um programa em Python pode utilizar o Swing através do Jython para o desenvolvimento de uma interface gráfica em ambiente Java ou pode utilizar o \emph{Windows Communication Foundation} como \emph{framework} de troca de mensagens no ambiente Microsoft.NET.
 
 \subsubsection{CPython}
 \index{Python!Ambientes e plataformas!IronPython}
@@ -144,9 +144,9 @@ PyPy é uma implementação do Python escrita em Python \cite[p. 7]{pypy}. A id�
 
 Segundo \cite{python_scientific_world}, Python e estensões como o NumPy \cite{numpy} estão se tornando padrão para muitas ciências que precisam processar grande quantidades de dados, desde a neuroimagem à astronomia.
 
-Conferências anuais especificamente voltadas para usos de Python em computação científica, como o SciPy \cite{scipy} (tanto na versão norte-americana quanto na européia) vem ganhando peso a cada ano.
+Conferências anuais especificamente voltadas para usos de Python em computação científica, como o SciPy \cite{scipy} (tanto na versão norte-americana quanto na européia) vem ganhando mais representatividade a cada ano.
 
-Ambientes de desenvolvimento integrado como o PythonXY \cite{pythonxy} ajuda a mostrar para cientistas que a linguagem Python com seus pacotes de bibliotecas e softwares para computação científica pode ser uma excelente alternativa para ambientes como o Matlab \footnote{\url{http://www.mathworks.com/products/matlab/}}. 
+Ambientes de desenvolvimento integrado como o PythonXY \cite{pythonxy} ajudam a mostrar para cientistas que a linguagem Python com seus pacotes de bibliotecas e softwares para computação científica pode ser uma excelente alternativa para ambientes como o Matlab \footnote{\url{http://www.mathworks.com/products/matlab/}}. 
 
 Um dos casos mais famosos da linguagem Python para os sistemas de recuperação de informações é o Google\cite{google}. Python representa um papel fundamental dentro da estrutura de motores de busca do Google, sendo responsável pelos seus \emph{crawlers} e pelos seus servidores de URL \cite{surveyir}.
 
