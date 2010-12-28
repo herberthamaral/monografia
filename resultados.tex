@@ -2,27 +2,29 @@
 \chapter{Resultados}
 \thispagestyle{fancy}
 
-Como resultado deste trabalho, é apresentado uma ferramenta construida para operar junto ao Scrapy. Esta ferramenta utiliza o código do template em XML/WPT como entrada e produz o respectivo spider na linguagem Python, que utiliza o framework Scrapy como base para cumprir os objetivos de extração de informações estruturadas na Web.
+Como resultado deste trabalho, é apresentada uma ferramenta construida para operar junto ao Scrapy. Essa ferramenta utiliza o código do template em XML/WPT como entrada e produz o respectivo spider na linguagem Python, que utiliza o framework Scrapy como base para cumprir os objetivos de extração de informações estruturadas na Web.
 
-A ferramenta aqui apresentada ainda encontra-se em desenvolvimento. Por ser uma contribuição ao Scrapy, um framework de código aberto, este protótipo poderá ser desenvolvido por outros membros da comunidade. O código-fonte deste protótipo encontra-se num repositório do Github (\texttt{http://github.com/}) disponível em \texttt{http://github.com/herberthamaral/}, no \emph{branch} "crawling-template".
+\hyphenation{ou-tros}
 
-Por não se tratar de uma ferramenta estável, o código originado do presente trabalho ainda não foi incorporado na linha de desenvolvimento principal do Scrapy, mas espera-se que isto seja feito em breve.
+A ferramenta aqui apresentada ainda encontra-se em desenvolvimento. Por ser uma contribuição ao Scrapy, um \textit{framework} de código aberto, esse protótipo poderá ser desenvolvido por outros membros da comunidade. O código-fonte desse protótipo encontra-se num repositório do Github (\texttt{http://github.com/}) disponível em \texttt{http://github.com/herberthamaral/}, no \emph{branch} "crawling-template".
 
-Apesar de ser um projeto de código aberto e disponibilizado publicamente, ainda não há contribuições de outros desenvolvedores. Um dos motivos é a proposital falta de divulgação: espera-se ter uma versão que possa ser considerada estável antes de apresentar este projeto formalmente à comunidade.
+Por não se tratar de uma ferramenta estável, o código originado do presente trabalho ainda não foi incorporado na linha de desenvolvimento principal do Scrapy, mas espera-se que isso seja feito em breve.
+
+Apesar de ser um projeto de código aberto e disponibilizado publicamente, ainda não há contribuições de outros desenvolvedores. Um dos motivos é a proposital falta de divulgação: espera-se ter uma versão que possa ser considerada estável antes de apresentar esse projeto formalmente à comunidade.
 
 Um dos aspectos positivos da abordagem adotada é que a ferramenta desenvolvida gera o código de spiders na linguagem de programação Python a partir de código em XML, permitindo que o programador faça altarações no código gerado, caso seja necessário. 
 
 Como este trabalho não contempla, tampouco pretende contemplar, todas as facetas da criação de sistemas de recuperação de informações estruturadas na Web, a possibilidade do programador alterar o código gerado pode vir a ser bem útil em situações mais específicas. Por isso o objetivo deste trabalho é \emph{gerar código} ao invés de \emph{interpretar código} com o intuito de criar sistemas de recuperação de informações.
 
-Pelo fato dos objetivos deste trabalho se basearem na criação de uma ferramenta que facilite a criação de sistemas de recuperção de informação na Web, duas análises podem ser feitas com os resultados: uma quantitativa e outra qualitativa. Quantitativa para mostrar as visíveis economias no processo de escrita/manutenção de código. Qualitativa para mostrar como os resultados obtidos podem levar a uma maior produtividade, menor curva de aprendizado e resultados mais rápidos. Também se faz necessária a demonstração de exemplos de sistemas de recuperação de informações reais criados a partir do uso da abordagem desenvolvida neste trabalho, bem como as dificuldades encontras e trabalhos futuros.
+Pelo fato dos objetivos deste trabalho se basearem na criação de uma ferramenta que facilite a criação de sistemas de recuperação de informação na Web, duas análises podem ser feitas com os resultados: uma quantitativa e outra qualitativa. Quantitativa para mostrar as visíveis economias no processo de escrita/manutenção de código. Qualitativa para mostrar como os resultados obtidos podem levar a uma maior produtividade, menor curva de aprendizado e resultados mais rápidos. Também se faz necessária a demonstração de exemplos de sistemas de recuperação de informações reais criados a partir do uso da abordagem desenvolvida neste trabalho, bem como as dificuldades encontras e trabalhos futuros.
 
 \section{Avaliação quantitativa}
 
-A avaliação de sucesso no cumprimento dos objetivos deste projeto pode ser meramente subjetiva, porém, há alguns critérios quantitativos ou subjetivos que podem ser discutidos, como a economia em linhas de código. 
+A avaliação de sucesso no cumprimento dos objetivos deste projeto pode ser meramente subjetiva. Porém, há alguns critérios quantitativos ou subjetivos que podem ser discutidos, como a economia em linhas de código. 
 
 A avaliação quantitativa leva em conta o número de linhas no formato XML/WPT necessárias para gerar o código em Python com o uso da ferramenta desenvolvida neste trabalho e é mensurada através da comparação do número de linhas de código, em ambas linguagens, necessárias para obter o mesmo resultado. Uma avaliação positiva é dada se o número de linhas de código gerado em Python for superior ao número de linhas utilizadas para escrever o template em XML.
 
-No exemplo mais simples possível, há o template mostrado na Listagem \ref{wpt_exemplo}.
+Como exemplo, há o template mostrado na Listagem \ref{wpt_exemplo}.
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
@@ -68,7 +70,7 @@ class TemplateExample(BaseSpider):
         yield i
 \end{lstlisting}
 
-O código em Python possui 20 linhas, 16 sem as linhas em branco, ao passo que o template possui apenas 5 linhas de código. Neste exemplo, na pior das hipóteses, a economia de código gira em torno de 2/3 do original. A diferença fica mais evidente em um exemplo mais completo, como o mostrado na listagem \ref{wpt_exemplo_mais_completo}.
+O código em Python possui 20 linhas, 16 sem as linhas em branco, ao passo que o template possui apenas 5 linhas de código. Nesse exemplo, na pior das hipóteses, a economia de código gira em torno de 2/3 do original. A diferença fica mais evidente em um exemplo mais completo, como o mostrado na listagem \ref{wpt_exemplo_mais_completo}.
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
@@ -157,7 +159,7 @@ class TemplateExample(BaseSpider):
             yield i
 \end{lstlisting}
 
-Neste segundo exemplo, o arquivo XML possui 15 linhas, ao passo que o código gerado possui cerca de 60 linhas, aproximadamente 4 vezes menos código.
+Neste segundo exemplo, o arquivo XML possui 15 linhas, ao passo que o código gerado possui cerca de 60 linhas, sendo aproximadamente 4 vezes menor.
 
 \pagebreak
 \section{Avaliação qualitativa}
@@ -165,28 +167,28 @@ Neste segundo exemplo, o arquivo XML possui 15 linhas, ao passo que o código ge
 Em uma comparação qualitativa, pode-se citar alguns critérios:
 
 \begin{enumerate}
-	\item Linguagens de propósito geral \emph{versus} linguagens de proposíto específico (ou Domain Specific Languages).
+	\item Linguagens de propósito geral \emph{versus} \gls{DomainSpecificLanguages}.
 	\item Ganho de produtividade.
 	\item Facilidade para o usuário final.
 	\item Automação de processos.
 \end{enumerate}
 
-Linguagens de propósito geral servem para construção de mais diversos tipos de sistemas, ao passo que linguagens de propósito específico são projetadas para resolver problemas em um domínio específico. Há um \emph{tradeoff} entre as duas abordagens: enquanto as linguagens de propósito geral são mais completas, elas também são mais complexas se comparadas com as linguagens de propósito específico para a mesma categoria de problema.
+Linguagens de propósito geral servem para a construção de mais diversos tipos de sistemas, ao passo que linguagens de propósito específico são projetadas para resolver problemas em um domínio específico. Há um \emph{tradeoff} entre as duas abordagens: enquanto as linguagens de propósito geral são mais completas, elas também são mais complexas se comparadas com as linguagens de propósito específico para a mesma categoria de problema.
 
-Quando se deixa de usar uma linguagem de propósito geral (Python) para utilizar outra de propósito específico (XML/WPT) o ganho de produtividade estará em eliminar preocupações não inerentes ao domínio. Com menos recursos e preocupações para se trabalhar, o trabalho do usuário final é facilitado.
+Quando se deixa de usar uma linguagem de propósito geral (Python) para utilizar outra de propósito específico (XML/WPT) o ganho de produtividade estará em eliminar preocupações não inerentes ao domínio. Com menos recursos e preocupações a serem considerados, o trabalho do usuário final é facilitado.
 
-Por exemplo, quando se trabalha com uma linguagem de propósito geral (como Python, C/C++ ou Java), o programador dispõe de uma maior flexibilidade, pois o mesmo pode valer de estruturas de controle, repetição, variáveis, funções ou métodos, classes, objetos, interação com o sistema de arquivos e E/S, interação com outros sistemas e tratamento de exceções para desenvolver suas soluções. Além de todos os itens relacionados à linguagem de programação, o programador precisa ter domínio de técnicas de extração de informações de páginas na Web, em que, nos casos mais simples envolve o conhecimento de uma linguagem de marcação (HTML, por exemplo), bibliotecas utilizadas para \emph{parsing} e bibliotecas para comunicação com servidores HTTP (\emph{HyperText Transfer Protocol} - Protocolo de Transferência de HiperTexto). No caso de uma linguagem específica de domínio baseada em XML, o programador precisará ter as mesmas noções de extração de informações de páginas na Web, porém sem a complexidade de lidar com uma linguagem de propósito geral e todas as suas respectivas dependências (bibliotecas), limitando-se apenas a conhecer a sintaxe do XML e as regras inerentes ao WPT.
+Por exemplo, quando se trabalha com uma linguagem de propósito geral (como Python, C/C++ ou Java), o programador dispõe de uma maior flexibilidade, pois o mesmo pode valer de estruturas de controle, repetição, variáveis, funções ou métodos, classes, objetos, interação com o sistema de arquivos e E/S, interação com outros sistemas e tratamento de exceções para desenvolver suas soluções. Além de todos os itens relacionados à linguagem de programação, o programador precisa ter domínio de técnicas de extração de informações de páginas na Web, em que, nos casos mais simples, envolve o conhecimento de uma linguagem de marcação (HTML, por exemplo), bibliotecas utilizadas para \emph{parsing} e bibliotecas para comunicação com servidores HTTP (\emph{HyperText Transfer Protocol} - Protocolo de Transferência de HiperTexto). No caso de uma linguagem específica de domínio baseada em XML, o programador precisará ter as mesmas noções de extração de informações de páginas na Web, porém sem a complexidade de lidar com uma linguagem de propósito geral e todas as suas respectivas dependências (bibliotecas), limitando-se apenas a conhecer a sintaxe do XML e as regras inerentes ao WPT.
 
-O uso de XML pode trazer várias vantagens à criação de sistemas de recuperação de informação. A principal é que qualquer linguagem de programação que dê suporte à XML pode criar templates. Como o trabalho de \emph{não} escrever código é sempre menor do que escrever \emph{algum} código, os usuários podem se beneficiar com a criação de sistemas que geram templates automaticamente. Por exemplo, um \emph{plugin} de um navegador Web pode permitir que o usuário selecione as seções de uma determinada página que gostaria que fossem recuperadas automaticamente e então gerar o template para o mesmo. 
+O uso de XML pode trazer várias vantagens para a criação de sistemas de recuperação de informação. A principal é que qualquer linguagem de programação que dê suporte à XML pode criar templates. Como o trabalho de \emph{não} escrever código é sempre menor do que escrever \emph{algum} código, os usuários podem se beneficiar com a criação de sistemas que geram templates automaticamente. Por exemplo, um \emph{plugin} de um navegador Web pode permitir que o usuário selecione as seções de uma determinada página que gostaria que fossem recuperadas automaticamente e então gerar o template correspondente. 
 
-Uma outra vantagem do uso de XML como meio para geração destes sistemas é a baixa dependência de uma única linguagem de programação, como a linguagem Python utilizada neste trabalho, uma vez que qualquer outra linguagem com as devidas bibliotecas pode interpretar XML e gerar código para qualquer outra linguagem de programação. Com isso, há como diminuir o nível de acoplamento entre a solução desenvolvida e a linguagem utilizada, de forma que todo o código em XML possa ser reaproveitado para geração de outros sistemas em outras linguagens de programação sem maiores problemas.
+Uma outra vantagem do uso de XML como meio para geração desses sistemas é a baixa dependência de uma única linguagem de programação, como a linguagem Python utilizada neste trabalho, uma vez que qualquer outra linguagem com as devidas bibliotecas pode interpretar XML e gerar código para qualquer outra linguagem de programação. Com isso, há como diminuir o nível de acoplamento entre a solução desenvolvida e a linguagem utilizada, de forma que todo o código em XML possa ser reaproveitado para geração de outros sistemas em outras linguagens de programação sem maiores problemas.
 
 \pagebreak
 \section{Exemplos reais}
 
 Para fornecer melhores bases de entendimento deste trabalho, a seguir são apresentadas exemplos de casos de uso da ferramenta desenvolvida em conjunto com todo o processo de identificação de elementos na página e escrita do template.
 
-\subsection{Exemplo 2 - Página de editais do Ministério da Cultura}
+\subsection{Exemplo 1 - Página de editais do Ministério da Cultura}
 
 A página de editais do Ministério da Cultura, que se encontra em \url{http://www.cultura.gov.br/site/categoria/editais-ministerio-da-cultura/}, contém a lista dos últimos editais publicados, com seus respectivos títulos, categorias e informações gerais, como demonstrado na figura \ref{minc}.
 
@@ -205,7 +207,7 @@ A seguir, as legendas das respectivas áreas destacadas:
 	\item Mais informações
 \end{enumerate}
 
-Analisando o código HTML da seleção, obtemos os seguintes seletores XPATH:
+Analisando o código HTML da seleção, obtém-se os seguintes seletores \gls{xpath}:
 
 \begin{itemize}
 	\item \textbf{Base} - \texttt{/html/body/div[2]/div[1]/ol[1]/li}
@@ -214,7 +216,7 @@ Analisando o código HTML da seleção, obtemos os seguintes seletores XPATH:
 	\item \textbf{Mais informações} - \texttt{//div/p/text()}
 \end{itemize}
 
-Como os itens desejados (chamadas de notícias) se repetem na página, é necessário indicar qual será o padrão de repetição, o que neste caso é indicado pelo seletor \textbf{Base}: todos os itens de lista (\texttt{li}) que se encontram em \texttt{/html/body/div[2]/div[1]/ol[1]}. Os demais seletores derivam de cada item da lista indicada por \textbf{Base}.
+Como os itens desejados (chamadas de notícias) se repetem na página, é necessário indicar qual será o padrão de repetição, o que nesse caso é indicado pelo seletor \textbf{Base}: todos os itens de lista (\texttt{li}) que se encontram em \texttt{/html/body/div[2]/div[1]/ol[1]}. Os demais seletores derivam de cada item da lista indicada por \textbf{Base}.
 
 Seguindo as especificações do Website Parse Template (WPT), o template necessário para obter a lista de editais com seus respetivos atributos se encontra na listagem \ref{wpt_minc}.
 
@@ -237,9 +239,7 @@ captionpos=b
 </ow:wpt>
 \end{lstlisting}
 
-O template anterior reflete nas regras definidas anteriormente, com o bloco \texttt{lista\_news} como seletor dos itens de lista onde ficam as chamadas dos editais e contendo três blocos: o \texttt{titlulo}, o \texttt{meta} e o \texttt{mais\_info}, que representam as informações de cada chamada edital.
-
-Tendo salvo o template anterior num arquivo chamado \texttt{minc.xml}, o comando \texttt{scrapy importwpt minc.xml} exibe a saída mostrada na listagem \ref{python_wpt_minc}.
+O template apresentado na Listagem \ref{wpt_minc} reflete nas regras definidas anteriormente, com o bloco \texttt{lista\_news} como seletor dos itens de lista onde ficam as chamadas dos editais e contendo três blocos: o \texttt{titlulo}, o \texttt{meta} e o \texttt{mais\_info}, que representam as informações de cada chamada edital. Tendo salvo o template anterior num arquivo chamado \texttt{minc.xml}, o comando \texttt{scrapy importwpt minc.xml} exibe a saída mostrada na listagem \ref{python_wpt_minc}.
 
 \pagebreak
 \lstset{language=Python,
@@ -280,7 +280,7 @@ class minc_news(BaseSpider):
 \end{lstlisting}
 
 
-O spider demonstrado na listagem \ref{python_wpt_minc} pode ser executado com o comando \texttt{scrapy runspider /caminho/para/minc.py} e produz a saída (devidamente adaptada para uma melhor folhas de papel A4) mostrada na listagem \ref{scrapy_wpt_minc}
+O spider demonstrado na listagem \ref{python_wpt_minc} pode ser executado com o comando \texttt{scrapy runspider /caminho/para/minc.py} e produz a saída (devidamente adaptada para uma melhor visualização em folhas de papel A4) mostrada na listagem \ref{scrapy_wpt_minc}
 
 \lstset{basicstyle=\scriptsize,
 caption={Saída produzida pela execução do scraper da listagem \ref{python_wpt_minc}},
@@ -337,9 +337,9 @@ Item recuperado: <titulo=Premio Mais Cultura de Pontos de Leitura de Fortaleza>
 \end{lstlisting}
 
 
-\subsection{Exemplo 2 - Obtendo as últimas perguntas no StackOverflow}
+\subsection{Exemplo 2 - Obtendo as últimas perguntas no \textit{StackOverflow}}
 
-O StackOverflow é um sítio gratuito de perguntas e respostas sobre programação \cite{stackoverflow}. O objetivo deste exemplo é recuperar as últimas perguntas feitas com alguns de seus respectivos dados: resumo da pergunta, usuário que a fez, número de visualizações, número de votos e número de respostas.
+O \textit{StackOverflow}\footnote{\url{http://stackoverflow.com/}} é um sítio gratuito de perguntas e respostas sobre programação \cite{stackoverflow}. O objetivo deste exemplo é recuperar as últimas perguntas feitas com alguns de seus respectivos dados: resumo da pergunta, usuário que a fez, número de visualizações, número de votos e número de respostas.
 
 A página em questão (\url{http://stackoverflow.com/about}) contém um índice com últimas perguntas feitas em que cada índice possui a estrutura descrita na Figura \ref{stackoverflow}.
 
@@ -361,7 +361,7 @@ A seguir, as legendas das respectivas áreas destacadas:
 	\item Nome do usuário que fez a pergunta
 \end{enumerate}
 
-Analisando o código HTML da seleção, obtemos os seguintes seletores XPATH:
+Analisando o código HTML da seleção, obtém-se os seguintes seletores \gls{xpath}:
 
 \begin{itemize}
 	\item \textbf{Base} - \texttt{//div[@id='questions']/div}
@@ -373,7 +373,7 @@ Analisando o código HTML da seleção, obtemos os seguintes seletores XPATH:
 	\item \textbf{Respostas} - \texttt{//div[1]/div[2]/div[2]/strong/text()}
 \end{itemize}
 
-O item \textbf{Base} indica a base de repetição da lista de perguntas da página. Dentro do container \textbf{Base} encontra-se os outros elementos que compõe o item a ser recuperado. O WPT equivalente às seleções anteriores é descrito na listagem \ref{wpt_stackoverflow}.
+O item \textbf{Base} indica a base de repetição da lista de perguntas da página. Dentro do container \textbf{Base} encontra-mse os outros elementos que compõe o item a ser recuperado. O WPT equivalente às seleções anteriores é descrito na listagem \ref{wpt_stackoverflow}.
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
