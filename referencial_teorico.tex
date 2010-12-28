@@ -343,7 +343,6 @@ O Git trata as informações como se fossem \emph{snapshots} de um pequeno siste
 
 \pagebreak
 
-
 \section{\emph{Website Parse Template}}
 \index{Website Parse Template}
 
@@ -356,7 +355,7 @@ Website Parse Template (WPT) é um formato aberto baseado em XML que fornece inf
 	\item \textbf{URLs} - Seção opcional, que associa certos padrões de URL para grupos de páginas web para templates específicos. 
 \end{itemize}
 
-Cada uma das seções do WPT mostradas acima será discutida a seguir.
+Cada uma das seções do WPT apresentadas acima será discutida a seguir.
 
 \subsection{Seções do WPT}
 \index{Website Parse Template!Seções do WPT}
@@ -366,9 +365,7 @@ Cada uma das seções do WPT mostradas acima será discutida a seguir.
 
 A seção de templates descreve a estrutura do HTML fazendo referências aos elementos HTML correspondentes da página em específico \cite{wpt}.
 
-O Template inicia com a tag \texttt{<ow:template>} e termina com  \texttt{</ow:template>}. É obrigatório especificar um nome de template único dentro da tag \texttt{<ow:template>} e definir a URL correspondente ao template específico.
-
-O Template é composto de blocos correspondentes a cada elemento estrutural de uma página web em específico. Cada template precisa ter ao menos um bloco. Um bloco faz referência ao elemento HTML apropriado através de uma ou muitas combinações dos seguintes métodos de referência: TagID, XPath e Pattern. Cada bloco precisa iniciar com uma tag \texttt{<ow:block>} e fechar com \texttt{</ow:block>}. É necessário indicar elementos HTML específicos dentro da tag de abertura do bloco, como demonstrado na Listagem \ref{wpt_exemplo_template_tres_blocos}.
+O Template inicia com a tag \texttt{<ow:template>} e termina com  \texttt{</ow:template>}. É obrigatório especificar um nome de template único dentro da tag \texttt{<ow:template>} e definir a URL correspondente ao template específico. O Template é composto de blocos correspondentes a cada elemento estrutural de uma página web em específico. Cada template precisa ter ao menos um bloco. Um bloco faz referência ao elemento HTML apropriado através de uma ou muitas combinações dos seguintes métodos de referência: TagID, XPath e Pattern. Cada bloco precisa iniciar com uma tag \texttt{<ow:block>} e fechar com \texttt{</ow:block>}. É necessário indicar elementos HTML específicos dentro da tag de abertura do bloco, como demonstrado na Listagem \ref{wpt_exemplo_template_tres_blocos}.
 
 \pagebreak
 \lstset{language=XML,
@@ -390,7 +387,7 @@ captionpos=b
 </ow:template>
 \end{lstlisting}
 
-Cada bloco contém o a descrição do conteúdo dos elementos HTML representados isoladamente ou dentro de outro bloco. Blocos embutidos são usados para descrever elementos HTML específicos ("bloco pai") que inclui um ou mais elementos ("bloco filho"),como demonstrado na Listagem \ref{wpt_blocos_embutidos}.
+Cada bloco contém a descrição do conteúdo dos elementos HTML representados isoladamente ou dentro de outro bloco. Blocos embutidos são usados para descrever elementos HTML específicos ("bloco pai") que incluem um ou mais elementos ("bloco filho"),como demonstrado na Listagem \ref{wpt_blocos_embutidos}.
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
@@ -409,7 +406,7 @@ captionpos=b
 </ow:template>
 \end{lstlisting}
 
-A descrição do conteúdo pode ser informada usando conceitos definidos na seção \emph{Ontology} ou qualquer linguagem/formato suportado: RDF, CWL, etc. É necessário declarar namespaces dos schemas XML usados dentro da tag \texttt{<ow:wpt>} e o nome da ontologia dentro da tag \texttt{<ow:template>}, como mostrado na Listagem \ref{wpt_descricao_conteudo}.
+A descrição do conteúdo pode ser informada usando conceitos definidos na seção \emph{Ontology} ou qualquer linguagem/formato suportado: RDF, CWL, etc. É necessário declarar \textit{namespaces} dos esquemas XML usados dentro da tag \texttt{<ow:wpt>} e o nome da ontologia dentro da tag \texttt{<ow:template>}, como mostrado na Listagem \ref{wpt_descricao_conteudo}.
 
 \pagebreak
 \lstset{language=XML,
@@ -447,9 +444,9 @@ captionpos=b
 \subsubsection{URLs}
 \index{Website Parse Template!URLs}
 
-Esta seção define as URLS/padrões de URLs das páginas web descritas na seção de Templates. Esta seção é mandatória se os templates não definem as URLs/padrões de URL das páginas web \cite{wpt}.
+Essa seção define as URLS/padrões de URLs das páginas web descritas na seção de Templates. É mandatória se os templates não definem as URLs/padrões de URL das páginas web \cite{wpt}.
 
-De acordo com a seção de Templates, esta seção também pode consistir de vários blocos/unidades. Cada um destes blocos iniciam com a tag \texttt{<ow:urls>} e terminam com a tag \texttt{</ow:urls>}, como mostrado na Listagem \ref{wpt_exemplo_padroes_urls}.
+De acordo com a seção de Templates, essa seção também pode consistir de vários blocos/unidades. Cada um desses blocos iniciam com a tag \texttt{<ow:urls>} e terminam com a tag \texttt{</ow:urls>}, como mostrado na Listagem \ref{wpt_exemplo_padroes_urls}.
 
 
 \lstset{language=XML,
@@ -465,12 +462,12 @@ label="wpt_url_pattern"
 </urls>
 \end{lstlisting}
 
-Especificações utilizando expressões regulares (RegExp) são utilizadas para descrição de padrões de URL. O padrão de URL informado na listagem 1.4 também inclui a real URL representada. Os conceitos necessários para definição de padrões de URL (tais como "id" e "nome") são definidos na seção Ontology.
+Especificações utilizando expressões regulares (RegExp) são utilizadas para descrição de padrões de URL. O padrão de URL informado na listagem \ref{wpt_exemplo_padroes_urls} também inclui a real URL representada. Os conceitos necessários para definição de padrões de URL (tais como "id" e "nome") são definidos na seção Ontology.
 
-\subsubsection{Ontology}
+\subsubsection{\textit{Ontology}}
 \index{Website Parse Template!URLs}
 
-A seção Ontology contém enumerações e definições de todos os conceitos utilizados no website \cite{wpt}. Os conceitos listados precisam ser definidos dentro de das tags \texttt{<ow:ontology>} e \texttt{<ow:ontology>}, como mostrado na Listagem \ref{wpt_exemplo_ontology}. É necessário especificar o nome da ontologia dentro da tag \texttt{<ow:ontology>}. O WPT permite tanto o uso de OWL ou da \emph{WPT Ontology language} para definição de conceitos. A principal diferença dentre estas línguas é que a \emph{WPT Ontology language} fornece uma sintaxe simplificada para conceitos e definição de relações.
+A seção \textit{Ontology} contém enumerações e definições de todos os conceitos utilizados no sítio \cite{wpt}. Os conceitos listados precisam ser definidos dentro de das tags \texttt{<ow:ontology>} e \texttt{<ow:ontology>}, como mostrado na Listagem \ref{wpt_exemplo_ontology}. É necessário especificar o nome da ontologia dentro da tag \texttt{<ow:ontology>}. O WPT permite tanto o uso de OWL ou da \emph{WPT Ontology language} para definição de conceitos. A principal diferença dentre essas línguas é que a \emph{WPT Ontology language} fornece uma sintaxe simplificada para conceitos e definição de relações.
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
@@ -495,4 +492,4 @@ captionpos=b,
 </ow:ontology>
 \end{lstlisting}
 
-Cada definição de conceito inicia com a tag \texttt{<ow:concept>} e termina com a tag\texttt{</ow:concept>}. A tag \texttt{<ow:inherit>} mostra relações de herança e a tag \texttt{<ow:has>} mostra relações atribuíveis entre dois conceitos. Os conceitos definidos tem um atributo padrão - identificador de objeto (id) para ser utilizado por web crawlers para coordenar os mesmos atributos do objeto utilizados em páginas diferentes do mesmo website.
+Cada definição de conceito inicia com a tag \texttt{<ow:concept>} e termina com a tag\texttt{</ow:concept>}. A tag \texttt{<ow:inherit>} representa relações de herança e a tag \texttt{<ow:has>} representa relações atribuíveis entre dois conceitos. Os conceitos definidos tem um atributo padrão - identificador de objeto (id) para ser utilizado por \glspl{webcrawler} para coordenar os mesmos atributos do objeto utilizados em páginas diferentes do mesmo website.
