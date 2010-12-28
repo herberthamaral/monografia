@@ -5,31 +5,29 @@
 A elaboração do presente trabalho se deu em 3 etapas distintas:
 
 \begin{enumerate}
-	\item Estudo de viabilidade do \emph{Website Parse Template} (WPT) como \emph{Domain Specific Language} (DSL) para \emph{web scrapers}, assim como busca de melhores alternativas.
-	\item Estudo do funcionamento e arquitetura do framework Scrapy.
-	\item Implementação de uma ferramenta e seus respectivos testes automatizados para compilação do WPT em um \emph{spider} do Scrapy.
+	\item Estudo de viabilidade do \gls{wpt} como \gls{DomainSpecificLanguage} para \glspl{webscraper}, assim como busca de melhores alternativas.
+	\item Estudo do funcionamento e arquitetura do \textit{framework} Scrapy.
+	\item Implementação de uma ferramenta e seus respectivos testes automatizados para compilação do \gls{wpt} em um \gls{spider} do Scrapy.
 \end{enumerate}
 
-A seguir, é mostrada uma descrição mais detalhada de cada etapa de produção deste trabalho.
+A seguir, é mostrada uma descrição mais detalhada de cada uma dessas etapas.
 
 \section{Estudo de viabilidade do WPT e outras alternativas}
 
-Uma preocupação constante no desenvolvimento do presente trabalho foi a procura por adoção de padrões abertos que sejam amplamente utilizados.
-
-Além do Website Parse Template, outras duas alternativas foram pesquisadas: o Protocol Buffer \cite{protobuf} e o JSON \cite{JSON}. Ambas foram descartadas pelos motivos citados anteriormente ao passo que o WPT se encaixou bem na lista de requisitos.
+Uma preocupação constante no desenvolvimento do presente trabalho foi a procura por adoção de padrões abertos que sejam amplamente utilizados. Além do \gls{wpt}, outras duas alternativas foram pesquisadas: o \textit{Protocol Buffer} \cite{protobuf} e o JSON \cite{JSON}. Ambas as soluções foram descartadas pelos motivos citados anteriormente, ao passo que o \gls{wpt} se encaixou bem na lista de requisitos.
 
 \section{Estudo do Scrapy}
 
-Uma das grandes vantagens percebidas do framework Scrapy é a sua abundante documentação, seja a oficial em documentos HTML ou a documentação disponível dentro do próprio código fonte do mesmo.
+Uma das grandes vantagens percebidas do framework Scrapy é a sua abundante documentação, seja a oficial em documentos HTML ou a documentação disponível dentro do próprio código fonte.
 
 Os principais itens estudados foram a geração de código, comandos disponíveis na linha de comando, testes unitários automatizados e estratégias de desenvolvimento.
 
-O Scrapy possui uma coleção de testes automatizados, que permitem um melhor entendimento do framewok ao observar o que e como os componentes do mesmo estão sendo testados. Além disso, os testes disponíveis fornecem um esquema pré-definido de como os testes para novas funcionalidades deverão ser feitos. Os testes desta ferramenta se encontram no pacote \texttt{scrapy.tests.test\_commands}, ao passo que sua implementação se encontra em \\
+O Scrapy possui uma coleção de testes automatizados, que permitem um melhor entendimento do framewok ao observar o que e como os componentes do mesmo estão sendo testados. Além disso, os testes disponíveis fornecem um esquema pré-definido de como os testes para novas funcionalidades deverão ser feitos. Os testes dessa ferramenta se encontram no pacote \texttt{scrapy.tests.test\_commands}, ao passo que sua implementação se encontra em \\
  \texttt{scrapy.commands.importwpt}.
 
 \section{Desenvolvimento da ferramenta}
 
-O Scrapy possui um utilitário de linha de comando que permite a criação de novos projetos de \emph{web scrapers}, assim como sua execução, manutenção e observação de funcionamento do projeto. O exemplo mostrado na Listagem \ref{scrapy_saida_comando_scrapy} ilustra a saída da execução do comando "scrapy":
+O Scrapy possui um utilitário de linha de comando que permite a criação de novos projetos de \glspl{webscraper}, assim como sua a execução, manutenção e observação de funcionamento do projeto. O exemplo mostrado na Listagem \ref{scrapy_saida_comando_scrapy} ilustra a saída da execução do comando "scrapy":
 
 \lstset{basicstyle=\scriptsize,
 caption={Saída da execução do comando ''scrapy''},
@@ -53,7 +51,7 @@ Available commands:
 Use "scrapy <command> -h" to see more info about a command
 \end{lstlisting}
 
-A ferramenta desenvolvida neste trabalho foi incluída no comando apresentado anteriormente e pode ser observado quando o Scrapy detecta que está dentro de uma pasta de projeto como demonstrado na Listagem \ref{scrapy_comando_pasta_projeto}.
+A ferramenta desenvolvida neste trabalho foi incluída no comando apresentado na Listagem \ref{scrapy_saida_comando_scrapy} e pode ser observado quando o Scrapy detecta que está dentro de uma pasta de projeto como demonstrado na Listagem \ref{scrapy_comando_pasta_projeto}.
 
 \pagebreak
 \lstset{basicstyle=\scriptsize,
@@ -89,7 +87,7 @@ Use "scrapy <command> -h" to see more info about a command
 
 O comando \texttt{importwpt} cd lê um arquivo XML utilizando o formato WPT e cria um \emph{spider} do scrapy a partir dele. Após isso, a execução do comando \texttt{scrapy crawl nome\_do\_spider\_gerado} irá executar o processo de extração de informações conforme descrito no XML que foi importado.
 
-Dentre todos os elementos e seus atributos que a especificação do WPT apresenta, não há nenhum que diz sobre o tratamento e armazenamento dos dados obtidos. Por este motivo, somente a especificação do WPT é insuficiente para construir um sistema de recuperação de informações completo. Por exemplo, o atributo não-oficial \texttt{name} dentro da tag \texttt{<ow:block>} é necessário para nomeação de objetos dentro do \emph{spider}, como demonstrado na listagem \ref{scrapy_conteudo_arquivo_entrada}.
+Dentre todos os elementos e seus atributos que a especificação do WPT apresenta, não há nenhum que diz sobre o tratamento e armazenamento dos dados obtidos. Por esse motivo, somente a especificação do WPT é insuficiente para construir um sistema de recuperação de informações completo. Por exemplo, o atributo não-oficial \texttt{name} dentro da tag \texttt{<ow:block>} é necessário para nomeação de objetos dentro do \emph{spider}, como demonstrado na listagem \ref{scrapy_conteudo_arquivo_entrada}.
 
 \lstset{language=XML,
 basicstyle=\scriptsize,
@@ -137,9 +135,9 @@ class TemplateExample(BaseSpider):
 \end{lstlisting}
 
 
-Como este trabalho ainda está em andamento, algumas funcionalidades, tais como exportação dos dados obtidos, não estão presentes. Por ser um projeto de código aberto, há a possibilidade desta ferramenta ser desenvolvido por outras pessoas e mais funcionalidades serem adicionadas com o passar do tempo.
+Como este trabalho ainda está em andamento, algumas funcionalidades, tais como exportação dos dados obtidos, não estão presentes. Por ser um projeto de código aberto, há a possibilidade dessa ferramenta ser desenvolvido por outras pessoas e mais funcionalidades serem adicionadas com o passar do tempo.
 
-No entanto, no que tange á criação de \emph{spiders}, o projeto funciona conforme as especificações do WPT (disponíveis em \cite{wpt}). Como estas especificações ainda estão em desenvolvimento, é possível que em um futuro próximo seja necessária a manutenção do projeto a fim de ser compatível com a última versão do WPT.
+No entanto, no que tange á criação de \emph{spiders}, o projeto funciona conforme as especificações do WPT (disponíveis em \cite{wpt}). Como estas especificações ainda estão em desenvolvimento, é possível que em um futuro próximo seja necessária a manutenção do projeto a fim torna-lo compatível com a última versão do WPT.
 
 \subsection{Versionamento do código}
 
@@ -156,7 +154,7 @@ O utilitário \texttt{gitk} permite uma melhor visualização do trabalho feito,
 \end{figure}
 
 \pagebreak
-Este trabalho também pôde ser acompanhado por outras pessoas que não fazem parte dele diretamente através do Github. No Github, ferramentas como o \emph{Graph Viewer} permite uma visualição do trabalho desenvolvido, como mostrado na Figura \ref{github}:
+Este trabalho também pôde ser acompanhado por outras pessoas que não fazem parte dele diretamente através do Github. No Github, ferramentas como o \emph{Graph Viewer} permitem uma visualição do trabalho desenvolvido, como mostrado na Figura \ref{github}:
 
 \begin{figure} [ht]
 	\begin{center}
