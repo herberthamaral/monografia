@@ -154,32 +154,28 @@ Um dos casos mais famosos da linguagem Python para os sistemas de recuperação 
 \section{Scrapy}
 \index{Scrapy}
 
-Scrapy é um framework rápido e de alto nível para \emph{scrren scraping} e \emph{web crawling}, usado para navegar por websites e extrair dados estruturados de suas páginas. Pode ser usado para um grande número de propósitos, desde mineração de dados a monitoramento e automação de testes \cite{scrapy}.
+Scrapy é um framework rápido e de alto nível para \gls{screenscraping} e \gls{crawling}, usado para navegar por websites e extrair dados estruturados de suas páginas. Pode ser usado para um grande número de propósitos, desde mineração de dados a monitoramento e automação de testes \cite{scrapy}. Mesmo que o Scrapy tenha sido originalmente feito para \gls{screenscraping}, ele também pode ser utilizado para extrair dados usando APIs (como as APIs de serviços da Amazon\footnote{\url{http://www.amazon.com/webservices}}) ou pode ser utilizado como um \gls{webcrawler} de propósito geral.
 
-Mesmo que o Scrapy tenha sido originalmente feito para \emph{screen scraping} (retirada de informações específicas de uma página), ele também pode ser usado para extrair dados usando APIs (como as APIs de serviços da Amazon) ou pode ser usado como um \emph{web crawler} de propósito geral.
-% o 	que é screen scraping? -- explicado
-Dentre as principais funcionalidades que o Scrapy apresenta, pode-se citar:
+Dentre as principais funcionalidades que o Scrapy apresenta, podem-se citar:
 
 \begin{itemize}
 	\item Suporte embutido para selecionar e extrair dados de fontes em HTML ou XML.
-	\item Suporte embutido para limpeza e sanitização dos dados obtidos utilizando uma coleção de filtros reusáveis (chamados de \emph{Item Loaders}) compartilhados entre todos os \emph{web crawlers}.
-	\item Suporte embutido para geração e exportação de \emph{feeds} em múltiplos formatos (como JSON, XML e CSV) e armazenamento dos mesmos (seja em FTP ou localmente).
-	\item Um \emph{pipeline} de mídia para download automático de imagens (ou qualquer outro tipo de mídia) associado com os itens obtidos.
-	\item Suporte para extensão do Scrapy, onde é possível adicionar funcionalidades ao framework através do uso de sinais e uma API bem definida.
-	\item Grande quantidade de \emph{middlewares} e extensões para gerenciamento de cookies e sessões, compressão HTTP, autenticação HTTP, cache HTTP, mudança do header \emph{user-agent} e restições sobre a profundidade de \emph{crawling}.
-	\item Suporte robusto para auto-detecção de encoding assim como manipulação de encodes estrangeiros, quebrados e fora dos padrões.
-	\item Extensa coleção de status para métricas do \emph{crawler}, úteis para monitoramento de performance e de disponibilidade.
-	\item Um console interativo para teste de XPaths, úteis para debugging.
-	\item Um serviço a nível de sistema feitos para facilitar a implantação e execução dos crawlers em produção.
-	\item Webservices e console telnet embutidos para monitoração, controle, introspecção e debugging do crawler.
+	\item Suporte embutido para limpeza e sanitização dos dados obtidos utilizando uma coleção de filtros reutilizáveis (chamados de \emph{Item Loaders}) compartilhados entre todos os \glspl{webcrawler}.
+	\item Suporte embutido para geração e exportação de \glspl{feed} em múltiplos formatos (como JSON, XML e CSV) e armazenamento dos mesmos (seja em FTP ou localmente).
+	\item Um gerenciador de mídia para download automático de imagens (ou qualquer outro tipo de mídia) associado com os itens obtidos.
+	\item Suporte para extensão do Scrapy, sendo possível adicionar funcionalidades ao framework através do uso de sinais e uma API bem definida.
+	\item Grande quantidade de \glspl{middleware} e extensões para gerenciamento de cookies e sessões, compressão HTTP, autenticação HTTP, cache HTTP, mudança do header \emph{user-agent}\footnote{\Gls{httpheader}} que identifica o navegador do cliente} e restrições sobre a profundidade de \gls{crawling}.
+	\item Suporte robusto para auto-detecção de encoding, assim como manipulação de encodes estrangeiros, quebrados e fora dos padrões.
+	\item Extensa coleção de status para métricas do \gls{webcrawler}, úteis para monitoramento de performance e de disponibilidade.
+	\item Um console interativo para teste de \glspl{xpath}, útil para \gls{debugging}.
+	\item Um serviço a nível de sistema feito para facilitar a implantação e execução dos crawlers em produção.
+	\item Webservices e console telnet embutidos para monitoração, controle, introspecção e \gls{debugging} do crawler.
 \end{itemize}
-
-%não entendi metade dos aspectos citados anteriormente -- sinto muito...
 
 \subsection{Arquitetura}
 \index{Scrapy!Arquitetura}
 
-O diagrama demonstrado na figura \ref{scrapy_architecture} dá uma visão geral da arquitetura do Scrapy com seus componentes e o fluxo de dados que há dentro do sistema (mostrado em setas verdes). Uma breve descrição dos componentes e o fluxo de dados estão incluídos abaixo.
+O diagrama demonstrado na figura \ref{scrapy_architecture} apresenta uma visão geral da arquitetura do Scrapy com seus componentes e o fluxo de dados que há dentro do sistema (mostrado em setas verdes). A seguir, cada um dos componentes, bem como o fluxo de dados serão descritos.
 
 \begin{figure} [ht]
 	\centering
@@ -188,40 +184,35 @@ O diagrama demonstrado na figura \ref{scrapy_architecture} dá uma visão geral 
 	\label{scrapy_architecture}
 \end{figure}
 
-\subsubsection{Scrapy engine}
+\subsubsection{\emph{Scrapy engine}}
 \index{Scrapy!Arquitetura!Scrapy engine}
 
-O engine é responsável por controlar o fluxo de dados entre todos os componentes do sistema, e disparar eventos quando certas ações ocorrerem.
-% colocar mais informações sobre data flow
+O \emph{engine} é responsável por controlar o fluxo de dados entre todos os componentes do sistema, e disparar eventos quando certas ações ocorrerem.
 
-\subsubsection{Scheduler}
+\subsubsection{\emph{Scheduler} (agendador)}
 \index{Scrapy!Arquitetura!Scheduler}
 
-O scheduler recebe requisições do engine e as enfileira para realimentação da engine no futuro.
+O \emph{scheduler} (agendador) recebe requisições do \emph{engine} e as enfileira para a realimentação da engine no futuro.
 
-\subsubsection{Downloader}
+\subsubsection{\emph{Downloader}}
 \index{Scrapy!Arquitetura!Downloader}
 
-O Downloader é responsável por obter páginas da Web e alimentar o engine, que por sua vez alimenta os crawlers/spiders.
+O \emph{Downloader} é responsável por obter páginas da Web e alimentar o \emph{engine}, que por sua vez alimenta os crawlers/spiders.
 
 \subsubsection{Item pipeline}
 \index{Scrapy!Arquitetura!Item pipeline}
 
-O Item Pipeline é responsável para processar os itens uma vez que eles foram extraídos pelos crawlers/spiders. Tarefas típicas do Item Pipeline incluem limpeza, validação e persistência do item.
-
-%colocar mais informações sobre o este item
+O \textit{Item Pipeline} é responsável pelo processamento dos itens uma vez que eles foram extraídos pelos \textit{crawlers}/\textit{spiders}. Tarefas típicas do \textit{Item Pipeline} incluem limpeza, validação e persistência do item.
 
 \subsubsection{Spider middlewares}
 \index{Scrapy!Arquitetura!Spider middlewares}
 
-Spider middlewares são \emph{ganchos} específicos que ficam entre a Engine e os Spiders e podem processar a entrada de um sipder (respostas) e saídas (itens e requisições). Eles fornecem um mecanismo conveniente para estender as funcionalidades do Scrapy através da adição de código customizado.
-
-%colocar mais informações sobre o spider middleware
+\emph{Spider} \glspl{middleware} fica entre a \emph{Engine} e os \emph{Spiders} e podem processar a entrada de um sipder (respostas) e saídas (itens e requisições). Eles fornecem um mecanismo conveniente para estender as funcionalidades do Scrapy através da adição de código customizado.
 
 \subsubsection{Scheduler middlewares}
 \index{Scrapy!Arquitetura!Scheduler middlewares}
 
-Scheduler middlewares são \emph{ganchos} específicos que ficam entre a Engine e o Schedule e processa requisições quando as mesmas passam do engine para o Scheduler e vice-versa. Eles fornecem um mecanismo conveniente para estender as funcionalidades do Scrapy através da adição de código customizado.
+\emph{Scheduler} \glspl{middleware} fica entre a \emph{Engine} e o \emph{Scheduler} e processa requisições quando as mesmas passam do \textit{engine} para o \textit{Scheduler} e vice-versa. Eles fornecem um mecanismo conveniente para estender as funcionalidades do Scrapy através da adição de código customizado.
 
 \subsubsection{Fluxo de dados}
 \index{Scrapy!Arquitetura!Fluxo de dados}
@@ -229,31 +220,31 @@ Scheduler middlewares são \emph{ganchos} específicos que ficam entre a Engine 
 O fluxo de dados do Scrapy é controlado pela Engine e funciona da seguinte forma:
 
 \begin{enumerate}
-	\item O Engine abre um domínio, localiza o Spider que manipula aquele domínio e pede para o Spider a primeira URL para navegar.
-	\item O Engine pega a primeira URL para navegar do Spider e a agenda no Scheduler como Requisições.
-	\item O Engine pede para o Scheduler as próximas URLs para navegar.
-	\item O Scheduler retorna a próxima URL para navegação para o Engine e este a envia para o Downloader passando pelo Downloader Middleware.
-	\item Uma vez que o download da página terminou, o Downloader gera uma Response (com a página) e a manda para o Engine, passando pelo Downloader Middleware.
-	\item O Engine recebe a resposta do Downloader e a envia para o Spider processar, passando pelo Spider Middleware.
-	\item O Spider processa a Response e retorna os itens obtidos e novas Requests para o Engine.
-	\item O Engine envia os itens obtidos (retornados pelo spider) para o Item Pipeline e envia as Requests (retornadas pelo Spider) para o Scheduler.
-	\item O processo se repete a partir do passo 2 até que não haja mais Requests no Scheduler e o Engine fecha o domínio.
+	\item O \emph{Engine} abre um domínio, localiza o \emph{Spider} que manipula aquele domínio e pede para o \emph{Spider} a primeira URL para navegar.
+	\item O \emph{Engine} pega a primeira URL para navegar do Spider e a agenda no Scheduler como Requisições.
+	\item O \emph{Engine} pede para o \emph{Scheduler} as próximas URLs para navegar.
+	\item O \emph{Scheduler} retorna a próxima URL para navegação para o \emph{Engine} e este a envia para o \emph{Downloader} passando pelo \emph{Downloader Middleware}.
+	\item Uma vez que o download da página terminou, o Downloader gera uma Resposta (\emph{Response}) (com a página) e a manda para o \emph{Engine}, passando pelo \emph{Downloader Middleware}.
+	\item O \textit{Engine} recebe a resposta do \textit{Downloader} e a envia para o \textit{Spider} processar, passando pelo \textit{Spider Middleware}.
+	\item O \textit{Spider} processa a Resposta (\textit{Response}) e retorna os itens obtidos e novas Requisições(\textit{Requests}) para o \textit{Engine}.
+	\item O \textit{Engine} envia os itens obtidos (retornados pelo \textit{spider}) para o \textit{Item Pipeline} e envia as Requisições(retornadas pelo \textit{Spider}) para o \textit{Scheduler}.
+	\item O processo se repete a partir do passo 2 até que não existam mais Requisições no \textit{Scheduler} e o \textit{Engine} fecha o domínio.
 \end{enumerate}
 
 \subsubsection{E/S orientado a eventos}
 \index{Scrapy!Arquitetura!Networking orientado a eventos}
 
-O Scrapy é escrito utilizando o Twisted \cite{twisted}, um framework popular para programação orientada a eventos para Python. Desta forma, ele é implementado utilizado código não-bloqueante (ou assíncrono) para aumentar a concorrência.
+O Scrapy é escrito utilizando o Twisted \cite{twisted}, um \textit{framework} popular para programação orientada a eventos para Python. Desta forma, ele é implementado utilizado código não-bloqueante (ou assíncrono) para aumentar a concorrência.
 
 \subsection{Serviços embutidos}
 \index{Scrapy!Serviços embutidos}
 
-O Scrapy possui uma gama de serviços embutidos feitos para facilitar a monitoração e a manutenção do sistema. A seguir, é apresentado cada um destes serviços embutidos bem como uma descrição breve.
+O Scrapy possui uma gama de serviços embutidos implementados para facilitar a monitoração e a manutenção do sistema. A seguir, são apresentados cada um destes serviços embutidos.
 
-\subsubsection{Logging}
+\subsubsection{\textit{Logging}}
 \index{Scrapy!Serviços embutidos!Logging}
 
-O log é um histórico de execução do sistema. Através da análise de logs, é possível detectar e achar a fonte de problemas. O Scrapy possui um componente de logging que grava as mensagens de log em um arquivo em disco e possui cinco níveis de log \cite{scrapy_log}:
+O \textit{log} é um histórico de execução do sistema. Através da análise de logs, é possível detectar e achar a fonte de problemas. O Scrapy possui um componente de \textit{logging} que grava as mensagens de log em um arquivo em disco e possui cinco níveis de log \cite{scrapy_log}:
 
 \begin{enumerate}
 	\item \texttt{\textbf{CRITICAL}} - Para erros críticos
@@ -263,11 +254,11 @@ O log é um histórico de execução do sistema. Através da análise de logs, �
 	\item \texttt{\textbf{DEBUG}} - Para mensagens de debug
 \end{enumerate}
 
-O nível de log é configurável e um determinado nível irá catalogar todas as mensagens do nível mais as mensagens dos níveis abaixo. Por exemplo, se o nível de log for configurado para 5 (\texttt{DEBUG}), o sistema irá gravar todas as mensagens de log, ao passo que se o nível de log for configurado para 2 (\texttt{ERROR}), somente as mensagens de erros regulares e erros críticos serão gravados.
+O nível de log é configurável e um determinado nível irá catalogar todas as mensagens do nível mais as mensagens dos níveis abaixo. Por exemplo, se o nível de log for configurado para 5 (\texttt{DEBUG}), o sistema irá gravar todas as mensagens de log, ao passo que se o nível de log for configurado para 2 (\texttt{ERROR}), somente as mensagens de erros regulares e erros críticos serão gravadas.
 
 \subsection{Código fonte}
 
-O Scrapy é um \emph{framework} de código aberto, em que seu código está disponível em um repositório no Github (\url{http://github.com/}) no endereço \url{http://github.com/insophia/scrapy/}.
+O Scrapy é um \emph{framework} de código aberto, disponível em um repositório no Github (\url{http://github.com/}) no endereço \url{http://github.com/insophia/scrapy/}.
 
 \pagebreak
 \section{Git e Github}
@@ -279,9 +270,9 @@ Git é um sistema de controle de versões distribuído escrito inicialmente por 
 Um controle de versões é um sistema que guarda modificações a um arquivo ou conjunto de arquivos com o passar do tempo, com o principal intuito de obter versões específicas a qualquer momento \cite[p. 1]{progit}.
 
 
-\subsubsection{Controle de versões locais}
+\subsubsection{Controle local de versões}
 
-Segundo \cite[p.2]{progit}, é comum pessoas controlarem versões manualmente através da cópia de arquivos para outras pastas, provavelmente com alguma indicação de data, como ilustrado na Figura \ref{local_version_control}. Apesar de simples, este sistema de versionamento é propenso a erros devido ao fato que se vale da memória humana para encontrar versões específicas e controlar alterações.
+Segundo \cite[p.2]{progit}, é comum pessoas controlarem versões manualmente através da cópia de arquivos para outras pastas, provavelmente com alguma indicação de data, como ilustrado na Figura \ref{local_version_control}. Apesar de simples, esse sistema de versionamento é propenso a erros devido ao fato que se vale da memória humana para encontrar versões específicas e controlar alterações.
 
 \begin{figure} [ht]
 	\centering
