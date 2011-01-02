@@ -12,12 +12,13 @@ As informações obtidas por motores de busca de propósito específico na Web p
 
 % ------------------------------
 
-A recuperação de Informações na Web é uma tarefa fácil, porém trabalhosa e propensa a erros se feita manualmente por humanos. Fácil, pois humanos conseguem detectar padrões de informações, categorizá-las e armazená-las como quiserem. Trabalhosa, pois podem haver inúmeras páginas com grandes quantidades de informação, o que torna o processo de recuperação manual de informações caro, trabalhoso, tedioso e pouco confável em alguns casos. Dependendo do número de motoristas e da frequência de atualizações das bases de dados locais, a empresa citada no exemplo anterior precisaria contratar algumas pessoas a mais somente para realizar esse tipo de tarefa.
+A recuperação de Informações na Web é uma tarefa fácil, porém trabalhosa e propensa a erros se feita manualmente por humanos. Fácil, pois humanos conseguem detectar padrões de informações, categorizá-las e armazená-las como quiserem. Trabalhosa, pois podem haver inúmeras páginas com grandes quantidades de informação, o que torna o processo de recuperação manual de informações caro, trabalhoso, tedioso e pouco confiável em alguns casos. Dependendo do número de motoristas e da frequência de atualizações das bases de dados locais, a empresa citada no exemplo anterior precisaria contratar algumas pessoas a mais somente para realizar esse tipo de tarefa.
 
 Soluções computacionais como \glspl{webcrawler} ou \glspl{webscraper} fazem parte dos motores de busca de propósito específico  e ajudam na automação do processo de recuperação de informações estruturadas. No entanto, por serem soluções computacionais, demandam que sejam programadas e, geralmente, para um fim específico. Um \gls{webscraper} que foi originalmente desenvolvido para extrair informações de um determinado tipo de página não conseguirá extrair as mesmas informações se a estrutura e/ou organização da página mudarem.
 
 Na prática, um \gls{webscraper} projetado para um sítio precisará sofrer modificações, de forma que consiga extrair informações caso a estrutura da página em \gls{html} mude, seja por uma mudança na estrutura de páginas do sítio ou pelo uso de um novo sítio que possa prover as mesmas informações.
 
+\hyphenation{pro-ble-ma}
 Com a recuperação de informações de forma manual, há o problema da falta de automação de processo, o que pode levar a um alto custo  de recuperação de informações, sem mencionar a probabilidade de haver erros humanos. Com a automação do processo, pode haver o problema de alto custo de criação e manutenção dos softwares responsáveis pela recuperação de informação estruturada.
 
 O projeto de sistemas de recuperação estruturada na Web necessitam de conhecimentos específicos por parte dos desenvolvedores que os criam, o que pode levar a um custo elevado do projeto.
@@ -29,8 +30,6 @@ O padrão XML utilizado é o \gls{wpt} \cite{wpt}. O principal motivo para utili
 Com isso, o XML se torna uma \gls{DomainSpecificLanguage} que é dedicada para o domínio de \glspl{webscraper}. O uso de \glspl{DomainSpecificLanguage} faz com que não seja estritamente necessário codificar em uma linguagem de domínio geral, o que torna a tarefa específica de criação e manutenção de \glspl{webscraper} mais fácil e produtiva.
 
 O uso de XML como meio para geração destes sistemas faz com que não haja uma dependência de uma única linguagem de programação, como a linguagem Python utilizada neste trabalho. Qualquer outra linguagem com as devidas bibliotecas pode interpretar XML e gerar código para qualquer outra linguagem de programação. Com isso, há como diminuir o nível de acoplamento entre a solução desenvolvida e a linguagem utilizada, de forma que todo o código em XML possa ser reaproveitado para geração de outros sistemas em outras linguagens de programação sem maiores problemas.
-
-A produtividade inerente à linguagem Python, combinado com seu poder de prototipação, permite que \glspl{webscraper}  sejam desenvolvidos e testados mais rapidamente.
 
 O shell interativo (\gls{repl}) disponível na distribuição da linguagem Python permite a criação e execução instantânea de código, sem que sejam necessários passos como criação de arquivo com o código-fonte, \emph{linkagem} e compilação.
 
@@ -46,4 +45,4 @@ A elaboração do presente trabalho se deu em 3 etapas distintas:
 	\item Implementação de uma ferramenta e seus respectivos testes automatizados para compilação do WPT em um \glspl{spider} do Scrapy.
 \end{enumerate}
 
-O código fonte resultado deste trabalho está disponível em seu repositório \emph{online} no endereço \texttt{http://github.com/herberthamaral/scrapy/} no \emph{branch} "crawling-template".
+O código fonte resultado deste trabalho está disponível em seu repositório \emph{online} no endereço  \texttt{http://github.com/herberthamaral/scrapy/} no \emph{branch} "crawling-template".

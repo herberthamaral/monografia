@@ -117,7 +117,7 @@ Linguagens dinâmicas, como o Python, são ideais para pesquisas e provas de con
 
 Python é uma linguagem portável e multiplataforma. Isso significa que um código em Python pode ser executado nos mais diversos ambientes e sistemas operacionais, como Windows, Linux, Mac OS e em até sistemas operacionais móveis como Symbian e Android.
 
-Há também a possibilidade de executar a linguagem Python em outros ambientes diferentes do original (CPython). Iniciativas como Jython (Python para a \emph{Java Virtual Machine}) e o IronPython (Python para o ambiente Microsoft.NET) permitem que o Python seja executado dentro das duas das maiores plataformas de desenvolvimento de software da atualidade, aproveitando seus recursos e suas funcionalidades. Dessa forma, um programa em Python pode utilizar o Swing através do Jython para o desenvolvimento de uma interface gráfica em ambiente Java ou pode utilizar o \emph{Windows Communication Foundation} como \emph{framework} de troca de mensagens no ambiente Microsoft.NET.
+Há também a possibilidade de executar a linguagem Python em outros ambientes diferentes do original (CPython). Iniciativas como Jython (Python para a \emph{Java Virtual Machine}) e o IronPython (Python para o ambiente Microsoft.NET) permitem que o Python seja executado dentro das duas das maiores plataformas de desenvolvimento de software da atualidade, aproveitando seus recursos e suas funcionalidades. Dessa forma, um programa em Python pode utilizar o Swing\footnote{Swing é uma interface de programação de aplicativos Java para interfaces gráficas} através do Jython para o desenvolvimento de uma interface gráfica em ambiente Java ou pode utilizar o \emph{Windows Communication Foundation} como \emph{framework} de troca de mensagens no ambiente Microsoft.NET.
 
 \subsubsection{CPython}
 \index{Python!Ambientes e plataformas!IronPython}
@@ -127,7 +127,7 @@ O CPython é a implementação padrão da linguagem Python e é escrita na lingu
 \subsubsection{IronPython}
 \index{Python!Ambientes e plataformas!IronPython}
 
-O IronPython \cite{ironpython} é uma implementação da linguagem de programação Python que é executada no framework .NET e Silverlight. Suporta um shell interativo (como a maioria das implementações da linguagem Python) com compilação dinâmica. É integrado com o resto do framework .NET e torna todas as bibliotecas do .NET disponíveis para programadores Python, enquanto mantém a compatibilidade com a linguagem Python.
+O IronPython \cite{ironpython} é uma implementação da linguagem de programação Python que é executada no framework .NET e Silverlight. Suporta um \gls{shell} interativo (como a maioria das implementações da linguagem Python) com compilação dinâmica. É integrado com o resto do framework .NET e torna todas as bibliotecas do .NET disponíveis para programadores Python, enquanto mantém a compatibilidade com a linguagem Python.
 
 \subsubsection{Jython}
 \index{Python!Ambientes e plataformas!Jython}
@@ -148,7 +148,7 @@ Conferências anuais especificamente voltadas para usos de Python em computaçã
 
 Ambientes de desenvolvimento integrado como o PythonXY \cite{pythonxy} ajudam a mostrar para cientistas que a linguagem Python com seus pacotes de bibliotecas e softwares para computação científica pode ser uma excelente alternativa para ambientes como o Matlab \footnote{\url{http://www.mathworks.com/products/matlab/}}. 
 
-Um dos casos mais famosos da linguagem Python para os sistemas de recuperação de informações é o Google\cite{google}. Python representa um papel fundamental dentro da estrutura de motores de busca do Google, sendo responsável pelos seus \emph{crawlers} e pelos seus servidores de URL \cite{surveyir}.
+Um dos casos mais famosos da linguagem Python para os sistemas de recuperação de informações é o Google\cite{google}. Ela representa um papel fundamental dentro da estrutura de motores de busca do Google, sendo responsável pelos seus \emph{crawlers} e pelos seus servidores de URL \cite{surveyir}.
 
 \pagebreak
 \section{Scrapy}
@@ -165,11 +165,11 @@ Dentre as principais funcionalidades que o Scrapy apresenta, podem-se citar:
 	\item Um gerenciador de mídia para download automático de imagens (ou qualquer outro tipo de mídia) associado com os itens obtidos.
 	\item Suporte para extensão do Scrapy, sendo possível adicionar funcionalidades ao framework através do uso de sinais e uma API bem definida.
 	\item Grande quantidade de \glspl{middleware} e extensões para gerenciamento de cookies e sessões, compressão HTTP, autenticação HTTP, cache HTTP, mudança do header \emph{user-agent} \footnote{\Gls{httpheader}} que identifica o navegador do cliente e restrições sobre a profundidade de \gls{crawling}.
-	\item Suporte robusto para auto-detecção de encoding, assim como manipulação de encodes estrangeiros, quebrados e fora dos padrões.
+	\item Suporte robusto para auto-detecção de codificação, assim como manipulação de codificações estrangeiras, quebradas e fora dos padrões.
 	\item Extensa coleção de status para métricas do \gls{webcrawler}, úteis para monitoramento de performance e de disponibilidade.
 	\item Um console interativo para teste de \glspl{xpath}, útil para \gls{debugging}.
 	\item Um serviço a nível de sistema feito para facilitar a implantação e execução dos crawlers em produção.
-	\item Webservices e console telnet embutidos para monitoração, controle, introspecção e \gls{debugging} do crawler.
+	\item \Glspl{webservice} e console telnet embutidos para monitoração, controle, introspecção e \gls{debugging} do crawler.
 \end{itemize}
 
 \subsection{Arquitetura}
