@@ -14,7 +14,14 @@ A seguir, é mostrada uma descrição mais detalhada de cada uma dessas etapas.
 
 \section{Estudo de viabilidade do WPT e outras alternativas}
 
-Uma preocupação constante no desenvolvimento do presente trabalho foi a procura por adoção de padrões abertos que sejam amplamente utilizados. Além do \gls{wpt}, outras duas alternativas foram pesquisadas: o \textit{Protocol Buffer} \cite{protobuf} e o JSON \cite{JSON}. Ambas as soluções foram descartadas pelos motivos citados anteriormente, ao passo que o \gls{wpt} se encaixou bem na lista de requisitos.
+Uma preocupação constante no desenvolvimento do presente trabalho foi a procura por adoção de padrões abertos que sejam amplamente utilizados. Além do \gls{wpt}, outras duas alternativas foram pesquisadas: o \textit{Protocol Buffer} \cite{protobuf} e o JSON \cite{JSON}. O \emph{Protocol Buffer} foi descartado pelos seguintes motivos:
+
+\begin{enumerate}
+	\item Tecnologia proprietária (pertence ao Google);
+	\item Pouca documentação se comparado ao XML e JSON;
+\end{enumerate}
+
+O JSON possui várias vantagens sobre o XML, como menor verbosidade, facilidade de leitura e interoperabilidade \footnote{Maiores comparações em \url{http://www.json.org/xml.html}}, porém, a escolha do XML se deu pela documentação já disponível do \gls{wpt}. Se o JSON tivesse sido escolhido, seria necessário a escrita de uma documentação similar à documentação do \gls{wpt}.
 
 \section{Estudo do Scrapy}
 
