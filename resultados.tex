@@ -6,17 +6,17 @@ Como resultado deste trabalho, é apresentada uma ferramenta construida para ope
 
 \hyphenation{ou-tros}
 
-A ferramenta aqui apresentada ainda encontra-se em desenvolvimento. Por ser uma contribuição ao Scrapy, um \textit{framework} de código aberto, esse protótipo poderá ser desenvolvido por outros membros da comunidade. O código-fonte desse protótipo encontra-se num repositório do Github (\texttt{http://github.com/}) disponível em \texttt{http://github.com/herberthamaral/}, no \emph{branch} "crawling-template".
+Conseguiu-se alcançar os objetivos deste trabalho com a ferramenta desenvolvida. Porém, num âmbito geral, a ferramenta aqui apresentada ainda encontra-se em desenvolvimento por não apresentar todas as características desejadas e por não ser estável\footnote{Neste texto, entende-se por "estável" o software que já foi testado por várias pessoas e em várias situações e que atualmente apresenta um número mínimo de problemas que não afetam (ou não impedem) o seu uso.}. Por ser uma contribuição ao Scrapy, um \textit{framework} de código aberto, essa ferramenta poderá ser desenvolvida por outros membros da comunidade. O código-fonte dessa ferramenta encontra-se num repositório do Github (\texttt{http://github.com/}) disponível em \texttt{http://github.com/herberthamaral/}, no \emph{branch} "crawling-template".
 
 Por não se tratar de uma ferramenta estável, o código originado do presente trabalho ainda não foi incorporado na linha de desenvolvimento principal do Scrapy, mas espera-se que isso seja feito em breve.
 
 Apesar de ser um projeto de código aberto e disponibilizado publicamente, ainda não há contribuições de outros desenvolvedores. Um dos motivos é a proposital falta de divulgação: espera-se ter uma versão que possa ser considerada estável antes de apresentar esse projeto formalmente à comunidade.
 
-Um dos aspectos positivos da abordagem adotada é que a ferramenta desenvolvida gera o código de spiders na linguagem de programação Python a partir de código em XML, permitindo que o programador faça altarações no código gerado, caso seja necessário. 
+Um dos aspectos positivos da abordagem adotada é que a ferramenta desenvolvida gera o código de spiders na linguagem de programação Python a partir de código em XML, permitindo que o programador faça alterações no código gerado, caso seja necessário. 
 
 Como este trabalho não contempla, tampouco pretende contemplar, todas as facetas da criação de sistemas de recuperação de informações estruturadas na Web, a possibilidade do programador alterar o código gerado pode vir a ser bem útil em situações mais específicas. Por isso o objetivo deste trabalho é \emph{gerar código} ao invés de \emph{interpretar código} com o intuito de criar sistemas de recuperação de informações.
 
-Pelo fato dos objetivos deste trabalho se basearem na criação de uma ferramenta que facilite a criação de sistemas de recuperação de informação na Web, duas análises podem ser feitas com os resultados: uma quantitativa e outra qualitativa. Quantitativa para mostrar as visíveis economias no processo de escrita/manutenção de código. Qualitativa para mostrar como os resultados obtidos podem levar a uma maior produtividade, menor curva de aprendizado e resultados mais rápidos. Também se faz necessária a demonstração de exemplos de sistemas de recuperação de informações reais criados a partir do uso da abordagem desenvolvida neste trabalho, bem como as dificuldades encontras e trabalhos futuros.
+Duas análises podem ser feitas com os resultados obtidos: uma quantitativa e outra qualitativa. Quantitativa para mostrar as visíveis economias no processo de escrita/manutenção de código. Qualitativa para mostrar como os resultados obtidos podem levar a uma maior produtividade, menor curva de aprendizado e resultados mais rápidos. Também se faz necessária a demonstração de exemplos de sistemas de recuperação de informações reais criados a partir do uso da abordagem desenvolvida neste trabalho, bem como as dificuldades encontras e trabalhos futuros.
 
 \section{Avaliação quantitativa}
 
@@ -167,9 +167,9 @@ Neste segundo exemplo, o arquivo XML possui 15 linhas, ao passo que o código ge
 Em uma comparação qualitativa, pode-se citar alguns critérios:
 
 \begin{enumerate}
-	\item Linguagens de propósito geral \emph{versus} \glspl{DomainSpecificLanguage}.
-	\item Ganho de produtividade.
-	\item Facilidade para o usuário final.
+	\item Linguagens de propósito geral \emph{versus} \glspl{DomainSpecificLanguage};
+	\item Ganho de produtividade;
+	\item Facilidade para o usuário final;
 	\item Automação de processos.
 \end{enumerate}
 
@@ -177,7 +177,7 @@ Linguagens de propósito geral servem para a construção de mais diversos tipos
 
 Quando se deixa de usar uma linguagem de propósito geral (Python) para utilizar outra de propósito específico (XML/WPT) o ganho de produtividade estará em eliminar preocupações não inerentes ao domínio. Com menos recursos e preocupações a serem considerados, o trabalho do usuário final é facilitado.
 
-Por exemplo, quando se trabalha com uma linguagem de propósito geral (como Python, C/C++ ou Java), o programador dispõe de uma maior flexibilidade, pois o mesmo pode valer de estruturas de controle, repetição, variáveis, funções ou métodos, classes, objetos, interação com o sistema de arquivos e E/S, interação com outros sistemas e tratamento de exceções para desenvolver suas soluções. Além de todos os itens relacionados à linguagem de programação, o programador precisa ter domínio de técnicas de extração de informações de páginas na Web, em que, nos casos mais simples, envolve o conhecimento de uma linguagem de marcação (HTML, por exemplo), bibliotecas utilizadas para \emph{parsing} e bibliotecas para comunicação com servidores HTTP (\emph{HyperText Transfer Protocol} - Protocolo de Transferência de HiperTexto). No caso de uma linguagem específica de domínio baseada em XML, o programador precisará ter as mesmas noções de extração de informações de páginas na Web, porém sem a complexidade de lidar com uma linguagem de propósito geral e todas as suas respectivas dependências (bibliotecas), limitando-se apenas a conhecer a sintaxe do XML e as regras inerentes ao WPT.
+Por exemplo, quando se trabalha com uma linguagem de propósito geral (como Python, C/C++ ou Java), o programador dispõe de uma maior flexibilidade, pois o mesmo pode valer de estruturas de controle, repetição, variáveis, funções ou métodos, classes, objetos, interação com o sistema de arquivos e E/S, interação com outros sistemas e tratamento de exceções para desenvolver suas soluções. Além de todos os itens relacionados à linguagem de programação, o programador precisa ter domínio de técnicas de extração de informações de páginas na Web, em que, nos casos mais simples, envolve o conhecimento de uma linguagem de marcação (HTML, por exemplo), bibliotecas utilizadas para \gls{parsing} e bibliotecas para comunicação com servidores HTTP (\emph{HyperText Transfer Protocol} - Protocolo de Transferência de HiperTexto). No caso de uma linguagem específica de domínio baseada em XML, o programador precisará ter as mesmas noções de extração de informações de páginas na Web, porém sem a complexidade de lidar com uma linguagem de propósito geral e todas as suas respectivas dependências (bibliotecas), limitando-se apenas a conhecer a sintaxe do XML e as regras inerentes ao WPT.
 
 O uso de XML pode trazer várias vantagens para a criação de sistemas de recuperação de informação. A principal é que qualquer linguagem de programação que dê suporte à XML pode criar templates. Como o trabalho de \emph{não} escrever código é sempre menor do que escrever \emph{algum} código, os usuários podem se beneficiar com a criação de sistemas que geram templates automaticamente. Por exemplo, um \emph{plugin} de um navegador Web pode permitir que o usuário selecione as seções de uma determinada página que gostaria que fossem recuperadas automaticamente e então gerar o template correspondente. 
 
@@ -186,6 +186,7 @@ Uma outra vantagem do uso de XML como meio para geração desses sistemas é a b
 \pagebreak
 \section{Exemplos reais}
 
+\hyphenation{e-xem-plos}
 Para fornecer melhores bases de entendimento deste trabalho, a seguir são apresentadas exemplos de casos de uso da ferramenta desenvolvida em conjunto com todo o processo de identificação de elementos na página e escrita do template.
 
 \subsection{Exemplo 1 - Página de editais do Ministério da Cultura}
@@ -202,18 +203,18 @@ A página de editais do Ministério da Cultura, que se encontra em \url{http://w
 A seguir, as legendas das respectivas áreas destacadas:
 
 \begin{enumerate}
-	\item Título da notícia
-	\item Metadados (data e tags)
-	\item Mais informações
+	\item Título da notícia;
+	\item Metadados (data e tags);
+	\item Mais informações.
 \end{enumerate}
 
 Analisando o código HTML da seleção, obtém-se os seguintes seletores \gls{xpath}:
 
 \begin{itemize}
-	\item \textbf{Base} - \texttt{/html/body/div[2]/div[1]/ol[1]/li}
-	\item \textbf{Título} - \texttt{//h3/a/text()}
-	\item \textbf{Metadados} - \texttt{//p/text()}
-	\item \textbf{Mais informações} - \texttt{//div/p/text()}
+	\item \textbf{Base} - \texttt{/html/body/div[2]/div[1]/ol[1]/li};
+	\item \textbf{Título} - \texttt{//h3/a/text()};
+	\item \textbf{Metadados} - \texttt{//p/text()};
+	\item \textbf{Mais informações} - \texttt{//div/p/text()}.
 \end{itemize}
 
 Como os itens desejados (chamadas de notícias) se repetem na página, é necessário indicar qual será o padrão de repetição, o que nesse caso é indicado pelo seletor \textbf{Base}: todos os itens de lista (\texttt{li}) que se encontram em \texttt{/html/body/div[2]/div[1]/ol[1]}. Os demais seletores derivam de cada item da lista indicada por \textbf{Base}.
@@ -353,24 +354,24 @@ A página em questão (\url{http://stackoverflow.com/about}) contém um índice 
 A seguir, as legendas das respectivas áreas destacadas:
 
 \begin{enumerate}
-	\item Número de votos
-	\item Número de respostas
-	\item Número de visualizações
-	\item Título da pergunta
-	\item Resumo da pergunta
-	\item Nome do usuário que fez a pergunta
+	\item Número de votos;
+	\item Número de respostas;
+	\item Número de visualizações;
+	\item Título da pergunta;
+	\item Resumo da pergunta;
+	\item Nome do usuário que fez a pergunta.
 \end{enumerate}
 
 Analisando o código HTML da seleção, obtém-se os seguintes seletores \gls{xpath}:
 
 \begin{itemize}
-	\item \textbf{Base} - \texttt{//div[@id='questions']/div}
-	\item \textbf{Titulo} - \texttt{//div[@class='summary']/h3/a/text()}
-	\item \textbf{Resumo} - \texttt{//div[@class='summary']/div[1]/text()}
-	\item \textbf{Usuário} - \texttt{//div[@class='summary']/div[3]/div[3]/a/text()}
-	\item \textbf{Vizualizações} - \texttt{//div[@class='statscontainer']/div[@class='views']/text()}
-	\item \textbf{Votos} - \texttt{//div[1]/div[2]/div[1]/div[@class='votes']/span/strong/text()}
-	\item \textbf{Respostas} - \texttt{//div[1]/div[2]/div[2]/strong/text()}
+	\item \textbf{Base} - \texttt{//div[@id='questions']/div};
+	\item \textbf{Titulo} - \texttt{//div[@class='summary']/h3/a/text()};
+	\item \textbf{Resumo} - \texttt{//div[@class='summary']/div[1]/text()};
+	\item \textbf{Usuário} - \texttt{//div[@class='summary']/div[3]/div[3]/a/text()};
+	\item \textbf{Vizualizações} - \texttt{//div[@class='statscontainer']/div[@class='views']/text()};
+	\item \textbf{Votos} - \texttt{//div[1]/div[2]/div[1]/div[@class='votes']/span/strong/text()};
+	\item \textbf{Respostas} - \texttt{//div[1]/div[2]/div[2]/strong/text()}.
 \end{itemize}
 
 O item \textbf{Base} indica a base de repetição da lista de perguntas da página. Dentro do container \textbf{Base} encontra-mse os outros elementos que compõe o item a ser recuperado. O WPT equivalente às seleções anteriores é descrito na listagem \ref{wpt_stackoverflow}.
@@ -522,61 +523,20 @@ Item recuperado <titulo=General Questions about Entity Framework
 
 \section{Dificuldades encontradas}
 
+Como demonstrado nos resultados, todos os objetivos propostos neste trabalho foram atendidos. Entretanto, alguns problemas foram encontrados no decorrer do desenvolvimento deste trabalho, que são detalhados nesta seção.
+
 Apesar da abundante documentação e mesmo não possuindo uma má qualidade de código ou baixa cobertura de testes, uma das principais dificuldades foi aderir à arquitetura e estilo de codificação do Scrapy para que a padronização entre componentes fosse mantida.
 
 O framework em si possui um tamanho considerável (759 arquivos em 13/11/2010 \footnote{Informação obtida através do comando \texttt{find | wc -l} }), portanto, leva-se um tempo para acostumar-se com a estrutura de diretórios, arquivos e padrões de nome.
 
 Não foi possível encontrar referências acadêmicas do Scrapy, um dos motivos pelos quais somente a respectiva documentação oficial foi utilizada.
 
+\hyphenation{di-fe-ren-tes}
 O formato WPT possui apenas informações sobre a disposição dos elementos em uma página e seus respectivos significados (ontologia). Tal fato leva ao incoveniente de haver diferentes \emph{schemas} XML em um mesmo arquivo para determinar outras informações, como nome dos variáveis do código gerado e formato de persistência dos dados obtidos.
 
 Ainda não é possível o uso de WPT para determinar o verbo HTTP a ser utilizado. Atualmente, todas as requisições feitas com os spiders gerados a partir do WPT são feitas através do HTTP GET, não sendo possível utilizar outros verbos HTTP como POST, PUT, DELETE e PATCH. 
 
-As regras de validação formam outra dificuldade relacionada ao WPT: verificação de validade de URLs, caminhos XPATH, validação de templates, blocos e nomes de elementos. Como a validação ocorre em vários elementos e o XML é um formato hierárquico, validações recursivas precisaram ser feitas, e, dependendo do nível de recursão, tratamentos especiais teriam que ser dados. Como um exemplo, considere o trecho de código da listagem \ref{problemas_wpt_blocos1}:
-
-\lstset{language=XML,
-basicstyle=\scriptsize,
-caption={Hierarquia de blocos planos e de um nível},
-captionpos=b
-}
-\begin{lstlisting}[label=problemas_wpt_blocos1]
- ...
-  <ow:block ow:xpath="/bloco1" name="raiz">
-    <ow:block ow:xpath="//caminho/para/um" name="raiz_um"></ow:block>
-    <ow:block ow:xpath="//caminho/para/dois" ow:type="repeatable" name="raiz_dois"></ow:block>
-  </ow:block>
- 
-  <ow:block ow:xpath="/bloco2" name="dois"></ow:block>
-  ...
-\end{lstlisting}
-
-O bloco com nome \texttt{dois} é um bloco de nível único e o bloco com nome \texttt{raiz} é um bloco hierárquico com um nível. Os blocos de nível único são fáceis de serem interpretados pois representam apenas um item na página a ser obtido. Já os blocos com um nível formam itens compostos por um ou mais elementos de nível único. Blocos com o atributo \emph{ow:type="repeatable"} (como o bloco de nome \texttt{raiz\_dois}) em um contexto que nem todos são repetíveis precisam de um tratamento especial. Blocos de nível único repetíveis são tratados de maneira similar.
-
-O principal problema acontece quando há um bloco com um nível maior que um, como o mostrado na listagem \ref{problemas_wpt_blocos2}. Este tipo de caso ainda não é tratado pela ferramenta, por ainda ser complexo de lidar. De fato, ainda não há uma solução definitiva para blocos com mais de um nível, pois todas as regras anteriores, incluindo verificação de nomes e verificação de blocos com repetições, devem ser aplicadas.
-
-\lstset{language=XML,
-basicstyle=\scriptsize,
-caption={Hierarquia de blocos de dois níveis},
-captionpos=b
-}
-\begin{lstlisting}[label=problemas_wpt_blocos2]
- ...
-  <ow:block ow:xpath="/bloco_raiz" name="raiz">
-
-    <ow:block ow:xpath="//caminho/para/um" name="um">
-    	<ow:block ow:xpath="//caminho/para/um_pt_um" name="um_pt_um"></ow:block>
-    	<ow:block ow:xpath="//caminho/para/um_pt_dois" name="um_pt_dois"></ow:block>
-    </ow:block>
-    
-    <ow:block ow:xpath="//caminho/para/dois" name="dois"></ow:block>
-    <ow:block ow:xpath="//caminho/para/tres" name="tres"></ow:block>
-    
-  </ow:block>
-  ...
-\end{lstlisting}
-
-Questões como "quantos níveis poderão ser suportados?", "como os blocos do nível N deverão ser tratados?","qual a profundidade máxima de níveis que a ferramenta poderá suportar?", "como blocos repetíveis serão tratados em cada nível", "como ficará a questão da navegação em outras páginas a partir de links para serem seguidos forem detectados em blocos de níveis mais inferiores?" ainda permanecem sem resposta, devido à natureza e complexidade de achar a resposta das mesmas.
-
+As regras de validação formam outra dificuldade relacionada ao WPT: verificação de validade de URLs, caminhos XPATH, validação de templates, blocos e nomes de elementos. Como a validação ocorre em vários elementos e o XML é um formato hierárquico, validações recursivas precisaram ser feitas, e, dependendo do nível de recursão, tratamentos especiais teriam que ser dados. 
 Há ainda a preocupação com a qualidade e legibilidade do código gerados, uma vez que a ferramenta desenvolvida não visa substituir o programador, mas sim auxilia-lo. A ferramenta precisa gerar código devidamente organizado e com alguns comentários para melhor orientação. A indentação obrigatória da linguagem Python é uma característica que ajuda neste quesito, porém não deixa de causar problemas com relação a indentação na geração de código.
 
 A biblioteca padrão para testes disponíveis no Python 2.6 (utilizado neste trabalho), a \texttt{unittest}, não possui um método de comparação de strings linha-a-linha, que é uma funcionalidade útil quando se trata testes de métodos que geram código. Isso significa que, se um texto precisa ser comparado com outro em um teste unitário, os dois serão comparados em sua totalidade, não linha-a-linha, o que dificulta os testes dos métodos responsáveis por geração de código.
@@ -589,7 +549,7 @@ Outra dificuldade encontrada nos testes unitários foi o teste de comandos, devi
 \pagebreak
 \section{Trabalhos futuros}
 
-O atual sistema ainda possui algumas limitações, como a falta de persistência dos dados obtidos. No atual cenário, é necessário que o programador altere o código fonte gerado para que os itens gerados pelo Scrapy durante a recuperação de informações sejam persistidos em disco.
+Por não se encaixar estritamente nos objetivos deste trabalho, a atual ferramenta ainda possui algumas limitações, como a falta de suporte para persistência\footnote{Persistência é o estado dos dados que persistem o processo que os criaram. Sem a capacidade de persistência, o estado somente existirá na memória RAM e será perdida quando o sistema computacional for desligado ou reiniciado.} dos dados obtidos. No atual cenário, é necessário que o programador altere o código fonte gerado pela ferramenta possa persistir para que os itens gerados pelo Scrapy durante a recuperação de informações sejam persistidos em disco.
 
 O presente trabalho conseguiu atingir o objetivo de facilitar a criação e manutenção de sistemas de recuperação estruturada na Web, porém é possível facilitar ainda mais este trabalho. Plugins para navegadores Web podem ser criados de forma que os usuários possam criar os Website Parse Templates (WPT) através de uma interface visual.
 
