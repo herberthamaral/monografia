@@ -18,13 +18,13 @@ Um \gls{sri} consiste em um programa de software que facilita a busca de informa
 Comparado com SRIs clássicos, os SRIs para Web encara um conjunto de dados totalmente diferentes \cite[p. 2]{surveyir}. Segundo \cite{surveyir}, dentre os motivos que tornam únicos os SRIs para Web, pode-se citar:
 
 \begin{itemize}
-	\item \textbf{Internet Dinâmica} - A Internet muda a cada dia enquanto a maioria dos SRIs clássicos é feita para bancos de dados estáticos.
-	\item \textbf{Heterogenidade} - A Internet contém uma grande variedade de tipos de documentos: figuras, arquivos de áudio, textos, scripts, etc.
-	\item \textbf{Variedade de línguas} - O número de línguas diferentes na Internet passa de 100.
-	\item \textbf{Duplicação} - A cópia é uma outra característica importante da Web: há estimativas de que a quantidade de conteúdo copiado chega a 30\% \cite{surveyir}.
-	\item \textbf{Alto número de links} - Em média, cada documento tem mais que 8 links para outras páginas.
-	\item \textbf{Consultas heterogêneas} - SRIs para Web têm que lidar com pequenas consultas e não necessariamente bem representadas dos usários de Internet.
-	\item \textbf{Grande variância de usuários} - Cada usuário da Web é diferente em vista das suas necessidades, resultados esperados e conhecimento.
+	\item \textbf{Internet Dinâmica} - A Internet muda a cada dia enquanto a maioria dos SRIs clássicos é feita para bancos de dados estáticos;
+	\item \textbf{Heterogenidade} - A Internet contém uma grande variedade de tipos de documentos: figuras, arquivos de áudio, textos, scripts, etc;
+	\item \textbf{Variedade de línguas} - O número de línguas diferentes na Internet passa de 100;
+	\item \textbf{Duplicação} - A cópia é uma outra característica importante da Web: há estimativas de que a quantidade de conteúdo copiado chega a 30\% \cite{surveyir};
+	\item \textbf{Alto número de links} - Em média, cada documento tem mais que 8 links para outras páginas;
+	\item \textbf{Consultas heterogêneas} - SRIs para Web têm que lidar com pequenas consultas e não necessariamente bem representadas dos usários de Internet;
+	\item \textbf{Grande variância de usuários} - Cada usuário da Web é diferente em vista das suas necessidades, resultados esperados e conhecimento;
 	\item \textbf{Comportamento específicos} - É estimado que cerca de 85\% consideram somente a primeira página dos resultados retornados dos motores de busca. 78\% dos usuários nunca modificam seu primeiro termo de consulta.
 \end{itemize}
 
@@ -37,9 +37,9 @@ Sendo assim, é possível concluir que o grande desafio de SRIs para Web é supr
 Dentre os motores de busca de propósito geral mais utilizados, há o Google, o Bing e o AltaVista. Dentre os principais objetivos de um motor de busca de propósito geral destacam-se: 
 
 \begin{itemize}
-	\item Resultados de qualidade, independentemente da consulta utilizada.
-	\item Uma boa cobertura dos documentos disponíveis na Web.
-	\item Facilidade de uso.
+	\item Resultados de qualidade, independentemente da consulta utilizada;
+	\item Uma boa cobertura dos documentos disponíveis na Web;
+	\item Facilidade de uso;
 	\item Ser flexível quanto ao tipo de mídia e documento a serem pesquisados.
 \end{itemize}
 
@@ -159,16 +159,16 @@ Scrapy é um framework rápido e de alto nível para \gls{screenscraping} e \gls
 Dentre as principais funcionalidades que o Scrapy apresenta, podem-se citar:
 
 \begin{itemize}
-	\item Suporte embutido para selecionar e extrair dados de fontes em HTML ou XML.
-	\item Suporte embutido para limpeza e sanitização dos dados obtidos utilizando uma coleção de filtros reutilizáveis (chamados de \emph{Item Loaders}) compartilhados entre todos os \glspl{webcrawler}.
-	\item Suporte embutido para geração e exportação de \glspl{feed} em múltiplos formatos e armazenamento dos mesmos (seja em FTP ou localmente).
-	\item Um gerenciador de mídia para download automático de imagens (ou qualquer outro tipo de mídia) associado com os itens obtidos.
-	\item Suporte para extensão do Scrapy, sendo possível adicionar funcionalidades ao framework através do uso de sinais e uma API bem definida.
-	\item Grande quantidade de \glspl{middleware} e extensões para gerenciamento de cookies e sessões, compressão HTTP, autenticação HTTP, cache HTTP, mudança do header \emph{user-agent} \footnote{\Gls{httpheader}} que identifica o navegador do cliente e restrições sobre a profundidade de \gls{crawling}.
-	\item Suporte robusto para auto-detecção de codificação, assim como manipulação de codificações estrangeiras, quebradas e fora dos padrões.
-	\item Extensa coleção de status para métricas do \gls{webcrawler}, úteis para monitoramento de performance e de disponibilidade.
-	\item Um console interativo para teste de \glspl{xpath}, útil para \gls{debugging}.
-	\item Um serviço a nível de sistema feito para facilitar a implantação e execução dos crawlers em produção.
+	\item Suporte embutido para selecionar e extrair dados de fontes em HTML ou XML;
+	\item Suporte embutido para limpeza e sanitização dos dados obtidos utilizando uma coleção de filtros reutilizáveis (chamados de \emph{Item Loaders}) compartilhados entre todos os \glspl{webcrawler};
+	\item Suporte embutido para geração e exportação de \glspl{feed} em múltiplos formatos e armazenamento dos mesmos (seja em FTP ou localmente);
+	\item Um gerenciador de mídia para download automático de imagens (ou qualquer outro tipo de mídia) associado com os itens obtidos;
+	\item Suporte para extensão do Scrapy, sendo possível adicionar funcionalidades ao framework através do uso de sinais e uma API bem definida;
+	\item Grande quantidade de \glspl{middleware} e extensões para gerenciamento de cookies e sessões, compressão HTTP, autenticação HTTP, cache HTTP, mudança do header \emph{user-agent} \footnote{\Gls{httpheader}} que identifica o navegador do cliente e restrições sobre a profundidade de \gls{crawling};
+	\item Suporte robusto para auto-detecção de codificação, assim como manipulação de codificações estrangeiras, quebradas e fora dos padrões;
+	\item Extensa coleção de status para métricas do \gls{webcrawler}, úteis para monitoramento de performance e de disponibilidade;
+	\item Um console interativo para teste de \glspl{xpath}, útil para \gls{debugging};
+	\item Um serviço a nível de sistema feito para facilitar a implantação e execução dos crawlers em produção;
 	\item \Glspl{webservice} e console telnet embutidos para monitoração, controle, introspecção e \gls{debugging} do crawler.
 \end{itemize}
 
@@ -220,14 +220,14 @@ O \textit{Item Pipeline} é responsável pelo processamento dos itens uma vez qu
 O fluxo de dados do Scrapy é controlado pela Engine e funciona da seguinte forma:
 
 \begin{enumerate}
-	\item O \emph{Engine} abre um domínio, localiza o \emph{Spider} que manipula aquele domínio e pede para o \emph{Spider} a primeira URL para navegar.
-	\item O \emph{Engine} pega a primeira URL para navegar do Spider e a agenda no Scheduler como Requisições.
+	\item O \emph{Engine} abre um domínio, localiza o \emph{Spider} que manipula aquele domínio e pede para o \emph{Spider} a primeira URL para navegar;
+	\item O \emph{Engine} pega a primeira URL para navegar do Spider e a agenda no Scheduler como Requisições;
 	\item O \emph{Engine} pede para o \emph{Scheduler} as próximas URLs para navegar.
-	\item O \emph{Scheduler} retorna a próxima URL para navegação para o \emph{Engine} e este a envia para o \emph{Downloader} passando pelo \emph{Downloader Middleware}.
-	\item Uma vez que o download da página terminou, o Downloader gera uma Resposta (\emph{Response}) (com a página) e a manda para o \emph{Engine}, passando pelo \emph{Downloader Middleware}.
-	\item O \textit{Engine} recebe a resposta do \textit{Downloader} e a envia para o \textit{Spider} processar, passando pelo \textit{Spider Middleware}.
-	\item O \textit{Spider} processa a Resposta (\textit{Response}) e retorna os itens obtidos e novas Requisições(\textit{Requests}) para o \textit{Engine}.
-	\item O \textit{Engine} envia os itens obtidos (retornados pelo \textit{spider}) para o \textit{Item Pipeline} e envia as Requisições(retornadas pelo \textit{Spider}) para o \textit{Scheduler}.
+	\item O \emph{Scheduler} retorna a próxima URL para navegação para o \emph{Engine} e este a envia para o \emph{Downloader} passando pelo \emph{Downloader Middleware};
+	\item Uma vez que o download da página terminou, o Downloader gera uma Resposta (\emph{Response}) (com a página) e a manda para o \emph{Engine}, passando pelo \emph{Downloader Middleware};
+	\item O \textit{Engine} recebe a resposta do \textit{Downloader} e a envia para o \textit{Spider} processar, passando pelo \textit{Spider Middleware};
+	\item O \textit{Spider} processa a Resposta (\textit{Response}) e retorna os itens obtidos e novas Requisições(\textit{Requests}) para o \textit{Engine};
+	\item O \textit{Engine} envia os itens obtidos (retornados pelo \textit{spider}) para o \textit{Item Pipeline} e envia as Requisições(retornadas pelo \textit{Spider}) para o \textit{Scheduler};
 	\item O processo se repete a partir do passo 2 até que não existam mais Requisições no \textit{Scheduler} e o \textit{Engine} fecha o domínio.
 \end{enumerate}
 
@@ -247,11 +247,11 @@ O Scrapy possui uma gama de serviços embutidos implementados para facilitar a m
 O \textit{log} é um histórico de execução do sistema. Através da análise de logs, é possível detectar e achar a fonte de problemas. O Scrapy possui um componente de \textit{logging} que grava as mensagens de log em um arquivo em disco e possui cinco níveis de log \cite{scrapy_log}:
 
 \begin{enumerate}
-	\item \texttt{\textbf{CRITICAL}} - Para erros críticos
-	\item \texttt{\textbf{ERROR}} - Para erros regulares
-	\item \texttt{\textbf{WARNING}} - Para avisos
-	\item \texttt{\textbf{INFO}} - Para mensagens informativas
-	\item \texttt{\textbf{DEBUG}} - Para mensagens de debug
+	\item \texttt{\textbf{CRITICAL}} - Para erros críticos;
+	\item \texttt{\textbf{ERROR}} - Para erros regulares;
+	\item \texttt{\textbf{WARNING}} - Para avisos;
+	\item \texttt{\textbf{INFO}} - Para mensagens informativas;
+	\item \texttt{\textbf{DEBUG}} - Para mensagens de debug.
 \end{enumerate}
 
 O nível de log é configurável e um determinado nível irá catalogar todas as mensagens do nível mais as mensagens dos níveis abaixo. Por exemplo, se o nível de log for configurado para 5 (\texttt{DEBUG}), o sistema irá gravar todas as mensagens de log, ao passo que se o nível de log for configurado para 2 (\texttt{ERROR}), somente as mensagens de erros regulares e erros críticos serão gravadas.
@@ -314,11 +314,11 @@ Com sistemas de controle de versão distribuídos podem haver servidores centrai
 O Git surgiu da necessidade de criar um sistema de controle de versões para substituir o BitKeeper, um sistema de controle de versões distribuídos, devido à problemas com a empresa que o desenvolvia \cite[p. 5]{progit}. Alguns objetivos do novo sistema de controle de versões do kernel foram:
 
 \begin{itemize}
-	\item Velocidade.
-	\item Design simples.
-	\item Forte suporte para desenvolvimento não-linear (milhares de \emph{branches} - Ramificações).
-	\item Totalmente distribuído.
-	\item Habilidade para gerenciar grandes projetos, como o kernel do Linux, eficientemente. 
+	\item Velocidade;
+	\item Design simples;
+	\item Forte suporte para desenvolvimento não-linear (milhares de \emph{branches} - Ramificações);
+	\item Totalmente distribuído;
+	\item Habilidade para gerenciar grandes projetos, como o kernel do Linux, eficientemente.
 \end{itemize}
 
 
@@ -350,8 +350,8 @@ O Git trata as informações como se fossem \emph{snapshots} de um pequeno siste
 Website Parse Template (WPT) é um formato aberto baseado em XML que fornece informações adicionais a web crawlers como estrutura e conteúdo do HTML. O WPT é compatível com esquemas XML, como o RDF e o OWL \cite{wpt}. É composto por três seções principais:
 
 \begin{itemize}
-	\item \textbf{Templates} - Seção mandatória, que contém descrições sobre estrutura e conteúdo de páginas da web em HTML.
-	\item \textbf{Ontologia} - Seção opcional que define conceitos e relações usadas em um website.
+	\item \textbf{Templates} - Seção mandatória, que contém descrições sobre estrutura e conteúdo de páginas da web em HTML;
+	\item \textbf{Ontologia} - Seção opcional que define conceitos e relações usadas em um website;
 	\item \textbf{URLs} - Seção opcional, que associa certos padrões de URL para grupos de páginas web para templates específicos. 
 \end{itemize}
 
